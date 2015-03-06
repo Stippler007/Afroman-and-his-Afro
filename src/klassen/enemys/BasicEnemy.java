@@ -33,11 +33,14 @@ public class BasicEnemy extends Enemy
     {
       live-=10;
     }
+    speedX=0;
+    speedY=0;
     
     Rectangle rect=player.getBounding();
     rect.x+=Player.speedX;
     rect.y+=Player.speedY;
     rebound(rect);
+    
     super.update(tslf);
   }
 }

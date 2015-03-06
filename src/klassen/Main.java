@@ -26,7 +26,7 @@ public class Main
   public static void main(String[] args)
   {
     LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
-    Player player=new Player(100, 100, 300, playerSpritzers);
+    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers);
     
     LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
     LinkedList<Enemy> enemys=new LinkedList<>();
@@ -40,7 +40,7 @@ public class Main
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // setzte was passieren soll sobald man das rote x drückt (ebenfalls unnötig)
     f.setLocationRelativeTo(null); // lasse das ganze in der mitte vom bildschirm anzeigen (ansonsten klebt es links oben was uncool ist)
     
-//    enemys.add(new BasicEnemy(300, 300, 20, 20, 0, playerSpritzers, player));
+    enemys.add(new BasicEnemy(300, 300, 20, 20, 0, playerSpritzers, player));
     
     
     long lastFrame=System.currentTimeMillis();

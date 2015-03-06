@@ -19,6 +19,9 @@ public class Player
   private float x;
   private float y;
   
+  public static float speedX;
+  public static float speedY;
+  
   private float realoadTime=0;
   private float maxRealoadTime=0.3f;
   
@@ -52,10 +55,10 @@ public class Player
     {
       x+=speed*tslf;
     }
-    if(x>800)x=-bounding.width;
-    else if(x<-bounding.width)x=800;
-    if(y>600)y=-bounding.height;
-    else if(y<-bounding.height)y=600;
+    if(x>800-bounding.width)x=800-bounding.width;
+    else if(x<0)x=0;
+    if(y>600-bounding.height)y=600-bounding.height;
+    else if(y<0)y=0;
     
     
     if(realoadTime>maxRealoadTime)

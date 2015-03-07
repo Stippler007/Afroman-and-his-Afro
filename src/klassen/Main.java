@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package klassen;
 
 import java.awt.event.KeyEvent;
@@ -13,34 +8,34 @@ import javax.swing.JFrame;
 import klassen.enemys.BasicEnemy;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
+import klassen.enemys.StandartEnemy;
 import klassen.listener.KL;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
 
-/**
- *
- * @author Christian
- */
 public class Main
 {
   public static void main(String[] args)
   {
-    LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
-    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers);
-    
     LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
+      
+    LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
+    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses);
+    
+    
     LinkedList<Enemy> enemys=new LinkedList<>();
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys); //Ich erzeuge mein GUI Objekt
+    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys);
     
-    f.setUndecorated(true); // Ich haue die "Titelleiste" weg
-    f.setVisible(true); // Ich hab keine Ahnung wie ich das erklären soll...
-    f.setSize(800,600); // setzte die Größe 800/600
-    f.setResizable(false); // sage man soll es weder vergrößern noch verkleiner können (unnötig da die ränder sowiso nicht angezeigt werden) 
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // setzte was passieren soll sobald man das rote x drückt (ebenfalls unnötig)
-    f.setLocationRelativeTo(null); // lasse das ganze in der mitte vom bildschirm anzeigen (ansonsten klebt es links oben was uncool ist)
+    f.setUndecorated(true);
+    f.setVisible(true);
+    f.setSize(800,600);
+    f.setResizable(false); 
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setLocationRelativeTo(null);
     
     enemys.add(new BasicEnemy(300, 300, 20, 20, 0, playerSpritzers, player));
+    enemys.add(new StandartEnemy(300, 300, 20, 20, 0, playerSpritzers, player, enemySpritzerses));
     
     
     long lastFrame=System.currentTimeMillis();
@@ -64,16 +59,23 @@ public class Main
       {
         enemy.update(tslf);
       }
+      for (EnemySpritzer enemyS : enemySpritzerses) {
+        enemyS.update(tslf);
+      }
       
-      deleteStuff(enemys,playerSpritzers);
+      deleteStuff(player, enemys,playerSpritzers, enemySpritzerses);
       
       f.repaintScreen();
       try{Thread.sleep(15);} catch (InterruptedException ex){}
     }
   }
-  private static void deleteStuff(LinkedList<Enemy> enemys,LinkedList<PlayerSpritzer> playerSpritzers)
+  private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers)
   {
     int i=0;
+    if(player.getLive() <= 0)
+    {
+        System.exit(0);
+    }
     while(i<enemys.size())
     {
       if(enemys.get(i).getLive()<=0)
@@ -93,6 +95,15 @@ public class Main
       else if(ps.getBounding().x<-ps.getBounding().width)playerSpritzers.remove(i);
       else if(ps.getBounding().y>600)playerSpritzers.remove(i);
       else if(ps.getBounding().y<-ps.getBounding().height)playerSpritzers.remove(i);
+      else i++;
+    }
+    while(i<enemySpritzers.size())
+    {
+      EnemySpritzer ps=enemySpritzers.get(i);
+      if(ps.getBounding().x>800)enemySpritzers.remove(i);
+      else if(ps.getBounding().x<-ps.getBounding().width)enemySpritzers.remove(i);
+      else if(ps.getBounding().y>600)enemySpritzers.remove(i);
+      else if(ps.getBounding().y<-ps.getBounding().height)enemySpritzers.remove(i);
       else i++;
     }
   }

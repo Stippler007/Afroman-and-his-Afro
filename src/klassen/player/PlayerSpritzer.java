@@ -35,6 +35,9 @@ public class PlayerSpritzer
     x+=speedX*tslf;
     y+=speedY*tslf;
     
+    x+=Player.speedX;
+    y+=Player.speedY;
+    
     bounding.x=(int)x;
     bounding.y=(int)y;
   }

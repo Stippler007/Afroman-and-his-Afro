@@ -19,13 +19,18 @@ public class Player
   private float x;
   private float y;
   
+  public static float speedX;
+  public static float speedY;
+  
   private float realoadTime=0;
   private float maxRealoadTime=0.3f;
   
   private int speed;
   private LinkedList<PlayerSpritzer> playerSpritzers;
   private Rectangle bounding;
-
+  
+  private boolean move=false;
+  
   public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers)
   {
     this.x = x;
@@ -36,26 +41,12 @@ public class Player
   }
   public void update(float tslf)
   {
-    if(KL.keys[KeyEvent.VK_W])
-    {
-      y-=speed*tslf;
-    }
-    if(KL.keys[KeyEvent.VK_S])
-    {
-      y+=speed*tslf;
-    }
-    if(KL.keys[KeyEvent.VK_A])
-    {
-      x-=speed*tslf;
-    }
-    if(KL.keys[KeyEvent.VK_D])
-    {
-      x+=speed*tslf;
-    }
-    if(x>800)x=-bounding.width;
-    else if(x<-bounding.width)x=800;
-    if(y>600)y=-bounding.height;
-    else if(y<-bounding.height)y=600;
+    move(tslf);
+    
+    if(x>800-bounding.width)x=800-bounding.width;
+    else if(x<0)x=0;
+    if(y>600-bounding.height)y=600-bounding.height;
+    else if(y<0)y=0;
     
     
     if(realoadTime>maxRealoadTime)
@@ -89,6 +80,32 @@ public class Player
     bounding.x=(int)x;
     bounding.y=(int)y;
   }
+  private void move(float tslf)
+  {
+    speedX=0;
+    speedY=0;
+    
+    if(KL.keys[KeyEvent.VK_A])
+    {
+      speedX=speed*tslf;
+      move=true;
+    }
+    if(KL.keys[KeyEvent.VK_D])
+    {
+      speedX=-speed*tslf;
+      move=true;
+    }
+    if(KL.keys[KeyEvent.VK_W])
+    {
+      speedY=speed*tslf;
+      move=true;
+    }
+    if(KL.keys[KeyEvent.VK_S])
+    {
+      speedY=-speed*tslf;
+      move=true;
+    }
+  }
   public void rebound(Rectangle rect)
   {
     if(bounding.intersects(rect))
@@ -100,19 +117,19 @@ public class Player
       
       if(nachrechts<nachlinks&&nachrechts<nachoben&&nachrechts<nachunten)
       {
-        x+=nachrechts;
+        speedX+=nachrechts;
       }
       else if(nachlinks<nachoben&&nachlinks<nachunten)
       {
-        x-=nachlinks;
+        speedX-=nachlinks;
       }
       else if(nachoben<nachunten)
       {
-        y-=nachoben;
+        speedY-=nachoben;
       }
       else if(nachoben>nachunten)
       {
-        y+=nachunten;
+        speedY+=nachunten;
       }
     }
   }

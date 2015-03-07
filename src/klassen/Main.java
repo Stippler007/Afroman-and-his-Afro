@@ -26,7 +26,7 @@ public class Main
   public static void main(String[] args)
   {
     LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
-    Player player=new Player(100, 100, 300, playerSpritzers);
+    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers);
     
     LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
     LinkedList<Enemy> enemys=new LinkedList<>();

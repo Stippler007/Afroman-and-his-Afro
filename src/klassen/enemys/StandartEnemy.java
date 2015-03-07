@@ -11,6 +11,7 @@ public class StandartEnemy extends Enemy{
         super(x, y, speed, playerSpritzers, player, bounding);
         
         
+        
     }
     
     

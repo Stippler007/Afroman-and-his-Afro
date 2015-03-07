@@ -8,13 +8,16 @@ import klassen.player.PlayerSpritzer;
 
 public class StandartEnemy extends Enemy{
 
-    public StandartEnemy(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers, Player player, Rectangle bounding) {
-        super(x, y, speed, playerSpritzers, player, bounding);
+    LinkedList<EnemySpritzer> enemySpritzer;
+    
+    public StandartEnemy(float x, float y, int speed, int speedX, int speedY, LinkedList<PlayerSpritzer> playerSpritzers, Player player, LinkedList<EnemySpritzer> enemySpritzer) {
+        super(x, y, speed, playerSpritzers, player, new Rectangle((int)x, (int)y, 25, 25));
         
         super.speedX=speedX;
         super.speedY=speedY;
         setColor(Color.blue);
         setKnockback(true);
+        this.enemySpritzer = enemySpritzer;
     }
     
     @Override
@@ -23,6 +26,11 @@ public class StandartEnemy extends Enemy{
         if(collidePlayerSpritzer())
         {
           live-=10;
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*24,0));
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*24,0));
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*24));
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0,-speed*24));
+          
         }
     
         Rectangle rect=player.getBounding();

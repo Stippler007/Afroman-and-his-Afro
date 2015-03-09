@@ -8,6 +8,7 @@ package klassen.player;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
+import klassen.enemys.EnemySpritzer;
 import klassen.listener.KL;
 
 /**
@@ -22,22 +23,27 @@ public class Player
   public static float speedX;
   public static float speedY;
   
+  private float maxLive = 100;
+  private float live = maxLive;
+  
   private float realoadTime=0;
   private float maxRealoadTime=0.3f;
   
   private int speed;
   private LinkedList<PlayerSpritzer> playerSpritzers;
+  private LinkedList<EnemySpritzer> enemySpritzer;
   private Rectangle bounding;
   
   private boolean move=false;
   
-  public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers)
+  public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzer)
   {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.playerSpritzers = playerSpritzers;
     this.bounding=new Rectangle((int)x,(int)y,25,25);
+    this.enemySpritzer = enemySpritzer;
   }
   public void update(float tslf)
   {
@@ -79,7 +85,33 @@ public class Player
     
     bounding.x=(int)x;
     bounding.y=(int)y;
+    
+    if(collideEnemySpritzer())
+    {
+        live -= 5;
+    }
   }
+  
+  private boolean collideEnemySpritzer()
+  {
+    int i=0;
+    while(i<enemySpritzer.size())
+    {
+      Rectangle help1=enemySpritzer.get(i).getBounding();
+      Rectangle help2=bounding;
+      if(help1.intersects(help2))
+      {
+        enemySpritzer.remove(i);
+        return true;
+      }
+      else
+      {
+        i++;
+      }
+    }
+    return false;
+  }
+  
   private void move(float tslf)
   {
     speedX=0;
@@ -144,5 +176,13 @@ public class Player
   public float getY()
   {
     return y;
+  }
+  public float getLive()
+  {
+      return live;
+  }
+  public float getMaxLive()
+  {
+      return maxLive;
   }
 }

@@ -38,10 +38,22 @@ public class Canvas extends JPanel
   public void paint(Graphics g)
   {
     g.clearRect(0, 0, 800, 600);
+    g.setColor(Color.red);
+    g.fillRect((int)player.getX(), (int)player.getY()-3, player.getBounding().width, 2);
+      
+    g.setColor(Color.green);
+    g.fillRect((int)player.getX(), (int)player.getY()-3, (int)(player.getBounding().width*(player.getLive()/player.getMaxLive())), 2);
+      
+    g.setColor(Color.black);
     g.fillRect((int)player.getX(), (int)player.getY(), player.getBounding().width, player.getBounding().height);
+    g.setColor(Color.gray);
     for (PlayerSpritzer playerSpritzer : playerSpritzers)
     {
       g.fillRect((int)playerSpritzer.getX(), (int)playerSpritzer.getY(), playerSpritzer.getBounding().width, playerSpritzer.getBounding().height);
+    }
+    for (EnemySpritzer enemyS : enemySpritzerses)
+    {
+      g.fillRect((int)enemyS.getX(), (int)enemyS.getY(), enemyS.getBounding().width, enemyS.getBounding().height);
     }
     for (Enemy enemy : enemys)
     {

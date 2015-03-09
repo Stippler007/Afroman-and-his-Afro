@@ -31,6 +31,7 @@ public class Main
     LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
     LinkedList<Enemy> enemys=new LinkedList<>();
     
+    
     GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true); // Ich haue die "Titelleiste" weg
@@ -42,6 +43,7 @@ public class Main
     
     enemys.add(new BasicEnemy(300, 300, 20, 20, 0, playerSpritzers, player));
     
+    Background bg=new Background();
     
     long lastFrame=System.currentTimeMillis();
     while(true)

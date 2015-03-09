@@ -37,8 +37,8 @@ public class BasicEnemy extends Enemy
     speedY=0;
     
     Rectangle rect=player.getBounding();
-    rect.x+=Player.speedX;
-    rect.y+=Player.speedY;
+    rect.x-=Player.speedX;
+    rect.y-=Player.speedY;
     rebound(rect);
     
     super.update(tslf);

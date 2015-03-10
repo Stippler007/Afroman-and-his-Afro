@@ -66,10 +66,6 @@ public abstract class Enemy
     x+=Player.speedX;
     y+=Player.speedY;
     
-    if(x>800)x=-bounding.width;
-    else if(x<-bounding.width)x=800;
-    if(y>600)y=-bounding.height;
-    else if(y<-bounding.height)y=600;
     
     if(knockback)moveKnockBack(tslf);
     

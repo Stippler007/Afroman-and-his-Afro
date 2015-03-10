@@ -8,6 +8,7 @@ package klassen.player;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
+import klassen.Background;
 import klassen.enemys.EnemySpritzer;
 import klassen.listener.KL;
 
@@ -82,6 +83,7 @@ public class Player
     {
       realoadTime+=tslf;
     }
+    
     
     bounding.x=(int)x;
     bounding.y=(int)y;

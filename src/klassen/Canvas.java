@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 import javax.swing.JPanel;
+import static klassen.Background.x;
+import static klassen.Background.y;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.player.Player;
@@ -27,17 +29,29 @@ public class Canvas extends JPanel
   private LinkedList<EnemySpritzer> enemySpritzerses;
   private LinkedList<Enemy> enemys;
   
-  public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys)
+  private Background bg;
+  
+  public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg)
   {
     this.player = player;
     this.playerSpritzers = playerSpritzers;
     this.enemySpritzerses = enemySpritzerses;
     this.enemys = enemys;
+    this.bg=bg;
   }
   @Override
   public void paint(Graphics g)
   {
     g.clearRect(0, 0, 800, 600);
+    
+    for (int i =(int)(x/25*-1); i < (int)(x/25*-1)+34; i++) 
+    {
+      for (int j = (int)(y/25*-1); j < (int)(y/25*-1)+26; j++) 
+      {
+        g.drawImage(bg.map[i][j].getLook(), (int)Background.x+i*25, (int)Background.y+j*25, null);
+      }
+    }
+    
     g.setColor(Color.red);
     g.fillRect((int)player.getX(), (int)player.getY()-3, player.getBounding().width, 2);
       

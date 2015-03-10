@@ -5,11 +5,26 @@
  */
 package klassen.karte;
 
+import java.awt.image.BufferedImage;
+import klassen.ImageFactory;
+
 /**
  *
  * @author Christian
  */
 public class Gras extends GameObjects
 {
+  private static BufferedImage look; 
+
+  static
+  {
+    look=ImageFactory.getImageFactory().getLooks("gras0");
+  }
+
+  @Override
+  public BufferedImage getLook()
+  {
+    return look;
+  }
   
 }

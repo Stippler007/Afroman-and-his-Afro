@@ -22,10 +22,11 @@ public class Main
     LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
     Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses);
     
-    
     LinkedList<Enemy> enemys=new LinkedList<>();
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys); //Ich erzeuge mein GUI Objekt
+    Background bg=new Background();
+    
+    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,bg); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);
@@ -37,7 +38,7 @@ public class Main
     enemys.add(new BasicEnemy(300, 300, 20, 20, 0, playerSpritzers, player));
     enemys.add(new StandartEnemy(300, 300, 20, 20, 0, playerSpritzers, player, enemySpritzerses));
     
-    Background bg=new Background();
+    
     
     long lastFrame=System.currentTimeMillis();
     while(true)
@@ -50,8 +51,10 @@ public class Main
       {
         System.exit(0);
       }
+      
       player.update(tslf);
       
+      bg.update(tslf);
       for (PlayerSpritzer playerSpritzer : playerSpritzers)
       {
         playerSpritzer.update(tslf);
@@ -63,6 +66,7 @@ public class Main
       for (EnemySpritzer enemyS : enemySpritzerses) {
         enemyS.update(tslf);
       }
+      
       
       deleteStuff(player, enemys,playerSpritzers, enemySpritzerses);
       

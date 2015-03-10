@@ -5,6 +5,9 @@
  */
 package klassen.karte;
 
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author Christian
@@ -14,14 +17,27 @@ public abstract class GameObjects
   
   protected boolean solid;
   protected boolean onFire;
+  protected Rectangle bounding;
   
   
   public GameObjects()
   {
+    bounding=new Rectangle(0,0,25,25);
   }
   public void update(float tslf,float x,float y)
   {
-    
+    bounding.x=(int)x;
+    bounding.y=(int)y;
   }
   
+  public abstract BufferedImage getLook();
+  
+  public boolean isSolid()
+  {
+    return solid;
+  }
+  public Rectangle getBounding()
+  {
+    return bounding;
+  }
 }

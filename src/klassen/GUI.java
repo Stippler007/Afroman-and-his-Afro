@@ -19,9 +19,9 @@ public class GUI extends JFrame
 {
   private Canvas canvas;
   
-  public GUI(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys)
+  public GUI(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg)
   {
-    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys);
+    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,bg);
     canvas.setBounds(0, 0, 800, 600);
     addKeyListener(new KL());
     add(canvas);

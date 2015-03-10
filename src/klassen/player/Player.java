@@ -93,27 +93,6 @@ public class Player
         live -= 5;
     }
   }
-  
-  private boolean collideEnemySpritzer()
-  {
-    int i=0;
-    while(i<enemySpritzer.size())
-    {
-      Rectangle help1=enemySpritzer.get(i).getBounding();
-      Rectangle help2=bounding;
-      if(help1.intersects(help2))
-      {
-        enemySpritzer.remove(i);
-        return true;
-      }
-      else
-      {
-        i++;
-      }
-    }
-    return false;
-  }
-  
   private void move(float tslf)
   {
     speedX=0;
@@ -139,7 +118,34 @@ public class Player
       speedY=-speed*tslf;
       move=true;
     }
+    
+    if(Background.x+speedX<0)
+    {
+      x+=speedX;
+      speedX=0;
+    }
   }
+  private boolean collideEnemySpritzer()
+  {
+    int i=0;
+    while(i<enemySpritzer.size())
+    {
+      Rectangle help1=enemySpritzer.get(i).getBounding();
+      Rectangle help2=bounding;
+      if(help1.intersects(help2))
+      {
+        enemySpritzer.remove(i);
+        return true;
+      }
+      else
+      {
+        i++;
+      }
+    }
+    return false;
+  }
+  
+  
   public void rebound(Rectangle rect)
   {
     if(bounding.intersects(rect))

@@ -20,8 +20,9 @@ public class Background
   
   GameObjects[][] map=new GameObjects[100][100];
   
-  public Background()
+  public Background(Player player)
   {
+    x=-1500;
     for (int i = 0; i < map.length; i++)
     {
       for (int j = 0; j < map[0].length; j++)
@@ -29,10 +30,12 @@ public class Background
         map[i][j]=new Gras();
       }
     }
+    player.setMap(map);
   }
   
   public void update(float tslf)
   {
+//    System.out.println(x);
     x+=Player.speedX;
     y+=Player.speedY;
     for (int i =(int)(x/25*-1); i < (int)(x/25*-1)+34; i++) 

@@ -25,11 +25,14 @@ public abstract class Enemy
   
   protected float speedX;
   protected float speedY;
-  
   protected int speed;
+  
   protected LinkedList<PlayerSpritzer> playerSpritzers;
   protected Player player;
   protected Rectangle bounding;
+  
+  protected float zielX;
+  protected float zielY;
   
   private float knockbackX;
   private float knockbackY;
@@ -60,6 +63,8 @@ public abstract class Enemy
   
   public void update(float tslf)
   {
+    
+    
     x+=speedX*tslf;
     y+=speedY*tslf;
     
@@ -71,6 +76,22 @@ public abstract class Enemy
     
     bounding.x=(int)x;
     bounding.y=(int)y;
+  }
+  protected void moveZiel(float zielX,float zielY,int speed)
+  {
+    float speedX = (zielX) - (x+bounding.width/2);
+    float speedY = (zielY) - (y+bounding.height/2);
+    
+    float help = (float)Math.sqrt(speedX*speedX+speedY*speedY);
+    
+    speedX/=help;
+    speedY/=help;
+    
+    speedX*=speed;
+    speedY*=speed;
+    
+    this.speedX+=speedX;
+    this.speedY+=speedY;
   }
   private void moveKnockBack(float tslf)
   {

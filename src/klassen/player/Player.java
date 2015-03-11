@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import klassen.Background;
 import klassen.enemys.EnemySpritzer;
+import klassen.karte.GameObjects;
 import klassen.listener.KL;
 
 /**
@@ -36,6 +37,8 @@ public class Player
   private Rectangle bounding;
   
   private boolean move=false;
+  private GameObjects[][] map;
+  
   
   public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzer)
   {
@@ -45,6 +48,10 @@ public class Player
     this.playerSpritzers = playerSpritzers;
     this.bounding=new Rectangle((int)x,(int)y,25,25);
     this.enemySpritzer = enemySpritzer;
+  }
+  public void setMap(GameObjects[][] map)
+  {
+    this.map = map;
   }
   public void update(float tslf)
   {
@@ -119,10 +126,34 @@ public class Player
       move=true;
     }
     
-    if(Background.x+speedX<0)
+    if(Background.x+speedX+((400-bounding.width/2)-x)>0)
     {
-      x+=speedX;
+      x-=speedX;
       speedX=0;
+    }
+    else if((Background.x+speedX)*-1+800+(x-(400-bounding.width/2))>(map.length-1)*25)
+    {
+      x-=speedX;
+      speedX=0;
+    }
+    else
+    {
+      x=400-bounding.width/2;
+    }
+    
+    if(Background.y+speedX+((300-bounding.width/2)-y)>0)
+    {
+      y-=speedY;
+      speedY=0;
+    }
+    else if((Background.y+speedY)*-1+600+(y-(300-bounding.height/2))>(map[0].length-1)*25)
+    {
+      y-=speedY;
+      speedY=0;
+    }
+    else
+    {
+      y=300-bounding.height/2;
     }
   }
   private boolean collideEnemySpritzer()

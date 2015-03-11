@@ -24,7 +24,7 @@ public class Main
     
     LinkedList<Enemy> enemys=new LinkedList<>();
     
-    Background bg=new Background();
+    Background bg=new Background(player);
     
     GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,bg); //Ich erzeuge mein GUI Objekt
     
@@ -35,7 +35,7 @@ public class Main
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLocationRelativeTo(null);
     
-    enemys.add(new BasicEnemy(300, 300, 20, 20, 0, playerSpritzers, player));
+    enemys.add(new BasicEnemy(300, 300, 300, 20, 0, playerSpritzers, player));
     enemys.add(new StandartEnemy(300, 300, 20, 20, 0, playerSpritzers, player, enemySpritzerses));
     
     

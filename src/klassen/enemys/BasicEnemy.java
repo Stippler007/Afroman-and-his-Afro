@@ -40,8 +40,10 @@ public class BasicEnemy extends Enemy
     Rectangle rect=player.getBounding();
     rect.x-=Player.speedX;
     rect.y-=Player.speedY;
-    rebound(rect);
     
+    moveZiel(player.getX()+player.getBounding().width/2, player.getY()+player.getBounding().height/2,speed);
+    
+    rebound(rect);
     super.update(tslf);
   }
 }

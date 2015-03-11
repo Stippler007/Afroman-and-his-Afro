@@ -54,7 +54,7 @@ public class Canvas extends JPanel
     
     g.setColor(Color.red);
     g.fillRect((int)player.getX(), (int)player.getY()-3, player.getBounding().width, 2);
-      
+    
     g.setColor(Color.green);
     g.fillRect((int)player.getX(), (int)player.getY()-3, (int)(player.getBounding().width*(player.getLive()/player.getMaxLive())), 2);
       

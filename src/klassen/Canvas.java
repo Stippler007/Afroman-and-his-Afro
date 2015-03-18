@@ -48,15 +48,14 @@ public class Canvas extends JPanel
     this.scaleY = scaleY;
   }
   
-  public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg)
+  public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg, InventoryDraw iv)
   {
     this.player = player;
     this.playerSpritzers = playerSpritzers;
     this.enemySpritzerses = enemySpritzerses;
     this.enemys = enemys;
     this.bg=bg;
-    
-    iv = new InventoryDraw();
+    this.iv = iv;
   }
   @Override
   public void paint(Graphics g)

@@ -168,7 +168,7 @@ public class Player
       {
         Rectangle help1=new Rectangle((int)(x-(speedX)),(int)(y-(speedY)),bounding.width,bounding.height);
         
-        if(map[i][j]!=null&&map[i][j].isSolid()&&help1.intersects(map[i][j].getBounding()))
+        if(!(i<0)&&!(j<0)&&map[i][j]!=null&&map[i][j].isSolid()&&help1.intersects(map[i][j].getBounding()))
         {
           Rectangle help2=map[i][j].getBounding();
           rebound(help1, help2);

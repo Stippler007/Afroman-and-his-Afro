@@ -42,8 +42,6 @@ public class Main
 //    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
 //    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
     
-    
-    
     long lastFrame=System.currentTimeMillis();
     while(true)
     {   

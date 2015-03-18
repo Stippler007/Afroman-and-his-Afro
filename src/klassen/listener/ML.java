@@ -18,13 +18,13 @@ public class ML implements MouseListener
   @Override
   public void mouseClicked(MouseEvent e)
   {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
   }
 
   @Override
   public void mousePressed(MouseEvent e)
   {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
   }
 
   @Override

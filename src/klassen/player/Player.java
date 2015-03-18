@@ -166,7 +166,7 @@ public class Player
     {
       for (int j = (int)((Background.y/25*-1)+((y/25-2))); j <= (int)((Background.y/25*-1)+((y/25+2))); j++) 
       {
-        Rectangle help1=new Rectangle(bounding.x-(int)(speedX),bounding.y-(int)(speedY),bounding.width,bounding.height);
+        Rectangle help1=new Rectangle((int)x-(int)(speedX),(int)y-(int)(speedY),bounding.width,bounding.height);
         
         if(map[i][j]!=null&&map[i][j].isSolid()&&help1.intersects(map[i][j].getBounding()))
         {

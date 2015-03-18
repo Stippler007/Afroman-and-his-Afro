@@ -165,7 +165,6 @@ public class Player
         }
       }
     }
-      
   }
   private boolean collideEnemySpritzer()
   {

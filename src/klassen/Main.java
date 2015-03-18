@@ -1,5 +1,6 @@
 package klassen;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -11,6 +12,8 @@ import klassen.enemys.EnemySpritzer;
 import klassen.enemys.StandartEnemy;
 import klassen.listener.KL;
 import klassen.player.Player;
+import static klassen.player.Player.speedX;
+import static klassen.player.Player.speedY;
 import klassen.player.PlayerSpritzer;
 
 public class Main
@@ -34,10 +37,10 @@ public class Main
     f.setResizable(false); 
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLocationRelativeTo(null);
-    
-    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, player, enemySpritzerses));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
+//    f.setFullscreen();
+//    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, player, enemySpritzerses));
+//    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
+//    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
     
     
     
@@ -68,14 +71,18 @@ public class Main
         enemyS.update(tslf);
       }
       
+      if(KL.keys[KeyEvent.VK_F])
+      {
+        f.setNormalscreen();
+      }
       
-      deleteStuff(player, enemys,playerSpritzers, enemySpritzerses);
+      deleteStuff(player, enemys,playerSpritzers, enemySpritzerses,bg);
       
       f.repaintScreen();
       try{Thread.sleep(15);} catch (InterruptedException ex){}
     }
   }
-  private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers)
+  private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers,Background bg)
   {
     int i=0;
     if(player.getLive() <= 0)
@@ -102,6 +109,17 @@ public class Main
       else if(ps.getBounding().y>600)playerSpritzers.remove(i);
       else if(ps.getBounding().y<-ps.getBounding().height)playerSpritzers.remove(i);
       else i++;
+      
+      for (int j =(int)(Background.x/25*-1); i <= (int)(Background.x/25*-1); i++) 
+      {
+        for (int k = (int)(Background.y/25*-1); j <= (int)(Background.y/25*-1); j++) 
+        {
+          if(!(j<0)&&!(j<0)&&bg.upperMap[j][k]!=null&&bg.upperMap[j][k].isSolid())
+          {
+            
+          }
+        }
+      }
     }
     while(i<enemySpritzers.size())
     {
@@ -111,6 +129,8 @@ public class Main
       else if(ps.getBounding().y>600)enemySpritzers.remove(i);
       else if(ps.getBounding().y<-ps.getBounding().height)enemySpritzers.remove(i);
       else i++;
+      
     }
+    
   }
 }

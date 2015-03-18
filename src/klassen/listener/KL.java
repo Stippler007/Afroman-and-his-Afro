@@ -5,8 +5,10 @@
  */
 package klassen.listener;
 
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import klassen.GUI;
 
 /**
  *
@@ -15,13 +17,24 @@ import java.awt.event.KeyListener;
 public class KL implements KeyListener
 {
   public static boolean keys[]=new boolean[1024];
+  private GUI f;
+  
+  public KL(GUI f) 
+  {
+    this.f=f;
+  }
+  
+  
   
   @Override
-  public void keyTyped(KeyEvent e){}
+  public void keyTyped(KeyEvent e){
+    
+  }
   @Override
   public void keyPressed(KeyEvent e)
   {
     keys[e.getKeyCode()]=true;
+    
   }
   @Override
   public void keyReleased(KeyEvent e)

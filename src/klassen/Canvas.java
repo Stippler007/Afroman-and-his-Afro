@@ -14,6 +14,9 @@ import static klassen.Background.x;
 import static klassen.Background.y;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
+import klassen.listener.KL;
+import klassen.listener.ML;
+import klassen.listener.MML;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
 
@@ -31,6 +34,17 @@ public class Canvas extends JPanel
   
   private Background bg;
   
+  private float scaleX=1;
+  private float scaleY=1;
+
+  public void setScaleX(float scaleX) {
+    this.scaleX = scaleX;
+  }
+
+  public void setScaleY(float scaleY) {
+    this.scaleY = scaleY;
+  }
+  
   public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg)
   {
     this.player = player;
@@ -42,7 +56,9 @@ public class Canvas extends JPanel
   @Override
   public void paint(Graphics g)
   {
-    g.clearRect(0, 0, 800, 600);
+    Graphics2D g2=(Graphics2D)g;
+    g2.scale(scaleX, scaleY);
+    
     
     for (int i =(int)(x/25*-1); i < (int)(x/25*-1)+34; i++) 
     {

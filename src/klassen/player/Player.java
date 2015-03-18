@@ -162,9 +162,9 @@ public class Player
   }
   private void collideMap()
   {
-    for (int i =(int)(Background.x/25*-1)+14; i < (int)(Background.x/25*-1)+18; i++) 
+    for (int i =(int)((Background.x/25*-1)+((x/25)-2)); i <= (int)((Background.x/25*-1)+((x/25)+2)); i++) 
     {
-      for (int j = (int)(Background.y/25*-1)+10; j < (int)(Background.y/25*-1)+14; j++) 
+      for (int j = (int)((Background.y/25*-1)+((y/25-2))); j <= (int)((Background.y/25*-1)+((y/25+2))); j++) 
       {
         Rectangle help1=new Rectangle(bounding.x-(int)(speedX),bounding.y-(int)(speedY),bounding.width,bounding.height);
         
@@ -175,6 +175,7 @@ public class Player
         }
       }
     }
+      
   }
   private boolean collideEnemySpritzer()
   {

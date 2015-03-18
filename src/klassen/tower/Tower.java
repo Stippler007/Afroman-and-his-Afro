@@ -8,6 +8,7 @@ package klassen.tower;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import klassen.ImageFactory;
 import klassen.enemys.Enemy;
 import klassen.player.Player;
 
@@ -22,23 +23,31 @@ public abstract class Tower
   
   protected Rectangle bounding;
   protected int radius;
-  protected BufferedImage look[];
+  protected BufferedImage look[]=new BufferedImage[1];
   
   protected Enemy enemy;
   protected LinkedList<Enemy> enemys;
   protected float damage;
   
+  private LinkedList<TowerSpritzer> towerSpritzers;
+  
   protected float animationTime=0;
   protected float maxAnimationTime;
   
   public Tower(float x, float y, Rectangle bounding,
-               int radius,float damage,float maxAnimationTime,LinkedList<Enemy> enemys)
+               int radius,float damage,float maxAnimationTime,
+               LinkedList<Enemy> enemys,LinkedList<TowerSpritzer> towerSpritzers)
   {
+    for (int i = 0; i < look.length; i++)
+    {
+      look[i]=ImageFactory.getImageFactory().getLooks("Tower"+i);
+    }
     this.x = x;
     this.y = y;
     this.enemys=enemys;
     this.bounding = bounding;
     this.damage=damage;
+    this.towerSpritzers=towerSpritzers;
   }
   
   public void update(float tslf)
@@ -56,10 +65,9 @@ public abstract class Tower
     x+=Player.speedX;
     y+=Player.speedY;
   }
-  public void onAttack()
-  {
-    
-  }
+  
+  public abstract void onAttack();
+  
   private LinkedList<Enemy> getPossibleEnemys()
   {
     LinkedList<Enemy> enemys=new LinkedList<>();

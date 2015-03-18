@@ -48,7 +48,7 @@ public class Canvas extends JPanel
     {
       for (int j = (int)(y/25*-1); j < (int)(y/25*-1)+26; j++) 
       {
-        g.drawImage(bg.map[i][j].getLook(), (int)Background.x+i*25, (int)Background.y+j*25, null);
+        g.drawImage(bg.lowerMap[i][j].getLook(), (int)Background.x+i*25, (int)Background.y+j*25, null);
       }
     }
     

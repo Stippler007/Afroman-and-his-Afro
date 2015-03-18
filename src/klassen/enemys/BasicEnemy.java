@@ -18,9 +18,9 @@ import klassen.player.PlayerSpritzer;
  */
 public class BasicEnemy extends Enemy
 {
-  public BasicEnemy(float x, float y, int speed, int speedX, int speedY,LinkedList<PlayerSpritzer> playerSpritzers,Player player)
+  public BasicEnemy(float x, float y, int speed, int speedX, int speedY,LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,Player player)
   {
-    super(x, y, speed, playerSpritzers, player, new Rectangle((int)x, (int)y, 25, 25));
+    super(x, y, speed, playerSpritzers,enemys, player, new Rectangle((int)x, (int)y, 25, 25));
     super.speedX=speedX;
     super.speedY=speedY;
     setColor(Color.RED);
@@ -37,13 +37,13 @@ public class BasicEnemy extends Enemy
     speedX=0;
     speedY=0;
     
-    Rectangle rect=player.getBounding();
-    rect.x-=Player.speedX;
-    rect.y-=Player.speedY;
-    
     moveZiel(player.getX()+player.getBounding().width/2, player.getY()+player.getBounding().height/2,speed);
     
-    rebound(rect);
     super.update(tslf);
+    
+    Rectangle rect=player.getBounding();
+    
+    collisionEnemy();
+    rebound(rect);
   }
 }

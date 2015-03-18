@@ -28,6 +28,7 @@ public abstract class Enemy
   protected int speed;
   
   protected LinkedList<PlayerSpritzer> playerSpritzers;
+  protected LinkedList<Enemy> enemys;
   protected Player player;
   protected Rectangle bounding;
   
@@ -41,7 +42,7 @@ public abstract class Enemy
   
   protected Color color;
   
-  public Enemy(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers,Player player, Rectangle bounding)
+  public Enemy(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,Player player, Rectangle bounding)
   {
     this.x = x;
     this.y = y;
@@ -49,6 +50,7 @@ public abstract class Enemy
     this.playerSpritzers = playerSpritzers;
     this.bounding = bounding;
     this.player=player;
+    this.enemys=enemys;
   }
 
   public void setColor(Color color)
@@ -177,6 +179,19 @@ public abstract class Enemy
     }
     return false;
   }
+  protected void collisionEnemy()
+  {
+    int i=0;
+    while(i<enemys.size())
+    {
+      Enemy e=enemys.get(i);
+      if(e.getBounding().intersects(bounding))
+      {
+        rebound(e.getBounding());
+      }
+      i++;
+    }
+  }
   protected void rebound(Rectangle rect)
   {
     if(bounding.intersects(rect))
@@ -203,6 +218,8 @@ public abstract class Enemy
         y+=nachunten;
       }
     }
+    bounding.x=(int)x;
+    bounding.y=(int)y;
   }
 
   public float getLive()

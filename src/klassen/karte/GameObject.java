@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Christian
  */
-public abstract class GameObjects
+public abstract class GameObject
 {
   
   protected boolean solid;
@@ -20,7 +20,7 @@ public abstract class GameObjects
   protected Rectangle bounding;
   
   
-  public GameObjects()
+  public GameObject()
   {
     bounding=new Rectangle(0,0,25,25);
   }

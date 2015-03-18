@@ -10,8 +10,8 @@ public class StandartEnemy extends Enemy{
 
     LinkedList<EnemySpritzer> enemySpritzer;
     
-    public StandartEnemy(float x, float y, int speed, int speedX, int speedY, LinkedList<PlayerSpritzer> playerSpritzers, Player player, LinkedList<EnemySpritzer> enemySpritzer) {
-        super(x, y, speed, playerSpritzers, player, new Rectangle((int)x, (int)y, 25, 25));
+    public StandartEnemy(float x, float y, int speed, int speedX, int speedY, LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys, Player player, LinkedList<EnemySpritzer> enemySpritzer) {
+        super(x, y, speed, playerSpritzers,enemys, player, new Rectangle((int)x, (int)y, 25, 25));
         
         super.speedX=speedX;
         super.speedY=speedY;

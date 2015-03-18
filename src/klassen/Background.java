@@ -5,7 +5,7 @@
  */
 package klassen;
 
-import klassen.karte.GameObjects;
+import klassen.karte.GameObject;
 import klassen.karte.Gras;
 import klassen.player.Player;
 
@@ -18,19 +18,20 @@ public class Background
   public static float x;
   public static float y;
   
-  GameObjects[][] map=new GameObjects[100][100];
+  public GameObject[][] upperMap=new GameObject[100][100];
+  public GameObject[][] lowerMap=new GameObject[100][100];
   
   public Background(Player player)
   {
     x=-1500;
-    for (int i = 0; i < map.length; i++)
+    for (int i = 0; i < lowerMap.length; i++)
     {
-      for (int j = 0; j < map[0].length; j++)
+      for (int j = 0; j < lowerMap[0].length; j++)
       {
-        map[i][j]=new Gras();
+        lowerMap[i][j]=new Gras();
       }
     }
-    player.setMap(map);
+    player.setMap(lowerMap);
   }
   
   public void update(float tslf)
@@ -42,9 +43,8 @@ public class Background
     {
       for (int j = (int)(y/25*-1); j < (int)(y/25*-1)+26; j++) 
       {
-        map[i][j].update(tslf,(int)(x+i*25),(int)(y+j*25));
+        lowerMap[i][j].update(tslf,(int)(x+i*25),(int)(y+j*25));
       }
     }
-    
-  }
+  }  
 }

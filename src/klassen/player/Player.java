@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import klassen.Background;
 import klassen.enemys.EnemySpritzer;
-import klassen.karte.GameObjects;
+import klassen.karte.GameObject;
 import klassen.listener.KL;
 
 /**
@@ -37,7 +37,7 @@ public class Player
   private Rectangle bounding;
   
   private boolean move=false;
-  private GameObjects[][] map;
+  private GameObject[][] map;
   
   
   public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzer)
@@ -49,7 +49,7 @@ public class Player
     this.bounding=new Rectangle((int)x,(int)y,25,25);
     this.enemySpritzer = enemySpritzer;
   }
-  public void setMap(GameObjects[][] map)
+  public void setMap(GameObject[][] map)
   {
     this.map = map;
   }

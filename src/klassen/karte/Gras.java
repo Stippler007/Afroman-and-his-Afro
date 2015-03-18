@@ -12,7 +12,7 @@ import klassen.ImageFactory;
  *
  * @author Christian
  */
-public class Gras extends GameObjects
+public class Gras extends GameObject
 {
   private static BufferedImage look; 
 

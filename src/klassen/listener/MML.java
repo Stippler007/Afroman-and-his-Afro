@@ -16,6 +16,7 @@ public class MML implements MouseMotionListener
 {
   public static int x;
   public static int y;
+  
   @Override
   public void mouseDragged(MouseEvent e)
   {

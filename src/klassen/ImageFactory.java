@@ -29,7 +29,7 @@ public class ImageFactory
       }
       for (int i = 0; i < 1; i++) 
       {
-          looks.put("rock"+i, ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/gameObjects/rock"+i+".png")));
+          looks.put("rock"+i, ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/gameObjects/stone"+i+".png")));
       }
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);

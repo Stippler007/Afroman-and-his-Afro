@@ -65,7 +65,6 @@ public class GUI extends JFrame
   {
     canvas.repaint();
   }
-
   public boolean isFullscreen() {
     return fullscreen;
   }

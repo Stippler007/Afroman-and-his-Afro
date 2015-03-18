@@ -59,7 +59,6 @@ public class Canvas extends JPanel
     Graphics2D g2=(Graphics2D)g;
     g2.scale(scaleX, scaleY);
     
-    
     for (int i =(int)(x/25*-1); i < (int)(x/25*-1)+34; i++) 
     {
       for (int j = (int)(y/25*-1); j < (int)(y/25*-1)+26; j++) 

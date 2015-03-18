@@ -37,7 +37,7 @@ public class Main
     f.setResizable(false); 
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLocationRelativeTo(null);
-    f.setFullscreen();
+//    f.setFullscreen();
 //    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, player, enemySpritzerses));
 //    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
 //    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));

@@ -92,13 +92,39 @@ public class Player
     }
     
     
+    collide();
+    
+    if(Background.x+speedX+((400-bounding.width/2)-x)>0)
+    {
+      x-=speedX;
+      speedX=0;
+    }
+    else if((Background.x+speedX)*-1+800+(x-(400-bounding.width/2))>(map.length-1)*25)
+    {
+      x-=speedX;
+      speedX=0;
+    }
+    else
+    {
+      x=400-bounding.width/2;
+    }
+    if(Background.y+speedX+((300-bounding.width/2)-y)>0)
+    {
+      y-=speedY;
+      speedY=0;
+    }
+    else if((Background.y+speedY)*-1+600+(y-(300-bounding.height/2))>(map[0].length-1)*25)
+    {
+      y-=speedY;
+      speedY=0;
+    }
+    else
+    {
+      y=300-bounding.height/2;
+    }
+    
     bounding.x=(int)x;
     bounding.y=(int)y;
-    
-    if(collideEnemySpritzer())
-    {
-        live -= 5;
-    }
   }
   private void move(float tslf)
   {
@@ -125,35 +151,29 @@ public class Player
       speedY=-speed*tslf;
       move=true;
     }
-    
-    if(Background.x+speedX+((400-bounding.width/2)-x)>0)
+  }
+  public void collide()
+  {
+    if(collideEnemySpritzer())
     {
-      x-=speedX;
-      speedX=0;
+      live -= 5;
     }
-    else if((Background.x+speedX)*-1+800+(x-(400-bounding.width/2))>(map.length-1)*25)
+    collideMap();
+  }
+  private void collideMap()
+  {
+    for (int i =(int)(Background.x/25*-1)+14; i < (int)(Background.x/25*-1)+18; i++) 
     {
-      x-=speedX;
-      speedX=0;
-    }
-    else
-    {
-      x=400-bounding.width/2;
-    }
-    
-    if(Background.y+speedX+((300-bounding.width/2)-y)>0)
-    {
-      y-=speedY;
-      speedY=0;
-    }
-    else if((Background.y+speedY)*-1+600+(y-(300-bounding.height/2))>(map[0].length-1)*25)
-    {
-      y-=speedY;
-      speedY=0;
-    }
-    else
-    {
-      y=300-bounding.height/2;
+      for (int j = (int)(Background.y/25*-1)+10; j < (int)(Background.y/25*-1)+14; j++) 
+      {
+        Rectangle help1=new Rectangle(bounding.x-(int)(speedX),bounding.y-(int)(speedY),bounding.width,bounding.height);
+        
+        if(map[i][j]!=null&&map[i][j].isSolid()&&help1.intersects(map[i][j].getBounding()))
+        {
+          Rectangle help2=map[i][j].getBounding();
+          rebound(help1, help2);
+        }
+      }
     }
   }
   private boolean collideEnemySpritzer()
@@ -175,16 +195,18 @@ public class Player
     }
     return false;
   }
-  
-  
   public void rebound(Rectangle rect)
   {
+    
     if(bounding.intersects(rect))
     {
       int nachrechts=(int)(rect.x+rect.width)-bounding.x;
       int nachlinks=(int)(bounding.x+bounding.width)-rect.x;
       int nachunten=(int)(rect.y+rect.height)-bounding.y;
       int nachoben=(int)(bounding.y+bounding.height)-rect.y;
+      
+      int speedX=0;
+      int speedY=0;
       
       if(nachrechts<nachlinks&&nachrechts<nachoben&&nachrechts<nachunten)
       {
@@ -202,6 +224,30 @@ public class Player
       {
         speedY+=nachunten;
       }
+    }
+  }
+  public void rebound(Rectangle help1,Rectangle help2)
+  {
+    double vonlinks=help1.x+help1.width-help2.x;
+    double vonoben=help1.y+help1.height-help2.y;
+    double vonrechts=help2.x+help2.width-help1.x;
+    double vonunten=help2.y + help2.height - help1.y;
+    
+    if(vonlinks<vonoben&&vonlinks<vonrechts&&vonlinks<vonunten)
+    {
+      speedX+=vonlinks;
+    }
+    else if(vonoben<vonrechts&&vonoben<vonunten)
+    {
+      speedY+=vonoben;
+    }
+    else if(vonrechts<vonunten)
+    {
+      speedX-=vonrechts;
+    }
+    else
+    {
+      speedY-=vonunten;
     }
   }
   public Rectangle getBounding()

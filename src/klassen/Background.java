@@ -6,7 +6,7 @@
 package klassen;
 
 import klassen.karte.GameObject;
-import klassen.karte.Gras;
+import klassen.karte.*;
 import klassen.player.Player;
 
 /**
@@ -31,7 +31,11 @@ public class Background
         lowerMap[i][j]=new Gras();
       }
     }
-    player.setMap(lowerMap);
+    for (int i = 0; i < upperMap.length; i++)
+    {
+      upperMap[i][18]=new Rock();
+    }
+    player.setMap(upperMap);
   }
   
   public void update(float tslf)
@@ -44,7 +48,8 @@ public class Background
       for (int j = (int)(y/25*-1); j < (int)(y/25*-1)+26; j++) 
       {
         lowerMap[i][j].update(tslf,(int)(x+i*25),(int)(y+j*25));
+        if(upperMap[i][j]!=null)upperMap[i][j].update(tslf,(int)(x+i*25),(int)(y+j*25));
       }
     }
-  }  
+  }
 }

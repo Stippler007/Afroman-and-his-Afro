@@ -27,6 +27,10 @@ public class ImageFactory
       {
           looks.put("gras"+i, ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/gameObjects/gras"+i+".png")));
       }
+      for (int i = 0; i < 1; i++) 
+      {
+          looks.put("rock"+i, ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/gameObjects/rock"+i+".png")));
+      }
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
     }

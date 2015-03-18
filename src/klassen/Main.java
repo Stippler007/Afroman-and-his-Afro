@@ -126,8 +126,6 @@ public class Main
       else if(ps.getBounding().y>600)enemySpritzers.remove(i);
       else if(ps.getBounding().y<-ps.getBounding().height)enemySpritzers.remove(i);
       else i++;
-      
     }
-    
   }
 }

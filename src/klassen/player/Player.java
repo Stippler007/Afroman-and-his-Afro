@@ -114,7 +114,12 @@ public class Player
     {
       y=300-bounding.height/2;
     }
-    
+    //TODO
+    /*
+    Nicht alles wird richtig angezeigt => man kann zu weit nach unten fahren...
+    Map eventuell falsch...
+    Bug Fixen
+    */
     bounding.x=(int)x;
     bounding.y=(int)y;
   }

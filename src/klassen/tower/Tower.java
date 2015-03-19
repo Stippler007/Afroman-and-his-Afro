@@ -38,10 +38,7 @@ public abstract class Tower
                int radius,float damage,float maxAnimationTime,
                LinkedList<Enemy> enemys,LinkedList<TowerSpritzer> towerSpritzers)
   {
-    for (int i = 0; i < look.length; i++)
-    {
-      look[i]=ImageFactory.getImageFactory().getLooks("Tower"+i);
-    }
+    look[0]=ImageFactory.getImageFactory().getLooks("BasicTower");
     this.x = x;
     this.y = y;
     this.enemys=enemys;

@@ -31,6 +31,7 @@ public class ImageFactory
       {
           looks.put("rock"+i, ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/gameObjects/stone"+i+".png")));
       }
+      looks.put("BasicTower", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/towers/Towers.png")).getSubimage(0, 0, 50, 50));
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
     }

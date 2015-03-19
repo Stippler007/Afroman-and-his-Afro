@@ -100,7 +100,7 @@ public class Canvas extends JPanel
       g.setColor(enemy.getColor());
       g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
     }
-     
+    
     iv.paintInventory(g);
   }
 }

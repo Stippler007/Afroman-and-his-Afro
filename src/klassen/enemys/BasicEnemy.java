@@ -41,8 +41,16 @@ public class BasicEnemy extends Enemy
     super.update(tslf);
   }
   
-  
-  /*
+  @Override
+  public void updateAttack(float tslf) 
+  {
+    if(player.getBounding().intersects(bounding))
+    {
+      player.damage(100*tslf);
+    }
+  }
+}
+/*
   @Override
     public void update(float tslf)
     {
@@ -78,4 +86,3 @@ public class BasicEnemy extends Enemy
         collide();
     }
   */
-}

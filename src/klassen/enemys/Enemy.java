@@ -39,7 +39,7 @@ public abstract class Enemy
   protected static GameObject map[][];
   
   protected Color color;
-  protected Status status;
+  protected Status status=Status.MOVING;
   
   public enum Status
   {
@@ -59,11 +59,13 @@ public abstract class Enemy
     this.enemys=enemys;
     this.towers=towers;
     this.status=Status.MOVING;
-    
+    addZiel(100, 1000);
   }
   
   public void addZiel(int x,int y)
   {
+    x+=Background.x;
+    y+=Background.y;
     zielX.add(x);
     zielY.add(y);
   }
@@ -85,11 +87,23 @@ public abstract class Enemy
   
   public void update(float tslf)
   {
+    speedX=0;
+    speedY=0;
+    
+//    for (int zx:zielX) 
+//    {
+//      zx+=Player.speedX;
+//    }
+//    for (int zy:zielY) 
+//    {
+//      zy+=Player.speedY;
+//    }
+    
     switch(status)
     {
       case ATTACKING:
         break;
-      case MOVING:
+      case MOVING: updateMoving(tslf);
         break;
     }
     
@@ -106,6 +120,30 @@ public abstract class Enemy
     
     collide();
   }
+  public abstract void updateAttack(float tslf);
+  public void updateMoving(float tslf)
+  {
+    if(zielX.size()!=zielY.size())
+    {
+      Exception ex=new Exception("ERROR: zielX and zielY Differ");
+      System.out.println(ex.getMessage());
+    }
+    else if(!zielX.isEmpty())
+    {
+      moveZiel((float)zielX.get(0),(float)zielY.get(0),speed);
+      if(x<zielX.get(0)&&x>zielX.get(0)+bounding.width&&y<zielY.get(0)&&y>zielY.get(0)+bounding.height)
+      {
+        zielX.remove(0);
+        zielY.remove(0);
+      }
+    }
+    else
+    {
+      moveZiel(player.getX()+player.getBounding().width/2,
+               player.getY()+player.getBounding().height/2,
+               speed);
+    }
+  }
   
   protected void moveZiel(float zielX,float zielY,int speed)
   {
@@ -120,11 +158,8 @@ public abstract class Enemy
     speedX*=speed;
     speedY*=speed;
     
-    if(help <= 300)
-    {
-        this.speedX+=speedX;
-        this.speedY+=speedY;
-    }
+    this.speedX+=speedX;
+    this.speedY+=speedY;
   }
   private void moveKnockBack(float tslf)
   {
@@ -198,7 +233,7 @@ public abstract class Enemy
     {
       for (int j = (int)((Background.y/25*-1)+((y/25-2))); j <= (int)((Background.y/25*-1)+((y/25+2))); j++) 
       {
-        if(!(i<0)&&!(j<0)&&map[i][j]!=null&&map[i][j].isSolid())
+        if(!(i<0)&&!(j<0)&&!(i>map.length-1)&&!(j>map[0].length-1)&&map[i][j]!=null&&map[i][j].isSolid())
         {
           Rectangle help2=map[i][j].getBounding();
           rebound(help2);

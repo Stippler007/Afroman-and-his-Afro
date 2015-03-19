@@ -46,6 +46,10 @@ public class Player
     this.enemySpritzer = enemySpritzer;
     this.towers=towers;
   }
+  public void damage(float damage)
+  {
+    live-=damage;
+  }
   public void setMap(GameObject[][] map)
   {
     this.map = map;

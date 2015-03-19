@@ -31,6 +31,8 @@ public abstract class Tower
   
   protected LinkedList<TowerSpritzer> towerSpritzers;
   
+  protected double turn=0;
+  
   protected float animationTime=0;
   protected float maxAnimationTime;
   
@@ -164,6 +166,21 @@ public abstract class Tower
       return enemy;
     }
     return null;
+  }
+  public double getTurn()
+  {
+    if(enemy!=null)
+    {
+      double a=(enemy.getX()+enemy.getBounding().width/2)-(x+bounding.width/2);
+      double b=(enemy.getY()+enemy.getBounding().height/2)-(y+bounding.height/2);
+
+      turn=Math.atan(b/a);
+      System.out.println(turn);
+      if(a<0){
+        turn+=2.3561944901923;
+      }
+    }
+    return turn;
   }
   public float getX() {
     return x;

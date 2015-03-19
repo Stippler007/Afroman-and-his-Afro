@@ -76,6 +76,7 @@ public class Canvas extends JPanel
   @Override
   public void paint(Graphics g)
   {
+    double turn;
     Graphics2D g2=(Graphics2D)g;
     g2.scale(scaleX, scaleY);
     
@@ -110,7 +111,10 @@ public class Canvas extends JPanel
       if(t.getX()+t.getBounding().width>0&&t.getY()+t.getBounding().height>0
          &&t.getX()<getWidth()&&t.getY()<getWidth())
       {
+        turn=t.getTurn();
+        g2.rotate(turn, t.getX()+t.getBounding().width/2, t.getY()+t.getBounding().height/2);
         g.drawImage(t.getLook(), (int)t.getX(), (int)t.getY(), null);
+        g2.rotate(-turn, t.getX()+t.getBounding().width/2, t.getY()+t.getBounding().height/2);
       }
     }
     for (Enemy enemy : enemys)

@@ -1,7 +1,7 @@
-
 package klassen;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -44,8 +44,12 @@ public class GUI extends JFrame
   public void setFullscreen()
   {
     setExtendedState(Frame.MAXIMIZED_BOTH);
-    xScaling = (float)getWidth()/800f;
-    yScaling = (float)getHeight()/600f;
+    
+    Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize ();
+    
+    xScaling = (float)screensize.width/800f;
+    yScaling = (float)screensize.height/600f;
+    
     setLocationRelativeTo(null);
     canvas.setScaleX(xScaling);
     canvas.setScaleY(yScaling);

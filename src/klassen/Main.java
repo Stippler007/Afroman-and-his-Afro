@@ -25,15 +25,15 @@ public class Main
 {
   public static void main(String[] args)
   {
-    LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
-      
-    LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
-    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses);
-    
     LinkedList<Enemy> enemys=new LinkedList<>();
+    LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
     
     LinkedList<Tower> towers=new LinkedList<>();
     LinkedList<TowerSpritzer> towerSpritzers=new LinkedList<>();
+    
+    
+    LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
+    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses,towers);
     
     InventoryDraw ivd = new InventoryDraw();
     InventoryThings iv = new InventoryThings(ivd);

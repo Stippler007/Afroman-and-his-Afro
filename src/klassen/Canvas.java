@@ -109,7 +109,6 @@ public class Canvas extends JPanel
          &&t.getX()<getWidth()&&t.getY()<getWidth())
       {
         g.drawImage(t.getLook(), (int)t.getX(), (int)t.getY(), null);
-        System.out.println(t.getX()+"  "+t.getY());
       }
     }
     for (Enemy enemy : enemys)

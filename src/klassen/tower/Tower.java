@@ -64,6 +64,8 @@ public abstract class Tower
       animationTime-=maxAnimationTime;
 //      onAttack();
     }
+    bounding.x=(int)x;
+    bounding.y=(int)y;
   }
   
   public abstract void onAttack();

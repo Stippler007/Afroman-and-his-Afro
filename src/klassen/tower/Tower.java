@@ -48,6 +48,8 @@ public abstract class Tower
     this.bounding = bounding;
     this.damage=damage;
     this.towerSpritzers=towerSpritzers;
+    this.maxAnimationTime=maxAnimationTime;
+    this.radius=radius;
   }
   
   public void update(float tslf)
@@ -61,9 +63,14 @@ public abstract class Tower
     }
     else
     {
+      if(enemy==null)
+      {
+        enemy=getNearestEnemy();
+      }
       animationTime-=maxAnimationTime;
-//      onAttack();
+      onAttack();
     }
+    
     bounding.x=(int)x;
     bounding.y=(int)y;
   }
@@ -129,6 +136,7 @@ public abstract class Tower
   protected Enemy getNearestEnemy()
   {
     LinkedList<Enemy> enemys=getPossibleEnemys();
+    
     if(!enemys.isEmpty())
     {
       Enemy enemy=enemys.get(0);

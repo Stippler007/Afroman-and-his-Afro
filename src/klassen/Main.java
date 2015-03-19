@@ -53,7 +53,7 @@ public class Main
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
     
-    towers.add(new BasicTower(100, 100, 300, 40, 3, enemys, towerSpritzers));
+    towers.add(new BasicTower(100, 100, 300, 40, enemys, towerSpritzers));
     
     long lastFrame=System.currentTimeMillis();
     while(true)

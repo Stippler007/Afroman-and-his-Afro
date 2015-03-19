@@ -17,10 +17,9 @@ public class BasicTower extends Tower
 {
 
   public BasicTower(float x, float y, int radius, float damage,
-                    float maxAnimationTime,
                     LinkedList<Enemy> enemys,
                     LinkedList<TowerSpritzer> towerSpritzers) {
-    super(x, y, new Rectangle((int)x,(int)y,50,50), radius, damage, maxAnimationTime, enemys,towerSpritzers);
+    super(x, y, new Rectangle((int)x,(int)y,50,50), radius, damage, 1, enemys,towerSpritzers);
   }
 
   @Override
@@ -28,7 +27,7 @@ public class BasicTower extends Tower
   {
     if(enemy!=null)
     {
-      
+      towerSpritzers.add(new BasicTowerSpritzer((int)x, (int)y, 30, 30));
     }
   }
 }

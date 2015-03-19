@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package klassen.player;
 
 import java.awt.Rectangle;
@@ -13,10 +8,6 @@ import klassen.enemys.EnemySpritzer;
 import klassen.karte.GameObject;
 import klassen.listener.KL;
 
-/**
- *
- * @author Christian
- */
 public class Player
 {
   private float x;

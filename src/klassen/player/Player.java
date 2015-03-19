@@ -7,6 +7,7 @@ import klassen.Background;
 import klassen.enemys.EnemySpritzer;
 import klassen.karte.GameObject;
 import klassen.listener.KL;
+import klassen.tower.Tower;
 
 public class Player
 {
@@ -27,12 +28,15 @@ public class Player
   private LinkedList<EnemySpritzer> enemySpritzer;
   private Rectangle bounding;
   
+  private LinkedList<Tower> towers;
+  
   private boolean move=false;
   private GameObject[][] map;
   
   
   
-  public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzer)
+  public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers,
+          LinkedList<EnemySpritzer> enemySpritzer,LinkedList<Tower> towers)
   {
     this.x = x;
     this.y = y;
@@ -40,6 +44,7 @@ public class Player
     this.playerSpritzers = playerSpritzers;
     this.bounding=new Rectangle((int)x,(int)y,25,25);
     this.enemySpritzer = enemySpritzer;
+    this.towers=towers;
   }
   public void setMap(GameObject[][] map)
   {
@@ -155,6 +160,10 @@ public class Player
     {
       live -= 5;
     }
+    for (Tower t : towers) 
+    {
+      rebound(t.getBounding());
+    }
     collideMap();
   }
   private void collideMap()
@@ -166,7 +175,7 @@ public class Player
         if(!(i<0)&&!(j<0)&&map[i][j]!=null&&map[i][j].isSolid())
         {
           Rectangle help2=map[i][j].getBounding();
-          rebound(x-speedX, y-speedY, bounding.width, bounding.height, help2);
+          rebound(help2);
         }
       }
     }
@@ -190,8 +199,14 @@ public class Player
     }
     return false;
   }
-  public void rebound(float x,float y, float w, float h, Rectangle help)
+  public void rebound(Rectangle help)
   {
+    float x=this.x-speedX;
+    float y=this.y-speedY;
+    float w=bounding.width;
+    float h=bounding.height; 
+    
+    
     if(x < help.x + help.width && x+w > help.x &&
        y < help.y + help.height && y+h > help.y)
     {

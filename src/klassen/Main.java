@@ -17,6 +17,9 @@ import klassen.player.Player;
 import static klassen.player.Player.speedX;
 import static klassen.player.Player.speedY;
 import klassen.player.PlayerSpritzer;
+import klassen.tower.BasicTower;
+import klassen.tower.Tower;
+import klassen.tower.TowerSpritzer;
 
 public class Main
 {
@@ -29,12 +32,15 @@ public class Main
     
     LinkedList<Enemy> enemys=new LinkedList<>();
     
+    LinkedList<Tower> towers=new LinkedList<>();
+    LinkedList<TowerSpritzer> towerSpritzers=new LinkedList<>();
+    
     InventoryDraw ivd = new InventoryDraw();
     InventoryThings iv = new InventoryThings(ivd);
     
     Background bg=new Background(player, iv);
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
+    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);
@@ -42,12 +48,13 @@ public class Main
     f.setResizable(false); 
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLocationRelativeTo(null);
-    f.setFullscreen();
-    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, player, enemySpritzerses));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
+//    f.setFullscreen();
     
+//    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, player, enemySpritzerses));
+//    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
+//    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
     
+    towers.add(new BasicTower(100, 100, 300, 40, 3, enemys, towerSpritzers));
     
     long lastFrame=System.currentTimeMillis();
     while(true)
@@ -72,11 +79,18 @@ public class Main
       {
         enemy.update(tslf);
       }
-      for (EnemySpritzer enemyS : enemySpritzerses) {
-        enemyS.update(tslf);
+      for (EnemySpritzer enemy : enemySpritzerses) 
+      {
+        enemy.update(tslf);
       }
-      
-      
+      for (TowerSpritzer ts : towerSpritzers) 
+      {
+        ts.update(tslf);
+      }
+      for (Tower t : towers) 
+      {
+        t.update(tslf);
+      }
       
       deleteStuff(player, enemys,playerSpritzers, enemySpritzerses,bg);
       

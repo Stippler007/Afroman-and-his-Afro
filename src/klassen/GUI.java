@@ -18,6 +18,8 @@ import klassen.listener.MML;
 import klassen.listener.MWL;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
+import klassen.tower.Tower;
+import klassen.tower.TowerSpritzer;
 
 /**
  *
@@ -36,14 +38,18 @@ public class GUI extends JFrame
   private float yScaling=1;
   private boolean fullscreen;
   
-  public GUI(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg , InventoryDraw idv, InventoryThings iv)
+  public GUI(Player player, 
+             LinkedList<PlayerSpritzer> playerSpritzers,
+             LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
+             LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
+             Background bg , InventoryDraw idv, InventoryThings iv)
   {
     setLayout(new GridLayout());
     
     this.idv = idv;
     this.iv = iv;
     
-    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,bg,idv, iv);
+    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg,idv, iv);
 //    menu=new GameMenu();
 //    canvas.setBounds(0, 0, 800, 600);
     add(canvas);

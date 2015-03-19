@@ -16,11 +16,11 @@ import klassen.enemys.Enemy;
 public class BasicTower extends Tower
 {
 
-  public BasicTower(float x, float y, Rectangle bounding, int radius, float damage,
+  public BasicTower(float x, float y, int radius, float damage,
                     float maxAnimationTime,
                     LinkedList<Enemy> enemys,
                     LinkedList<TowerSpritzer> towerSpritzers) {
-    super(x, y, bounding, radius, damage, maxAnimationTime, enemys,towerSpritzers);
+    super(x, y, new Rectangle((int)x,(int)y,50,50), radius, damage, maxAnimationTime, enemys,towerSpritzers);
   }
 
   @Override

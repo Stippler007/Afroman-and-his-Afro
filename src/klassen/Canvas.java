@@ -21,6 +21,8 @@ import klassen.listener.ML;
 import klassen.listener.MML;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
+import klassen.tower.Tower;
+import klassen.tower.TowerSpritzer;
 
 /**
  *
@@ -33,6 +35,9 @@ public class Canvas extends JPanel
   
   private LinkedList<EnemySpritzer> enemySpritzerses;
   private LinkedList<Enemy> enemys;
+  
+  LinkedList<Tower> towers;
+  LinkedList<TowerSpritzer> towerSpritzers;
   
   private InventoryDraw idv;
   private InventoryThings iv;
@@ -50,11 +55,17 @@ public class Canvas extends JPanel
     this.scaleY = scaleY;
   }
   
-  public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg, InventoryDraw idv, InventoryThings iv)
+  public Canvas(Player player,
+                LinkedList<PlayerSpritzer> playerSpritzers,
+                LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
+                LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
+                Background bg, InventoryDraw idv, InventoryThings iv)
   {
     this.player = player;
     this.playerSpritzers = playerSpritzers;
     this.enemySpritzerses = enemySpritzerses;
+    this.towers=towers;
+    this.towerSpritzers=towerSpritzers;
     this.enemys = enemys;
     this.bg=bg;
     this.idv = idv;
@@ -91,6 +102,15 @@ public class Canvas extends JPanel
     for (EnemySpritzer enemyS : enemySpritzerses)
     {
       g.fillRect((int)enemyS.getX(), (int)enemyS.getY(), enemyS.getBounding().width, enemyS.getBounding().height);
+    }
+    for (Tower t : towers)
+    {
+      if(t.getX()+t.getBounding().width>0&&t.getY()+t.getBounding().height>0
+         &&t.getX()<getWidth()&&t.getY()<getWidth())
+      {
+        g.drawImage(t.getLook(), (int)t.getX(), (int)t.getY(), null);
+        System.out.println(t.getX()+"  "+t.getY());
+      }
     }
     for (Enemy enemy : enemys)
     {

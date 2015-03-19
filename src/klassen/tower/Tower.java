@@ -40,7 +40,7 @@ public abstract class Tower
   {
     for (int i = 0; i < look.length; i++)
     {
-      look[i]=ImageFactory.getImageFactory().getLooks("Tower"+i);
+      look[i]=ImageFactory.getImageFactory().getLooks("BasicTower");
     }
     this.x = x;
     this.y = y;
@@ -52,18 +52,18 @@ public abstract class Tower
   
   public void update(float tslf)
   {
+    x+=Player.speedX;
+    y+=Player.speedY;
+    
     if(animationTime<maxAnimationTime)
     {
       animationTime+=tslf;
-      onAttack();
     }
     else
     {
       animationTime-=maxAnimationTime;
+//      onAttack();
     }
-    
-    x+=Player.speedX;
-    y+=Player.speedY;
   }
   
   public abstract void onAttack();
@@ -161,5 +161,12 @@ public abstract class Tower
 
   public float getY() {
     return y;
+  }
+  public Rectangle getBounding() {
+    return bounding;
+  }
+  public BufferedImage getLook() 
+  {
+    return look[0];
   }
 }

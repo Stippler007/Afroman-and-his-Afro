@@ -120,14 +120,26 @@ public class Main
     }
     while(i<enemySpritzers.size())
     {
-      EnemySpritzer ps=enemySpritzers.get(i);
-      if(ps.getBounding().x>800)enemySpritzers.remove(i);
-      else if(ps.getBounding().x<-ps.getBounding().width)enemySpritzers.remove(i);
-      else if(ps.getBounding().y>600)enemySpritzers.remove(i);
-      else if(ps.getBounding().y<-ps.getBounding().height)enemySpritzers.remove(i);
-      else i++;
+//      EnemySpritzer ps=enemySpritzers.get(i);
+//      if(ps.getBounding().x>800)enemySpritzers.remove(i);
+//      else if(ps.getBounding().x<-ps.getBounding().width)enemySpritzers.remove(i);
+//      else if(ps.getBounding().y>600)enemySpritzers.remove(i);
+//      else if(ps.getBounding().y<-ps.getBounding().height)enemySpritzers.remove(i);
+//      else i++;
       
-//        if(enemySpritzers.get(i).getX() < Background.x) enemySpritzers.remove(i);
+        if(enemySpritzers.get(i).getX() < Background.x) {
+            enemySpritzers.remove(i);
+        }
+        else if(enemySpritzers.get(i).getX() > 99*25) {
+            enemySpritzers.remove(i);
+        }
+        else if(enemySpritzers.get(i).getY() < Background.y) {
+            enemySpritzers.remove(i);
+        }
+        else if(enemySpritzers.get(i).getY() > 99*25) {
+            enemySpritzers.remove(i);
+        }
+        else i++;
         
     }
     

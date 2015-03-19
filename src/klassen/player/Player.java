@@ -31,6 +31,7 @@ public class Player
   private GameObject[][] map;
   
   
+  
   public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzer)
   {
     this.x = x;

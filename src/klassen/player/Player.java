@@ -100,12 +100,12 @@ public class Player
     {
       x=400-bounding.width/2;
     }
-    if(Background.y+speedX+((300-bounding.width/2)-y)>0)
+    if(Background.y+speedX+((300-bounding.width/2)-y)>=0)
     {
       y-=speedY;
       speedY=0;
     }
-    else if((Background.y+speedY)*-1+600+(y-(300-bounding.height/2))>(map[0].length-1)*25)
+    else if((Background.y+speedY)*-1+600+(y-(300-bounding.height/2))>=(map[0].length-1)*25)
     {
       y-=speedY;
       speedY=0;

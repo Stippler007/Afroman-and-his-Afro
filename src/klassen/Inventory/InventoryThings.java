@@ -17,6 +17,7 @@ import klassen.listener.MML;
 public class InventoryThings {
     
     private GameObject[][] map;
+    
     private InventoryDraw ivd;
     
     public InventoryThings(InventoryDraw ivd)
@@ -29,18 +30,19 @@ public class InventoryThings {
     }
     public void chooseThings()
     {
-        int x = ((MML.x-(int)Background.x)/25);
-        int y = ((MML.y-(int)Background.y)/25);
+        int x = ((MML.x-(int)Background.x));
+        int y = ((MML.y-(int)Background.y));
         
         if(ivd.tas[ivd.getState()] != 0 && ivd.tasn[ivd.getState()] != 0 && ivd.tas[ivd.getState()] == ivd.stone)
         {
-            if(map[x][y] == null)
+            if(map[x/25][y/25] == null)
             {
-                map[x][y] = new Rock();
+                map[x/25][y/25] = new Rock();
                 ivd.tasn[ivd.getState()]--;
             }
             
         }
+        
     }
     
 }

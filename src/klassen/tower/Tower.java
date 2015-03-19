@@ -175,9 +175,8 @@ public abstract class Tower
       double b=(enemy.getY()+enemy.getBounding().height/2)-(y+bounding.height/2);
 
       turn=Math.atan(b/a);
-      System.out.println(turn);
       if(a<0){
-        turn+=2.3561944901923;
+        turn+=3.1415926535898;
       }
     }
     return turn;

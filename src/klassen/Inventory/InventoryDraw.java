@@ -37,7 +37,7 @@ public class InventoryDraw {
         
         if(state < 1)
         {
-            state = 8;
+            state = 7;
         }
     }
     public void setState(int input)

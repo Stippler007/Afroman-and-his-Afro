@@ -12,7 +12,6 @@ import klassen.Inventory.InventoryThings;
 import klassen.enemys.BasicEnemy;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
-import klassen.enemys.StandartEnemy;
 import klassen.karte.GameObject;
 import klassen.listener.KL;
 import klassen.player.Player;
@@ -49,7 +48,6 @@ public class Main
     f.setLocationRelativeTo(null);
     f.setFullscreen();
     
-    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, spritzers,enemys, towers, player, enemySpritzerses));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     

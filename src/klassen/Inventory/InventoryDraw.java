@@ -35,7 +35,7 @@ public class InventoryDraw {
     {
         state--;
         
-        if(state < 1)
+        if(state < 0)
         {
             state = 7;
         }

@@ -31,9 +31,21 @@ public class Background
         lowerMap[i][j]=new Gras();
       }
     }
+    for (int i = 1; i < upperMap.length-2; i++)
+    {
+      upperMap[0][i]=new Rock();
+    }
+    for (int i = 1; i < upperMap.length; i++)
+    {
+      upperMap[i][1]=new Rock();
+    }
     for (int i = 0; i < upperMap.length; i++)
     {
-      upperMap[i][18]=new Rock();
+      upperMap[i][upperMap.length-3]=new Rock();
+    }
+    for (int i = 1; i < upperMap.length-2; i++)
+    {
+      upperMap[upperMap.length-2][i]=new Rock();
     }
     player.setMap(upperMap);
   }

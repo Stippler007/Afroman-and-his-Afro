@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import static klassen.Background.x;
 import static klassen.Background.y;
 import klassen.Inventory.InventoryDraw;
+import klassen.Inventory.InventoryThings;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.listener.KL;
@@ -33,7 +34,8 @@ public class Canvas extends JPanel
   private LinkedList<EnemySpritzer> enemySpritzerses;
   private LinkedList<Enemy> enemys;
   
-  private InventoryDraw iv;
+  private InventoryDraw idv;
+  private InventoryThings iv;
   
   private Background bg;
   
@@ -48,13 +50,14 @@ public class Canvas extends JPanel
     this.scaleY = scaleY;
   }
   
-  public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg, InventoryDraw iv)
+  public Canvas(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg, InventoryDraw idv, InventoryThings iv)
   {
     this.player = player;
     this.playerSpritzers = playerSpritzers;
     this.enemySpritzerses = enemySpritzerses;
     this.enemys = enemys;
     this.bg=bg;
+    this.idv = idv;
     this.iv = iv;
   }
   @Override
@@ -101,6 +104,6 @@ public class Canvas extends JPanel
       g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
     }
      
-    iv.paintInventory(g);
+    idv.paintInventory(g);
   }
 }

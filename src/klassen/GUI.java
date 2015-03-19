@@ -28,6 +28,7 @@ public class GUI extends JFrame
   private GameMenu menu;
   
   private InventoryDraw iv;
+  private MWL mwl;
   
   private float xScaling=1;
   private float yScaling=1;
@@ -44,10 +45,12 @@ public class GUI extends JFrame
 //    canvas.setBounds(0, 0, 800, 600);
     add(canvas);
     
+    mwl = new MWL(iv);
+    
     addKeyListener(new KL(this));
     addMouseListener(new ML());
     addMouseMotionListener(new MML());
-    addMouseWheelListener(new MWL(iv));
+    addMouseWheelListener(mwl);
   }
   public void setFullscreen()
   {

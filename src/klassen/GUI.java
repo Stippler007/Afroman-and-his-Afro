@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import klassen.Inventory.InventoryDraw;
+import klassen.Inventory.InventoryThings;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.listener.KL;
@@ -27,28 +28,30 @@ public class GUI extends JFrame
   private Canvas canvas;
   private GameMenu menu;
   
-  private InventoryDraw iv;
+  private InventoryDraw idv;
+  private InventoryThings iv;
   private MWL mwl;
   
   private float xScaling=1;
   private float yScaling=1;
   private boolean fullscreen;
   
-  public GUI(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg)
+  public GUI(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg , InventoryDraw idv, InventoryThings iv)
   {
     setLayout(new GridLayout());
     
-    iv = new InventoryDraw();
+    this.idv = idv;
+    this.iv = iv;
     
-    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,bg, iv);
+    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,bg,idv, iv);
 //    menu=new GameMenu();
 //    canvas.setBounds(0, 0, 800, 600);
     add(canvas);
     
-    mwl = new MWL(iv);
+    mwl = new MWL(idv);
     
     addKeyListener(new KL(this));
-    addMouseListener(new ML());
+    addMouseListener(new ML(iv));
     addMouseMotionListener(new MML());
     addMouseWheelListener(mwl);
   }

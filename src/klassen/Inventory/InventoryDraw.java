@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 
 public class InventoryDraw {
     private int state = 0;
+    private int maxState = 8;
     
     public void paintInventory(Graphics gr)
     {
@@ -13,7 +14,7 @@ public class InventoryDraw {
         gr.fillRect(258,0, 284, 40);
         
         gr.setColor(new Color(210,180,140));
-        gr.fillRect((state*30)+258,0,40,40);
+        gr.fillRect((state*35)+258,0,40,40);
         
         gr.setColor(new Color(245,245,220));
         for(int i = 0; i < (284/35);i++)
@@ -24,10 +25,20 @@ public class InventoryDraw {
     public void stateUp()
     {
         state++;
+        
+        if(state > 7)
+        {
+            state = 0;
+        }
     }
     public void stateDown()
     {
         state--;
+        
+        if(state < 1)
+        {
+            state = 8;
+        }
     }
     public void setState(int input)
     {

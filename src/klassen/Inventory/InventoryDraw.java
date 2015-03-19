@@ -10,15 +10,15 @@ public class InventoryDraw {
     public void paintInventory(Graphics gr)
     {
         gr.setColor(new Color(218,165,32));
-        gr.fillRect(100,0, 600, 40);
+        gr.fillRect(258,0, 284, 40);
         
         gr.setColor(new Color(210,180,140));
-        gr.fillRect((state*30)+100,0,40,40);
+        gr.fillRect((state*30)+258,0,40,40);
         
         gr.setColor(new Color(245,245,220));
-        for(int i = 0; i < (600/35);i++)
+        for(int i = 0; i < (284/35);i++)
         {
-            gr.fillRect(((i*30)+((i+1)*5))+100, 5, 30, 30);
+            gr.fillRect(((i*30)+((i+1)*5))+258, 5, 30, 30);
         }
     }
     public void stateUp()

@@ -15,7 +15,8 @@ import klassen.player.Spritzer;
 public class BasicTowerSpritzer extends Spritzer
 {
 
-  public BasicTowerSpritzer(float x, float y, float speedX, float speedY) {
+  public BasicTowerSpritzer(float x, float y, float speedX, float speedY) 
+  {
     super(x, y, speedX, speedY);
   }
   

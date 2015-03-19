@@ -30,7 +30,7 @@ public abstract class Tower
   protected LinkedList<Enemy> enemys;
   protected float damage;
   
-  protected LinkedList<Spritzer> towerSpritzers;
+  protected LinkedList<Spritzer> spritzers;
   
   protected double turn=0;
   
@@ -39,7 +39,7 @@ public abstract class Tower
   
   public Tower(float x, float y, Rectangle bounding,
                int radius,float damage,float maxAnimationTime,
-               LinkedList<Enemy> enemys,LinkedList<Spritzer> towerSpritzers)
+               LinkedList<Enemy> enemys,LinkedList<Spritzer> spritzers)
   {
     for (int i = 0; i < look.length; i++)
     {
@@ -50,7 +50,7 @@ public abstract class Tower
     this.enemys=enemys;
     this.bounding = bounding;
     this.damage=damage;
-    this.towerSpritzers=towerSpritzers;
+    this.spritzers=spritzers;
     this.maxAnimationTime=maxAnimationTime;
     this.radius=radius;
   }

@@ -32,11 +32,11 @@ public abstract class Spritzer
   
   public void update(float tslf)
   {
-    x+=speedX*tslf;
-    y+=speedY*tslf;
-    
     x+=Player.speedX;
     y+=Player.speedY;
+    
+    x+=speedX*tslf;
+    y+=speedY*tslf;
     
     bounding.x=(int)x;
     bounding.y=(int)y;

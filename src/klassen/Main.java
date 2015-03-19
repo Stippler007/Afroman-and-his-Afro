@@ -32,15 +32,14 @@ public class Main
     LinkedList<Tower> towers=new LinkedList<>();
     LinkedList<Spritzer> spritzers=new LinkedList<>();
     
-    LinkedList<Spritzer> playerSpritzers=new LinkedList<>();
-    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses,towers);
+    Player player=new Player(400-12.5f, 300-12.5f, 300, spritzers, enemySpritzerses,towers);
     
     InventoryDraw ivd = new InventoryDraw();
     InventoryThings iv = new InventoryThings(ivd);
     
     Background bg=new Background(player, enemys,iv);
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,spritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
+    GUI f=new GUI(player, spritzers, enemySpritzerses, enemys,towers,spritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);
@@ -50,9 +49,9 @@ public class Main
     f.setLocationRelativeTo(null);
 //    f.setFullscreen();
     
-    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, towers, player, enemySpritzerses));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
+    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, spritzers,enemys, towers, player, enemySpritzerses));
+    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
+    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     
     towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
     
@@ -71,7 +70,7 @@ public class Main
       player.update(tslf);
       
       bg.update(tslf);
-      for (Spritzer playerSpritzer : playerSpritzers)
+      for (Spritzer playerSpritzer : spritzers)
       {
         playerSpritzer.update(tslf);
       }
@@ -92,7 +91,7 @@ public class Main
         t.update(tslf);
       }
       
-      deleteStuff(player, enemys,playerSpritzers, enemySpritzerses,bg);
+      deleteStuff(player, enemys,spritzers, enemySpritzerses,bg);
       
       f.repaintScreen();
       try{Thread.sleep(15);} catch (InterruptedException ex){}

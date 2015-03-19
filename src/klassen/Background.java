@@ -5,7 +5,9 @@
  */
 package klassen;
 
+import java.util.LinkedList;
 import klassen.Inventory.InventoryThings;
+import klassen.enemys.Enemy;
 import klassen.karte.GameObject;
 import klassen.karte.*;
 import klassen.player.Player;
@@ -22,7 +24,7 @@ public class Background
   public GameObject[][] upperMap=new GameObject[100][100];
   public GameObject[][] lowerMap=new GameObject[100][100];
   
-  public Background(Player player, InventoryThings it)
+  public Background(Player player, LinkedList<Enemy> enemys,InventoryThings it)
   {
     x=-1500;
     for (int i = 0; i < lowerMap.length; i++)
@@ -50,8 +52,12 @@ public class Background
     }
     player.setMap(upperMap);
     it.setMap(upperMap);
+    Enemy.setMap(upperMap);
   }
-  
+  public void shareMap()
+  {
+    
+  }
   public void update(float tslf)
   {
 //    System.out.println(x);

@@ -39,7 +39,7 @@ public class Main
     InventoryDraw ivd = new InventoryDraw();
     InventoryThings iv = new InventoryThings(ivd);
     
-    Background bg=new Background(player, iv);
+    Background bg=new Background(player, enemys,iv);
     
     GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
     

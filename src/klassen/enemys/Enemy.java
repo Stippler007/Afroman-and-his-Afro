@@ -3,6 +3,7 @@ package klassen.enemys;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.LinkedList;
+import klassen.Background;
 import klassen.karte.GameObject;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
@@ -35,7 +36,7 @@ public abstract class Enemy
   
   protected LinkedList<Tower> towers;
   
-  protected GameObject map[][];
+  protected static GameObject map[][];
   
   protected Color color;
   
@@ -52,7 +53,12 @@ public abstract class Enemy
     this.enemys=enemys;
     this.towers=towers;
   }
-
+  
+  public static void setMap(GameObject[][] map) 
+  {
+    Enemy.map=map;
+  }
+  
   public void setColor(Color color)
   {
     this.color = color;
@@ -164,6 +170,17 @@ public abstract class Enemy
   {
     collisionEnemy();
     rebound(player.getBounding());
+    for (int i =(int)((Background.x/25*-1)+((x/25)-2)); i <= (int)((Background.x/25*-1)+((x/25)+2)); i++) 
+    {
+      for (int j = (int)((Background.y/25*-1)+((y/25-2))); j <= (int)((Background.y/25*-1)+((y/25+2))); j++) 
+      {
+        if(!(i<0)&&!(j<0)&&map[i][j]!=null&&map[i][j].isSolid())
+        {
+          Rectangle help2=map[i][j].getBounding();
+          rebound(help2);
+        }
+      }
+    }
     for (Tower t : towers) 
     {
       if(t.getBounding().intersects(bounding))

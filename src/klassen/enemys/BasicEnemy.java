@@ -40,6 +40,8 @@ public class BasicEnemy extends Enemy
     
     super.update(tslf);
   }
+  
+  
   /*
   @Override
     public void update(float tslf)

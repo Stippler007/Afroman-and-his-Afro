@@ -43,4 +43,8 @@ public class InventoryDraw {
     {
         state = input;
     }
+    public int getState()
+    {
+        return state;
+    }
 }

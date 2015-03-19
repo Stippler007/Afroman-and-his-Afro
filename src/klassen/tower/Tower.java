@@ -72,7 +72,6 @@ public abstract class Tower
       }
       else if(enemy.getLive()<=0)
       {
-        System.out.println("dick");
         enemy=null;
       }
       

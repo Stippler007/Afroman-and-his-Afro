@@ -37,12 +37,7 @@ public class BasicEnemy extends Enemy
     {
       live-=10;
     }
-    speedX=0;
-    speedY=0;
-    
-    moveZiel(player.getX()+player.getBounding().width/2, player.getY()+player.getBounding().height/2,speed);
     
     super.update(tslf);
-    collide();
   }
 }

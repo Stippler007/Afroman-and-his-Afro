@@ -26,8 +26,8 @@ public abstract class Enemy
   protected Player player;
   protected Rectangle bounding;
   
-  protected float zielX;
-  protected float zielY;
+  protected LinkedList<Integer> zielX=new LinkedList<>();
+  protected LinkedList<Integer> zielY=new LinkedList<>();
   
   private float knockbackX;
   private float knockbackY;
@@ -39,6 +39,12 @@ public abstract class Enemy
   protected static GameObject map[][];
   
   protected Color color;
+  protected Status status;
+  
+  public enum Status
+  {
+    MOVING,ATTACKING;
+  }
   
   public Enemy(float x, float y, int speed, 
           LinkedList<Spritzer> playerSpritzers,LinkedList<Enemy> enemys,
@@ -52,6 +58,14 @@ public abstract class Enemy
     this.player=player;
     this.enemys=enemys;
     this.towers=towers;
+    this.status=Status.MOVING;
+    
+  }
+  
+  public void addZiel(int x,int y)
+  {
+    zielX.add(x);
+    zielY.add(y);
   }
   
   public static void setMap(GameObject[][] map) 
@@ -71,18 +85,28 @@ public abstract class Enemy
   
   public void update(float tslf)
   {
+    switch(status)
+    {
+      case ATTACKING:
+        break;
+      case MOVING:
+        break;
+    }
+    
     x+=speedX*tslf;
     y+=speedY*tslf;
     
     x+=Player.speedX;
     y+=Player.speedY;
     
-    
     if(knockback)moveKnockBack(tslf);
     
     bounding.x=(int)x;
     bounding.y=(int)y;
+    
+    collide();
   }
+  
   protected void moveZiel(float zielX,float zielY,int speed)
   {
     float speedX = (zielX) - (x+bounding.width/2);

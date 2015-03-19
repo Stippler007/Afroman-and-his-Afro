@@ -2,6 +2,7 @@ package klassen.Inventory;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class InventoryDraw {
     private int state = 0;

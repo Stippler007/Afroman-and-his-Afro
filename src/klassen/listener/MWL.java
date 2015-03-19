@@ -19,7 +19,8 @@ public class MWL implements MouseWheelListener{
     }
     
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
+    public void mouseWheelMoved(MouseWheelEvent e) 
+    {
         if(e.getWheelRotation() < 0)
         {
             iv.stateDown();

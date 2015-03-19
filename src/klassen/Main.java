@@ -125,7 +125,7 @@ public class Main
       {
         for (int k = (int)(Background.y/25*-1); j <= (int)(Background.y/25*-1); j++) 
         {
-          if(!(j<0)&&!(j<0)&&bg.upperMap[j][k]!=null&&bg.upperMap[j][k].isSolid())
+          if(!(j<0)&&!(k<0)&&bg.upperMap[j][k]!=null&&bg.upperMap[j][k].isSolid())
           {
             
           }

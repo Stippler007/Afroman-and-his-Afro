@@ -40,7 +40,7 @@ public class BasicTower extends Tower
       speedX*=500;
       speedY*=500;
       
-      spritzers.add(new PlayerSpritzer(x+bounding.width/2, y+bounding.height/2, 30, 30));
+      spritzers.add(new PlayerSpritzer(x+bounding.width/2, y+bounding.height/2, speedX, speedY));
     }
   }
 }

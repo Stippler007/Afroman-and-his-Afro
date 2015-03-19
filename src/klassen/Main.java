@@ -70,9 +70,9 @@ public class Main
       player.update(tslf);
       
       bg.update(tslf);
-      for (Spritzer playerSpritzer : spritzers)
+      for (Spritzer spritzer : spritzers)
       {
-        playerSpritzer.update(tslf);
+        spritzer.update(tslf);
       }
       for (Enemy enemy : enemys)
       {
@@ -81,10 +81,6 @@ public class Main
       for (EnemySpritzer enemy : enemySpritzerses) 
       {
         enemy.update(tslf);
-      }
-      for (Spritzer ts : spritzers) 
-      {
-        ts.update(tslf);
       }
       for (Tower t : towers) 
       {
@@ -119,9 +115,9 @@ public class Main
     while(i<playerSpritzers.size())
     {
       Spritzer ps=playerSpritzers.get(i);
-      if(ps.getBounding().x>800)playerSpritzers.remove(i);
+      if(ps.getBounding().x>Background.x+bg.lowerMap.length*25)playerSpritzers.remove(i);
       else if(ps.getBounding().x<-ps.getBounding().width)playerSpritzers.remove(i);
-      else if(ps.getBounding().y>600)playerSpritzers.remove(i);
+      else if(ps.getBounding().y>Background.x+bg.lowerMap.length*25)playerSpritzers.remove(i);
       else if(ps.getBounding().y<-ps.getBounding().height)playerSpritzers.remove(i);
       else i++;
       
@@ -158,7 +154,6 @@ public class Main
             enemySpritzers.remove(i);
         }
         else i++;
-        
     }
     
   }

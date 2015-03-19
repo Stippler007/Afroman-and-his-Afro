@@ -16,8 +16,8 @@ public abstract class Spritzer
   private float x;
   private float y;
   
-  private float speedX;
-  private float speedY;
+  private float speedX=0;
+  private float speedY=0;
   
   private Rectangle bounding;
 

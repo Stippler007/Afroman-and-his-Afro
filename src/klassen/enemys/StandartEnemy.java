@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
 
-public class StandartEnemy extends Enemy{
+public class StandartEnemy extends Enemy implements Runnable{
 
     LinkedList<EnemySpritzer> enemySpritzer;
     
@@ -18,6 +18,8 @@ public class StandartEnemy extends Enemy{
         setColor(Color.blue);
         setKnockback(true);
         this.enemySpritzer = enemySpritzer;
+        
+        
     }
     
     @Override
@@ -38,5 +40,10 @@ public class StandartEnemy extends Enemy{
         rect.y-=Player.speedY;
         rebound(rect);
         super.update(tslf);
+    }
+    
+    public void run()
+    {
+        
     }
 }

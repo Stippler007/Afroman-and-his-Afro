@@ -158,12 +158,10 @@ public class Player
     {
       for (int j = (int)((Background.y/25*-1)+((y/25-2))); j <= (int)((Background.y/25*-1)+((y/25+2))); j++) 
       {
-        Rectangle help1=new Rectangle((int)(x-(speedX)),(int)(y-(speedY)),bounding.width,bounding.height);
-        
-        if(!(i<0)&&!(j<0)&&map[i][j]!=null&&map[i][j].isSolid()&&help1.intersects(map[i][j].getBounding()))
+        if(!(i<0)&&!(j<0)&&map[i][j]!=null&&map[i][j].isSolid())
         {
           Rectangle help2=map[i][j].getBounding();
-          rebound(help1, help2);
+          rebound(x-speedX, y-speedY, bounding.width, bounding.height, help2);
         }
       }
     }
@@ -188,28 +186,32 @@ public class Player
     }
     return false;
   }
-  public void rebound(Rectangle help1,Rectangle help2)
+  public void rebound(float x,float y, float w, float h, Rectangle help)
   {
-    double vonlinks=help1.x+help1.width-help2.x;
-    double vonoben=help1.y+help1.height-help2.y;
-    double vonrechts=help2.x+help2.width-help1.x;
-    double vonunten=help2.y + help2.height - help1.y;
+    if(x < help.x + help.width && x+w > help.x &&
+       y < help.y + help.height && y+h > help.y)
+    {
+        double vonlinks=x+w-help.x;
+        double vonoben=y+h-help.y;
+        double vonrechts=help.x+help.width-x;
+        double vonunten=help.y + help.height - y;
     
-    if(vonlinks<vonoben&&vonlinks<vonrechts&&vonlinks<vonunten)
-    {
-      speedX+=vonlinks;
-    }
-    else if(vonoben<vonrechts&&vonoben<vonunten)
-    {
-      speedY+=vonoben;
-    }
-    else if(vonrechts<vonunten)
-    {
-      speedX-=vonrechts;
-    }
-    else
-    {
-      speedY-=vonunten;
+        if(vonlinks<vonoben&&vonlinks<vonrechts&&vonlinks<vonunten)
+        {
+          speedX+=vonlinks;
+        }
+        else if(vonoben<vonrechts&&vonoben<vonunten)
+        {
+          speedY+=vonoben;
+        }
+        else if(vonrechts<vonunten)
+        {
+          speedX-=vonrechts;
+        }
+        else
+        {
+          speedY-=vonunten;
+        }
     }
   }
   public Rectangle getBounding()

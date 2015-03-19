@@ -92,8 +92,11 @@ public abstract class Enemy
     speedX*=speed;
     speedY*=speed;
     
-    this.speedX+=speedX;
-    this.speedY+=speedY;
+    if(help <= 300)
+    {
+        this.speedX+=speedX;
+        this.speedY+=speedY;
+    }
   }
   private void moveKnockBack(float tslf)
   {

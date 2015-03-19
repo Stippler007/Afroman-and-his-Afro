@@ -196,37 +196,6 @@ public class Player
     }
     return false;
   }
-  public void rebound(Rectangle rect)
-  {
-    
-    if(bounding.intersects(rect))
-    {
-      int nachrechts=(int)(rect.x+rect.width)-bounding.x;
-      int nachlinks=(int)(bounding.x+bounding.width)-rect.x;
-      int nachunten=(int)(rect.y+rect.height)-bounding.y;
-      int nachoben=(int)(bounding.y+bounding.height)-rect.y;
-      
-      int speedX=0;
-      int speedY=0;
-      
-      if(nachrechts<nachlinks&&nachrechts<nachoben&&nachrechts<nachunten)
-      {
-        speedX+=nachrechts;
-      }
-      else if(nachlinks<nachoben&&nachlinks<nachunten)
-      {
-        speedX-=nachlinks;
-      }
-      else if(nachoben<nachunten)
-      {
-        speedY-=nachoben;
-      }
-      else if(nachoben>nachunten)
-      {
-        speedY+=nachunten;
-      }
-    }
-  }
   public void rebound(Rectangle help1,Rectangle help2)
   {
     double vonlinks=help1.x+help1.width-help2.x;

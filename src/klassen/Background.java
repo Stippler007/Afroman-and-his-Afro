@@ -5,6 +5,7 @@
  */
 package klassen;
 
+import klassen.Inventory.InventoryThings;
 import klassen.karte.GameObject;
 import klassen.karte.*;
 import klassen.player.Player;
@@ -21,7 +22,7 @@ public class Background
   public GameObject[][] upperMap=new GameObject[100][100];
   public GameObject[][] lowerMap=new GameObject[100][100];
   
-  public Background(Player player)
+  public Background(Player player, InventoryThings it)
   {
     x=-1500;
     for (int i = 0; i < lowerMap.length; i++)
@@ -48,6 +49,7 @@ public class Background
       upperMap[upperMap.length-2][i]=new Rock();
     }
     player.setMap(upperMap);
+    it.setMap(upperMap);
   }
   
   public void update(float tslf)

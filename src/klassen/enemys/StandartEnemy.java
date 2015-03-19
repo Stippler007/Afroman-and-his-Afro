@@ -3,6 +3,8 @@ package klassen.enemys;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
 
@@ -19,7 +21,7 @@ public class StandartEnemy extends Enemy implements Runnable{
         setKnockback(true);
         this.enemySpritzer = enemySpritzer;
         
-        
+        new Thread(this).start();
     }
     
     @Override
@@ -39,11 +41,32 @@ public class StandartEnemy extends Enemy implements Runnable{
         rect.x-=Player.speedX;
         rect.y-=Player.speedY;
         rebound(rect);
+        
+        speedX = 0;
+        speedY = 0;
+        
+        moveZiel(player.getX()+player.getBounding().width/2, player.getY()+player.getBounding().height/2,speed*12);
+        
         super.update(tslf);
     }
     
     public void run()
     {
+        
+        while(live > 0)
+        {
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*24,0));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*24,0));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*24));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0,-speed*24));
+          
+            
+            try {
+                Thread.sleep(3500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(StandartEnemy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
     }
 }

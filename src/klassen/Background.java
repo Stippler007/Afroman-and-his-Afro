@@ -53,8 +53,20 @@ public class Background
   public void update(float tslf)
   {
 //    System.out.println(x);
-    x+=Player.speedX;
-    y+=Player.speedY;
+    if(x+Player.speedX < 0 && x+Player.speedX < (lowerMap.length-1)*25)
+    {
+        x+=Player.speedX;
+    }else
+    {
+        x = 0;
+    }
+    if(y+Player.speedY < 0 && y+Player.speedY < (lowerMap[0].length-1)*25)
+    {
+        y+=Player.speedY;
+    }else
+    {
+        y = 0;
+    }
     for (int i =(int)(x/25*-1); i < (int)(x/25*-1)+34; i++) 
     {
       for (int j = (int)(y/25*-1); j < (int)(y/25*-1)+26; j++) 

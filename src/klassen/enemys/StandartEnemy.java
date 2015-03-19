@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import klassen.player.Player;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.Tower;
 
 public class StandartEnemy extends Enemy implements Runnable{
@@ -14,7 +14,7 @@ public class StandartEnemy extends Enemy implements Runnable{
     LinkedList<EnemySpritzer> enemySpritzer;
     
     public StandartEnemy(float x, float y, int speed, int speedX, int speedY, 
-                         LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys, 
+                         LinkedList<Spritzer> playerSpritzers,LinkedList<Enemy> enemys, 
                          LinkedList<Tower> towers, Player player, LinkedList<EnemySpritzer> enemySpritzer) {
         super(x, y, speed, playerSpritzers,enemys, towers,player, new Rectangle((int)x, (int)y, 25, 25));
         

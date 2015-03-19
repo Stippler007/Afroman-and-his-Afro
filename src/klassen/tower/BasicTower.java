@@ -8,6 +8,7 @@ package klassen.tower;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import klassen.enemys.Enemy;
+import klassen.player.Spritzer;
 
 /**
  *
@@ -18,7 +19,7 @@ public class BasicTower extends Tower
 
   public BasicTower(float x, float y, int radius, float damage,
                     LinkedList<Enemy> enemys,
-                    LinkedList<TowerSpritzer> towerSpritzers) {
+                    LinkedList<Spritzer> towerSpritzers) {
     super(x, y, new Rectangle((int)x,(int)y,50,50), radius, damage, 1, enemys,towerSpritzers);
   }
 

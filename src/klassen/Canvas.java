@@ -22,9 +22,8 @@ import klassen.listener.KL;
 import klassen.listener.ML;
 import klassen.listener.MML;
 import klassen.player.Player;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.Tower;
-import klassen.tower.TowerSpritzer;
 
 /**
  *
@@ -33,13 +32,13 @@ import klassen.tower.TowerSpritzer;
 public class Canvas extends JPanel
 {
   private Player player;
-  private LinkedList<PlayerSpritzer> playerSpritzers;
+  private LinkedList<Spritzer> playerSpritzers;
   
   private LinkedList<EnemySpritzer> enemySpritzerses;
   private LinkedList<Enemy> enemys;
   
   LinkedList<Tower> towers;
-  LinkedList<TowerSpritzer> towerSpritzers;
+  LinkedList<Spritzer> towerSpritzers;
   
   private InventoryDraw idv;
   private InventoryThings iv;
@@ -58,9 +57,9 @@ public class Canvas extends JPanel
   }
   
   public Canvas(Player player,
-                LinkedList<PlayerSpritzer> playerSpritzers,
+                LinkedList<Spritzer> playerSpritzers,
                 LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
-                LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
+                LinkedList<Tower> towers,LinkedList<Spritzer> towerSpritzers,
                 Background bg, InventoryDraw idv, InventoryThings iv)
   {
     this.player = player;
@@ -98,7 +97,7 @@ public class Canvas extends JPanel
     g.setColor(Color.black);
     g.fillRect((int)player.getX(), (int)player.getY(), player.getBounding().width, player.getBounding().height);
     g.setColor(Color.gray);
-    for (PlayerSpritzer playerSpritzer : playerSpritzers)
+    for (Spritzer playerSpritzer : playerSpritzers)
     {
       g.fillRect((int)playerSpritzer.getX(), (int)playerSpritzer.getY(), playerSpritzer.getBounding().width, playerSpritzer.getBounding().height);
     }

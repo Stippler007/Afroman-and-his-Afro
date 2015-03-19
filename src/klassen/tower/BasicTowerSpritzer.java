@@ -6,16 +6,17 @@
 package klassen.tower;
 
 import java.awt.Rectangle;
+import klassen.player.Spritzer;
 
 /**
  *
  * @author Stippler
  */
-public class BasicTowerSpritzer extends TowerSpritzer
+public class BasicTowerSpritzer extends Spritzer
 {
 
   public BasicTowerSpritzer(float x, float y, float speedX, float speedY) {
-    super(x, y, new Rectangle((int)x,(int)y,25,25), speedX, speedY);
+    super(x, y, speedX, speedY);
   }
   
 }

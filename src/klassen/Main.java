@@ -18,10 +18,9 @@ import klassen.listener.KL;
 import klassen.player.Player;
 import static klassen.player.Player.speedX;
 import static klassen.player.Player.speedY;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.BasicTower;
 import klassen.tower.Tower;
-import klassen.tower.TowerSpritzer;
 
 public class Main
 {
@@ -31,9 +30,9 @@ public class Main
     LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
     
     LinkedList<Tower> towers=new LinkedList<>();
-    LinkedList<TowerSpritzer> towerSpritzers=new LinkedList<>();
+    LinkedList<Spritzer> spritzers=new LinkedList<>();
     
-    LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
+    LinkedList<Spritzer> playerSpritzers=new LinkedList<>();
     Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses,towers);
     
     InventoryDraw ivd = new InventoryDraw();
@@ -41,7 +40,7 @@ public class Main
     
     Background bg=new Background(player, enemys,iv);
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
+    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,spritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);
@@ -55,7 +54,7 @@ public class Main
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
     
-    towers.add(new BasicTower(100, 100, 300, 40, enemys, towerSpritzers));
+    towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
     
     long lastFrame=System.currentTimeMillis();
     while(true)
@@ -72,7 +71,7 @@ public class Main
       player.update(tslf);
       
       bg.update(tslf);
-      for (PlayerSpritzer playerSpritzer : playerSpritzers)
+      for (Spritzer playerSpritzer : playerSpritzers)
       {
         playerSpritzer.update(tslf);
       }
@@ -84,7 +83,7 @@ public class Main
       {
         enemy.update(tslf);
       }
-      for (TowerSpritzer ts : towerSpritzers) 
+      for (Spritzer ts : spritzers) 
       {
         ts.update(tslf);
       }
@@ -99,7 +98,7 @@ public class Main
       try{Thread.sleep(15);} catch (InterruptedException ex){}
     }
   }
-  private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers,Background bg)
+  private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<Spritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers,Background bg)
   {
     int i=0;
     if(player.getLive() <= 0)
@@ -120,7 +119,7 @@ public class Main
     i=0;
     while(i<playerSpritzers.size())
     {
-      PlayerSpritzer ps=playerSpritzers.get(i);
+      Spritzer ps=playerSpritzers.get(i);
       if(ps.getBounding().x>800)playerSpritzers.remove(i);
       else if(ps.getBounding().x<-ps.getBounding().width)playerSpritzers.remove(i);
       else if(ps.getBounding().y>600)playerSpritzers.remove(i);

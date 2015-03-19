@@ -24,7 +24,7 @@ public class Player
   private float maxRealoadTime=0.3f;
   
   private int speed;
-  private LinkedList<PlayerSpritzer> playerSpritzers;
+  private LinkedList<Spritzer> playerSpritzers;
   private LinkedList<EnemySpritzer> enemySpritzer;
   private Rectangle bounding;
   
@@ -35,7 +35,7 @@ public class Player
   
   
   
-  public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers,
+  public Player(float x, float y, int speed, LinkedList<Spritzer> playerSpritzers,
           LinkedList<EnemySpritzer> enemySpritzer,LinkedList<Tower> towers)
   {
     this.x = x;

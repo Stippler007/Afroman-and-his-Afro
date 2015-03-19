@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import klassen.Background;
 import klassen.karte.GameObject;
 import klassen.player.Player;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.Tower;
 
 public abstract class Enemy
@@ -21,7 +21,7 @@ public abstract class Enemy
   protected float speedY;
   protected int speed;
   
-  protected LinkedList<PlayerSpritzer> playerSpritzers;
+  protected LinkedList<Spritzer> playerSpritzers;
   protected LinkedList<Enemy> enemys;
   protected Player player;
   protected Rectangle bounding;
@@ -41,7 +41,7 @@ public abstract class Enemy
   protected Color color;
   
   public Enemy(float x, float y, int speed, 
-          LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,
+          LinkedList<Spritzer> playerSpritzers,LinkedList<Enemy> enemys,
           LinkedList<Tower> towers,Player player, Rectangle bounding)
   {
     this.x = x;

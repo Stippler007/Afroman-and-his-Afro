@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import klassen.player.Player;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.Tower;
 
 /**
@@ -20,7 +20,7 @@ import klassen.tower.Tower;
 public class BasicEnemy extends Enemy
 {
   public BasicEnemy(float x, float y, int speed, int speedX, int speedY,
-                    LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,
+                    LinkedList<Spritzer> playerSpritzers,LinkedList<Enemy> enemys,
                     LinkedList<Tower> towers,Player player)
   {
     super(x, y, speed, playerSpritzers,enemys,towers, player, new Rectangle((int)x, (int)y, 25, 25));

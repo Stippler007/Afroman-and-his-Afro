@@ -19,9 +19,8 @@ import klassen.listener.ML;
 import klassen.listener.MML;
 import klassen.listener.MWL;
 import klassen.player.Player;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.Tower;
-import klassen.tower.TowerSpritzer;
 
 /**
  *
@@ -41,9 +40,9 @@ public class GUI extends JFrame
   private boolean fullscreen;
   
   public GUI(Player player, 
-             LinkedList<PlayerSpritzer> playerSpritzers,
+             LinkedList<Spritzer> playerSpritzers,
              LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
-             LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
+             LinkedList<Tower> towers,LinkedList<Spritzer> towerSpritzers,
              Background bg , InventoryDraw idv, InventoryThings iv)
   {
     setLayout(new GridLayout());

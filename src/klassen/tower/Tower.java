@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import klassen.ImageFactory;
 import klassen.enemys.Enemy;
 import klassen.player.Player;
+import klassen.player.Spritzer;
 
 /**
  *
@@ -29,7 +30,7 @@ public abstract class Tower
   protected LinkedList<Enemy> enemys;
   protected float damage;
   
-  protected LinkedList<TowerSpritzer> towerSpritzers;
+  protected LinkedList<Spritzer> towerSpritzers;
   
   protected double turn=0;
   
@@ -38,7 +39,7 @@ public abstract class Tower
   
   public Tower(float x, float y, Rectangle bounding,
                int radius,float damage,float maxAnimationTime,
-               LinkedList<Enemy> enemys,LinkedList<TowerSpritzer> towerSpritzers)
+               LinkedList<Enemy> enemys,LinkedList<Spritzer> towerSpritzers)
   {
     for (int i = 0; i < look.length; i++)
     {
@@ -181,7 +182,8 @@ public abstract class Tower
     }
     return turn;
   }
-  public float getX() {
+  public float getX() 
+  {
     return x;
   }
 

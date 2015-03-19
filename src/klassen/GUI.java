@@ -8,11 +8,13 @@ import java.awt.GridLayout;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import klassen.Inventory.InventoryDraw;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.listener.KL;
 import klassen.listener.ML;
 import klassen.listener.MML;
+import klassen.listener.MWL;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
 
@@ -25,6 +27,9 @@ public class GUI extends JFrame
   private Canvas canvas;
   private GameMenu menu;
   
+  private InventoryDraw iv;
+  private MWL mwl;
+  
   private float xScaling=1;
   private float yScaling=1;
   private boolean fullscreen;
@@ -32,14 +37,20 @@ public class GUI extends JFrame
   public GUI(Player player, LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,Background bg)
   {
     setLayout(new GridLayout());
-    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,bg);
+    
+    iv = new InventoryDraw();
+    
+    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,bg, iv);
 //    menu=new GameMenu();
 //    canvas.setBounds(0, 0, 800, 600);
     add(canvas);
     
+    mwl = new MWL(iv);
+    
     addKeyListener(new KL(this));
     addMouseListener(new ML());
     addMouseMotionListener(new MML());
+    addMouseWheelListener(mwl);
   }
   public void setFullscreen()
   {

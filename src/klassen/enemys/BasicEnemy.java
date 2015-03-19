@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
+import klassen.tower.Tower;
 
 /**
  *
@@ -18,9 +19,11 @@ import klassen.player.PlayerSpritzer;
  */
 public class BasicEnemy extends Enemy
 {
-  public BasicEnemy(float x, float y, int speed, int speedX, int speedY,LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,Player player)
+  public BasicEnemy(float x, float y, int speed, int speedX, int speedY,
+                    LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,
+                    LinkedList<Tower> towers,Player player)
   {
-    super(x, y, speed, playerSpritzers,enemys, player, new Rectangle((int)x, (int)y, 25, 25));
+    super(x, y, speed, playerSpritzers,enemys,towers, player, new Rectangle((int)x, (int)y, 25, 25));
     super.speedX=speedX;
     super.speedY=speedY;
     setColor(Color.RED);
@@ -40,10 +43,6 @@ public class BasicEnemy extends Enemy
     moveZiel(player.getX()+player.getBounding().width/2, player.getY()+player.getBounding().height/2,speed);
     
     super.update(tslf);
-    
-    Rectangle rect=player.getBounding();
-    
-    collisionEnemy();
-    rebound(rect);
+    collide();
   }
 }

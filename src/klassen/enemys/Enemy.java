@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
+import klassen.tower.Tower;
 
 public abstract class Enemy
 {
@@ -31,9 +32,13 @@ public abstract class Enemy
   private float backKnockback=600;
   private boolean knockback=false;
   
+  protected LinkedList<Tower> towers;
+  
   protected Color color;
   
-  public Enemy(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,Player player, Rectangle bounding)
+  public Enemy(float x, float y, int speed, 
+          LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys,
+          LinkedList<Tower> towers,Player player, Rectangle bounding)
   {
     this.x = x;
     this.y = y;
@@ -42,6 +47,7 @@ public abstract class Enemy
     this.bounding = bounding;
     this.player=player;
     this.enemys=enemys;
+    this.towers=towers;
   }
 
   public void setColor(Color color)
@@ -149,6 +155,18 @@ public abstract class Enemy
         knockbackY=300;
       }
 //      int vonunten=(int) ;
+    }
+  }
+  protected void collide()
+  {
+    collisionEnemy();
+    rebound(player.getBounding());
+    for (Tower t : towers) 
+    {
+      if(t.getBounding().intersects(bounding))
+      {
+        rebound(t.getBounding());
+      }
     }
   }
   protected boolean collidePlayerSpritzer()

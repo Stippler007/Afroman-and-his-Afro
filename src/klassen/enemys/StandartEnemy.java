@@ -7,13 +7,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
+import klassen.tower.Tower;
 
 public class StandartEnemy extends Enemy implements Runnable{
 
     LinkedList<EnemySpritzer> enemySpritzer;
     
-    public StandartEnemy(float x, float y, int speed, int speedX, int speedY, LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys, Player player, LinkedList<EnemySpritzer> enemySpritzer) {
-        super(x, y, speed, playerSpritzers,enemys, player, new Rectangle((int)x, (int)y, 25, 25));
+    public StandartEnemy(float x, float y, int speed, int speedX, int speedY, 
+                         LinkedList<PlayerSpritzer> playerSpritzers,LinkedList<Enemy> enemys, 
+                         LinkedList<Tower> towers, Player player, LinkedList<EnemySpritzer> enemySpritzer) {
+        super(x, y, speed, playerSpritzers,enemys, towers,player, new Rectangle((int)x, (int)y, 25, 25));
         
         super.speedX=speedX;
         super.speedY=speedY;
@@ -37,10 +40,7 @@ public class StandartEnemy extends Enemy implements Runnable{
           
         }
     
-        Rectangle rect=player.getBounding();
-        rect.x-=Player.speedX;
-        rect.y-=Player.speedY;
-        rebound(rect);
+        
         
         speedX = 0;
         speedY = 0;
@@ -48,6 +48,7 @@ public class StandartEnemy extends Enemy implements Runnable{
         moveZiel(player.getX()+player.getBounding().width/2, player.getY()+player.getBounding().height/2,speed*12);
         
         super.update(tslf);
+        collide();
     }
     
     public void run()

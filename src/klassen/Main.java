@@ -31,7 +31,6 @@ public class Main
     LinkedList<Tower> towers=new LinkedList<>();
     LinkedList<TowerSpritzer> towerSpritzers=new LinkedList<>();
     
-    
     LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
     Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses,towers);
     
@@ -50,9 +49,9 @@ public class Main
     f.setLocationRelativeTo(null);
 //    f.setFullscreen();
     
-//    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, player, enemySpritzerses));
-//    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
-//    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, player));
+    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, towers, player, enemySpritzerses));
+    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
+    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
     
     towers.add(new BasicTower(100, 100, 300, 40, 3, enemys, towerSpritzers));
     

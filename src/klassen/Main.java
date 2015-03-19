@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import klassen.Inventory.InventoryDraw;
+import klassen.Inventory.InventoryThings;
 import klassen.enemys.BasicEnemy;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
@@ -27,9 +29,12 @@ public class Main
     
     LinkedList<Enemy> enemys=new LinkedList<>();
     
-    Background bg=new Background(player);
+    InventoryDraw ivd = new InventoryDraw();
+    InventoryThings iv = new InventoryThings(ivd);
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,bg); //Ich erzeuge mein GUI Objekt
+    Background bg=new Background(player, iv);
+    
+    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);

@@ -15,12 +15,15 @@ import klassen.enemys.Enemy;
  */
 public class BasicTower extends Tower
 {
-
-  public BasicTower(float x, float y, Rectangle bounding, int radius, float damage,
+  public final static int width=50;
+  public final static int height=50;
+  
+  
+  public BasicTower(float x, float y, int radius, float damage,
                     float maxAnimationTime,
                     LinkedList<Enemy> enemys,
                     LinkedList<TowerSpritzer> towerSpritzers) {
-    super(x, y, bounding, radius, damage, maxAnimationTime, enemys,towerSpritzers);
+    super(x, y, new Rectangle((int)x,(int)y,width,height), radius, damage, maxAnimationTime, enemys,towerSpritzers);
   }
 
   @Override
@@ -29,6 +32,7 @@ public class BasicTower extends Tower
     if(enemy!=null)
     {
       
+      towerSpritzers.add(new BasicTowerSpritzer((int)x, (int)y, 0, 0));
     }
   }
 }

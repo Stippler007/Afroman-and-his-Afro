@@ -29,7 +29,7 @@ public abstract class Tower
   protected LinkedList<Enemy> enemys;
   protected float damage;
   
-  private LinkedList<TowerSpritzer> towerSpritzers;
+  protected LinkedList<TowerSpritzer> towerSpritzers;
   
   protected float animationTime=0;
   protected float maxAnimationTime;

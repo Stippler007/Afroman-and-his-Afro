@@ -6,6 +6,7 @@
 package klassen.tower;
 
 import java.awt.Rectangle;
+import klassen.ImageFactory;
 
 /**
  *
@@ -14,8 +15,9 @@ import java.awt.Rectangle;
 public class BasicTowerSpritzer extends TowerSpritzer
 {
 
-  public BasicTowerSpritzer(float x, float y, Rectangle bounding, float speedX, float speedY) {
-    super(x, y, bounding, speedX, speedY);
+  public BasicTowerSpritzer(float x, float y, float speedX, float speedY) 
+  {
+    super(x, y, new Rectangle((int)x,(int)y,25,25), speedX, speedY);
   }
   
 }

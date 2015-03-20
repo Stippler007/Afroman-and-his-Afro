@@ -35,7 +35,7 @@ public class Main
     Player player=new Player(400-12.5f, 300-12.5f, 300, spritzers, enemySpritzerses,towers);
     
     InventoryDraw ivd = new InventoryDraw();
-    InventoryThings iv = new InventoryThings(ivd);
+    InventoryThings iv = new InventoryThings(ivd, towers);
     
     Background bg=new Background(player, enemys,iv);
     
@@ -47,7 +47,7 @@ public class Main
     f.setResizable(false); 
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLocationRelativeTo(null);
-//    f.setFullscreen();
+    f.setFullscreen();
     
     enemys.add(new StandartEnemy(300, 300, 20, 0, 0, spritzers,enemys, towers, player, enemySpritzerses));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));

@@ -9,9 +9,10 @@ import klassen.player.Player;
 import klassen.player.Spritzer;
 import klassen.tower.Tower;
 
-public class StandartEnemy extends Enemy implements Runnable{
+public class StandartEnemy extends Enemy{
 
     LinkedList<EnemySpritzer> enemySpritzer;
+    private int thisFrame = 0, highestFrame = 3500/15;
     
     public StandartEnemy(float x, float y, int speed, int speedX, int speedY, 
                          LinkedList<Spritzer> playerSpritzers,LinkedList<Enemy> enemys, 
@@ -24,12 +25,22 @@ public class StandartEnemy extends Enemy implements Runnable{
         setKnockback(true);
         this.enemySpritzer = enemySpritzer;
         
-        new Thread(this).start();
     }
     
     @Override
     public void update(float tslf)
     {
+        thisFrame++;
+        
+        if(thisFrame >= highestFrame)
+        {
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*24,0));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*24,0));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*24));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0,-speed*24));
+            thisFrame = 0;
+        }
+        
         if(collidePlayerSpritzer())
         {
           live-=10;
@@ -49,25 +60,5 @@ public class StandartEnemy extends Enemy implements Runnable{
         
         super.update(tslf);
         collide();
-    }
-    
-    public void run()
-    {
-        
-        while(live > 0)
-        {
-            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*24,0));
-            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*24,0));
-            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*24));
-            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0,-speed*24));
-          
-            
-            try {
-                Thread.sleep(3500);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(StandartEnemy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
     }
 }

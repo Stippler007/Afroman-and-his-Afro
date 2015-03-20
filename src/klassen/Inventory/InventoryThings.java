@@ -35,6 +35,7 @@ public class InventoryThings {
         if(ivd.tas[ivd.getState()] != -1 && ivd.tasn[ivd.getState()] != 0 && ivd.tas[ivd.getState()] == 0 && ivd.tas[ivd.getState()] == ivd.stone)
         {
             if(map[x][y] == null) map[x][y] = new Rock();
+            ivd.tasn[ivd.getState()]--;
         }
     }
     

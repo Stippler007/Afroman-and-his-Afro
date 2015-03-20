@@ -33,17 +33,15 @@ public class Main
     LinkedList<Tower> towers=new LinkedList<>();
     LinkedList<TowerSpritzer> towerSpritzers=new LinkedList<>();
     
-    ArrayList<GameObject> otherMapThings = new ArrayList<>();
-    
     LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
     Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses,towers);
     
-    InventoryDraw ivd = new InventoryDraw(otherMapThings);
+    InventoryDraw ivd = new InventoryDraw();
     InventoryThings iv = new InventoryThings(ivd);
     
     Background bg=new Background(player, iv);
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv, otherMapThings); //Ich erzeuge mein GUI Objekt
+    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);

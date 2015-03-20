@@ -44,15 +44,14 @@ public class GUI extends JFrame
              LinkedList<PlayerSpritzer> playerSpritzers,
              LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
              LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
-             Background bg , InventoryDraw idv, InventoryThings iv,
-             ArrayList<GameObject> otherMapThings)
+             Background bg , InventoryDraw idv, InventoryThings iv)
   {
     setLayout(new GridLayout());
     
     this.idv = idv;
     this.iv = iv;
     
-    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg,idv, iv, otherMapThings);
+    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg,idv, iv);
 //    menu=new GameMenu();
 //    canvas.setBounds(0, 0, 800, 600);
     add(canvas);

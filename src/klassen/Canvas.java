@@ -46,8 +46,6 @@ public class Canvas extends JPanel
   
   private Background bg;
   
-  private ArrayList<GameObject> otherMapThings;
-  
   private float scaleX=1;
   private float scaleY=1;
 
@@ -63,8 +61,7 @@ public class Canvas extends JPanel
                 LinkedList<PlayerSpritzer> playerSpritzers,
                 LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
                 LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
-                Background bg, InventoryDraw idv, InventoryThings iv,
-                ArrayList<GameObject> otherMapThings)
+                Background bg, InventoryDraw idv, InventoryThings iv)
   {
     this.player = player;
     this.playerSpritzers = playerSpritzers;
@@ -75,7 +72,6 @@ public class Canvas extends JPanel
     this.bg=bg;
     this.idv = idv;
     this.iv = iv;
-    this.otherMapThings = otherMapThings;
   }
   @Override
   public void paint(Graphics g)
@@ -131,9 +127,5 @@ public class Canvas extends JPanel
      
     idv.paintInventory(g);
     
-    for(GameObject go : otherMapThings)
-    {
-        g.drawImage(go.getLook(), go.getBounding().x, go.getBounding().y,30,30, this);
-    }
   }
 }

@@ -2,9 +2,8 @@ package klassen.Inventory;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import klassen.karte.GameObject;
-import klassen.karte.Rock;
+import java.awt.image.BufferedImage;
+import klassen.ImageFactory;
 
 public class InventoryDraw {
     private int state = 0;
@@ -13,13 +12,10 @@ public class InventoryDraw {
     public int tasn[] = new int[8];         // Things at state now
     
     public static final int stone = 0;
+    private BufferedImage[] images = new BufferedImage[8];
     
-    protected ArrayList<GameObject> otherMapThings;
-    
-    public InventoryDraw(ArrayList<GameObject> otherMapThings)
+    public InventoryDraw()
     {
-        this.otherMapThings = otherMapThings;
-        
         setTas(0,stone,20);
     }
     
@@ -35,6 +31,20 @@ public class InventoryDraw {
         for(int i = 0; i < (284/35);i++)
         {
             gr.fillRect(((i*30)+((i+1)*5))+258, 5, 30, 30);
+        }
+        
+        int digits;
+        for(int i = 0; i<8; i++)
+        {
+            if(tasn[i] == 0) images[i] = null;
+            
+            gr.drawImage(images[i], (i*35)+263, 5, 30, 30, null);
+            
+            digits = 0;
+            if(tasn[i]/10 > 0) digits = 7;
+            
+            gr.setColor(Color.ORANGE);
+            gr.drawString(""+tasn[i], (i*35)+284-digits, 32);
         }
     }
     public void stateUp()
@@ -68,7 +78,6 @@ public class InventoryDraw {
         tas[state] = thing;
         tasn[state] = value;
         
-        otherMapThings.add(new Rock());
-        otherMapThings.get(otherMapThings.size()-1).update(0, ((state*30)+((state+1)*5))+258, 5);
+        if(thing == stone) images[state] =ImageFactory.getImageFactory().getLooks("rock0");
     }
 }

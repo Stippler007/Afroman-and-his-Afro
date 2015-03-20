@@ -91,12 +91,12 @@ public class Player
     
     collide();
     
-    if(Background.x+speedX+((400-bounding.width/2)-x)>0)
+    if(Background.x+speedX+((400-bounding.width/2)-x)>=0)
     {
       x-=speedX;
       speedX=0;
     }
-    else if((Background.x+speedX)*-1+800+(x-(400-bounding.width/2))>(map.length-1)*25)
+    else if((Background.x+speedX)*-1+800+(x-(400-bounding.width/2))>=(map.length-1)*25)
     {
       x-=speedX;
       speedX=0;
@@ -105,7 +105,7 @@ public class Player
     {
       x=400-bounding.width/2;
     }
-    if(Background.y+speedX+((300-bounding.width/2)-y)>=0)
+    if(Background.y+speedY+((300-bounding.width/2)-y)>=0)
     {
       y-=speedY;
       speedY=0;

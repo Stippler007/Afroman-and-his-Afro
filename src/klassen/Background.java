@@ -61,6 +61,7 @@ public class Background
     }else
     {
         x = 0;
+        Player.speedX = 0;
     }
     if(y+Player.speedY < 0 && y+Player.speedY < (lowerMap[0].length-1)*25)
     {
@@ -68,6 +69,7 @@ public class Background
     }else
     {
         y = 0;
+        Player.speedY = 0;
     }
     for (int i =(int)(x/25*-1); i < (int)(x/25*-1)+34; i++) 
     {

@@ -32,7 +32,7 @@ public class InventoryThings {
         int x = ((MML.x-(int)Background.x)/25);
         int y = ((MML.y-(int)Background.y)/25);
         
-        if(ivd.tas[ivd.getState()] != -1 && ivd.tasn[ivd.getState()] != 0 && ivd.tas[ivd.getState()] == 0 && ivd.tas[ivd.getState()] == ivd.stone)
+        if(ivd.tas[ivd.getState()] != 0 && ivd.tasn[ivd.getState()] != 0 && ivd.tas[ivd.getState()] == ivd.stone)
         {
             if(map[x][y] == null) map[x][y] = new Rock();
             ivd.tasn[ivd.getState()]--;

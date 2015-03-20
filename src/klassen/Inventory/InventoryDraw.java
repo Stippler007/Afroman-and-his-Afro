@@ -11,7 +11,7 @@ public class InventoryDraw {
     public int tas[] = new int[8];          // Things at state
     public int tasn[] = new int[8];         // Things at state now
     
-    public static final int stone = 0;
+    public static final int stone = 1;
     private BufferedImage[] images = new BufferedImage[8];
     
     public InventoryDraw()
@@ -36,7 +36,11 @@ public class InventoryDraw {
         int digits;
         for(int i = 0; i<8; i++)
         {
-            if(tasn[i] == 0) images[i] = null;
+            if(tasn[i] == 0)
+            {
+                images[i] = null;
+                tas[i] = 0;
+            }
             
             gr.drawImage(images[i], (i*35)+263, 5, 30, 30, null);
             

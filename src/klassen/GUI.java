@@ -52,7 +52,7 @@ public class GUI extends JFrame
     
     addKeyListener(new KL(this));
     addMouseListener(new ML(iv));
-    addMouseMotionListener(new MML());
+    addMouseMotionListener(new MML(this));
     addMouseWheelListener(mwl);
   }
   public void setFullscreen()
@@ -86,6 +86,14 @@ public class GUI extends JFrame
 
   public boolean isFullscreen() {
     return fullscreen;
+  }
+  public float getScaleX()
+  {
+      return xScaling;
+  }
+  public float getScaleY()
+  {
+      return yScaling;
   }
   
 }

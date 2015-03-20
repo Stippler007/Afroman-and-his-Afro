@@ -5,7 +5,10 @@
  */
 package klassen.Inventory;
 
+import klassen.Background;
 import klassen.karte.GameObject;
+import klassen.karte.Rock;
+import klassen.listener.MML;
 
 /**
  *
@@ -14,15 +17,25 @@ import klassen.karte.GameObject;
 public class InventoryThings {
     
     private GameObject[][] map;
+    private InventoryDraw ivd;
     
-    public InventoryThings(InventoryDraw iv)
+    public InventoryThings(InventoryDraw ivd)
     {
-        
+        this.ivd = ivd;
     }
-    
     public void setMap(GameObject[][] map)
     {
         this.map = map;
+    }
+    public void chooseThings()
+    {
+        int x = ((MML.x-(int)Background.x)/25);
+        int y = ((MML.y-(int)Background.y)/25);
+        
+        if(ivd.tas[ivd.getState()] != -1 && ivd.tasn[ivd.getState()] != 0 && ivd.tas[ivd.getState()] == 0 && ivd.tas[ivd.getState()] == ivd.stone)
+        {
+            map[x][y] = new Rock();
+        }
     }
     
 }

@@ -6,11 +6,11 @@ import klassen.Inventory.InventoryThings;
 
 public class ML implements MouseListener
 {
-  private InventoryThings ivd;
+  private InventoryThings iv;
   
-  public ML(InventoryThings ivd)
+  public ML(InventoryThings iv)
   {
-      this.ivd = ivd;
+      this.iv = iv;
   }
   
   @Override
@@ -21,7 +21,7 @@ public class ML implements MouseListener
   @Override
   public void mousePressed(MouseEvent e)
   {
-    
+     iv.chooseThings();
   }
   @Override
   public void mouseReleased(MouseEvent e)

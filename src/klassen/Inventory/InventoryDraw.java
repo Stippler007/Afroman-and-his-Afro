@@ -6,6 +6,16 @@ import java.awt.Graphics;
 public class InventoryDraw {
     private int state = 0;
     private int maxState = 8;
+    public int tas[] = new int[8];          // Things at state
+    public int tasn[] = new int[8];         // Things at state now
+    
+    public static final int stone = 0;
+    
+    public InventoryDraw()
+    {
+        tas[0] = 0;
+        tasn[0] = 4;
+    }
     
     public void paintInventory(Graphics gr)
     {

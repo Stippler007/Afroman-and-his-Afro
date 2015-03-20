@@ -2,6 +2,9 @@ package klassen.Inventory;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import klassen.karte.GameObject;
+import klassen.karte.Rock;
 
 public class InventoryDraw {
     private int state = 0;
@@ -11,10 +14,13 @@ public class InventoryDraw {
     
     public static final int stone = 0;
     
-    public InventoryDraw()
+    protected ArrayList<GameObject> otherMapThings;
+    
+    public InventoryDraw(ArrayList<GameObject> otherMapThings)
     {
-        tas[0] = 0;
-        tasn[0] = 4;
+        this.otherMapThings = otherMapThings;
+        
+        setTas(0,stone,20);
     }
     
     public void paintInventory(Graphics gr)
@@ -56,5 +62,13 @@ public class InventoryDraw {
     public int getState()
     {
         return state;
+    }
+    public void setTas(int state,int thing, int value)
+    {
+        tas[state] = thing;
+        tasn[state] = value;
+        
+        otherMapThings.add(new Rock());
+        otherMapThings.get(otherMapThings.size()-1).update(0, ((state*30)+((state+1)*5))+258, 5);
     }
 }

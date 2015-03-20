@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ import klassen.Inventory.InventoryDraw;
 import klassen.Inventory.InventoryThings;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
+import klassen.karte.GameObject;
 import klassen.listener.KL;
 import klassen.listener.ML;
 import klassen.listener.MML;
@@ -42,14 +44,15 @@ public class GUI extends JFrame
              LinkedList<PlayerSpritzer> playerSpritzers,
              LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
              LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
-             Background bg , InventoryDraw idv, InventoryThings iv)
+             Background bg , InventoryDraw idv, InventoryThings iv,
+             ArrayList<GameObject> otherMapThings)
   {
     setLayout(new GridLayout());
     
     this.idv = idv;
     this.iv = iv;
     
-    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg,idv, iv);
+    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg,idv, iv, otherMapThings);
 //    menu=new GameMenu();
 //    canvas.setBounds(0, 0, 800, 600);
     add(canvas);

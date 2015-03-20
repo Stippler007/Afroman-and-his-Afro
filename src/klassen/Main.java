@@ -2,6 +2,7 @@ package klassen;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +13,7 @@ import klassen.enemys.BasicEnemy;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.enemys.StandartEnemy;
+import klassen.karte.GameObject;
 import klassen.listener.KL;
 import klassen.player.Player;
 import static klassen.player.Player.speedX;
@@ -31,15 +33,17 @@ public class Main
     LinkedList<Tower> towers=new LinkedList<>();
     LinkedList<TowerSpritzer> towerSpritzers=new LinkedList<>();
     
+    ArrayList<GameObject> otherMapThings = new ArrayList<>();
+    
     LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
     Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses,towers);
     
-    InventoryDraw ivd = new InventoryDraw();
+    InventoryDraw ivd = new InventoryDraw(otherMapThings);
     InventoryThings iv = new InventoryThings(ivd);
     
     Background bg=new Background(player, iv);
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
+    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv, otherMapThings); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);

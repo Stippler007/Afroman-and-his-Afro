@@ -8,6 +8,7 @@ package klassen;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JPanel;
 import static klassen.Background.x;
@@ -16,6 +17,7 @@ import klassen.Inventory.InventoryDraw;
 import klassen.Inventory.InventoryThings;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
+import klassen.karte.GameObject;
 import klassen.listener.KL;
 import klassen.listener.ML;
 import klassen.listener.MML;
@@ -44,6 +46,8 @@ public class Canvas extends JPanel
   
   private Background bg;
   
+  private ArrayList<GameObject> otherMapThings;
+  
   private float scaleX=1;
   private float scaleY=1;
 
@@ -59,7 +63,8 @@ public class Canvas extends JPanel
                 LinkedList<PlayerSpritzer> playerSpritzers,
                 LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
                 LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
-                Background bg, InventoryDraw idv, InventoryThings iv)
+                Background bg, InventoryDraw idv, InventoryThings iv,
+                ArrayList<GameObject> otherMapThings)
   {
     this.player = player;
     this.playerSpritzers = playerSpritzers;
@@ -70,6 +75,7 @@ public class Canvas extends JPanel
     this.bg=bg;
     this.idv = idv;
     this.iv = iv;
+    this.otherMapThings = otherMapThings;
   }
   @Override
   public void paint(Graphics g)
@@ -124,5 +130,10 @@ public class Canvas extends JPanel
     }
      
     idv.paintInventory(g);
+    
+    for(GameObject go : otherMapThings)
+    {
+        g.drawImage(go.getLook(), go.getBounding().x, go.getBounding().y,30,30, this);
+    }
   }
 }

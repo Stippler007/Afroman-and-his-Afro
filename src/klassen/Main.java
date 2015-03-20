@@ -35,7 +35,7 @@ public class Main
     Player player=new Player(400-12.5f, 300-12.5f, 300, spritzers, enemySpritzerses,towers);
     
     InventoryDraw ivd = new InventoryDraw();
-    InventoryThings iv = new InventoryThings(ivd, towers);
+    InventoryThings iv = new InventoryThings(ivd, towers, enemys, spritzers);
     
     Background bg=new Background(player, enemys,iv);
     
@@ -53,7 +53,7 @@ public class Main
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     
-    towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
+//    towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
     
     long lastFrame=System.currentTimeMillis();
     while(true)

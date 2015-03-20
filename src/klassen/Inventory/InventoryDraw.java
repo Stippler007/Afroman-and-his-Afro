@@ -19,6 +19,7 @@ public class InventoryDraw {
     public InventoryDraw()
     {
         setTas(0,stone,20);
+        setTas(1,tower1,1);
     }
     
     public void paintInventory(Graphics gr)
@@ -85,5 +86,6 @@ public class InventoryDraw {
         tasn[state] = value;
         
         if(thing == stone) images[state] =ImageFactory.getImageFactory().getLooks("rock0");
+        if(thing == tower1) images[state] =ImageFactory.getImageFactory().getLooks("BasicTower");
     }
 }

@@ -12,6 +12,8 @@ public class InventoryDraw {
     public int tasn[] = new int[8];         // Things at state now
     
     public static final int stone = 1;
+    public static final int tower1 = 2;
+    
     private BufferedImage[] images = new BufferedImage[8];
     
     public InventoryDraw()

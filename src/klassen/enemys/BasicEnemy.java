@@ -40,4 +40,42 @@ public class BasicEnemy extends Enemy
     
     super.update(tslf);
   }
+  
+  
+  /*
+  @Override
+    public void update(float tslf)
+    {
+        thisFrame++;
+        
+        if(thisFrame >= highestFrame)
+        {
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*24,0));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*24,0));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*24));
+            enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0,-speed*24));
+            thisFrame = 0;
+        }
+        
+        if(collidePlayerSpritzer())
+        {
+          live-=10;
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*24,0));
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*24,0));
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*24));
+          enemySpritzer.add(new EnemySpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0,-speed*24));
+          
+        }
+    
+        
+        
+        speedX = 0;
+        speedY = 0;
+        
+        moveZiel(player.getX()+player.getBounding().width/2, player.getY()+player.getBounding().height/2,speed*12);
+        
+        super.update(tslf);
+        collide();
+    }
+  */
 }

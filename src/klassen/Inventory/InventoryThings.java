@@ -8,6 +8,7 @@ package klassen.Inventory;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import klassen.Background;
+import klassen.Shop.ShopGUI;
 import klassen.enemys.Enemy;
 import klassen.karte.GameObject;
 import klassen.karte.Rock;
@@ -71,6 +72,10 @@ public class InventoryThings {
                 tower.add(new BasicTower(MML.x,MML.y,300,40,enemy, spritzer));
                 ivd.tasn[ivd.getState()]--;
             }
+        }
+        if(ivd.getState() == 7)
+        {
+            new ShopGUI();
         }
     }
 

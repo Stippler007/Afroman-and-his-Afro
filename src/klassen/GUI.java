@@ -71,7 +71,6 @@ public class GUI extends JFrame
     xScaling = (float)screensize.width/800f;
     yScaling = (float)screensize.height/600f;
     
-    setLocationRelativeTo(null);
     canvas.setScaleX(xScaling);
     canvas.setScaleY(yScaling);
     fullscreen=true;

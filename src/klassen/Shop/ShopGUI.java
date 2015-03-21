@@ -27,11 +27,13 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
     
     private JFrame frame;
     private JScrollBar scrollBar;
-    private int money = 0;
+    private int money = 40;
     private JLabel moneyTxt;
     private JPanel panel;
     
     private int toTheTop = 0;
+    
+    private InventoryDraw ivd;
     
     private LinkedList<Integer> strongness = new LinkedList<>();
     private LinkedList<Integer> radius = new LinkedList<>();
@@ -40,10 +42,11 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
     private LinkedList<JPanel> underPanel = new LinkedList<>();
     private LinkedList<JButton> btn = new LinkedList<>();
     private LinkedList<Integer> state = new LinkedList<>();
-    private LinkedList<Integer> cost = new LinkedList<>();
+    private LinkedList<Integer> price = new LinkedList<>();
     
-    public ShopGUI()
+    public ShopGUI(InventoryDraw ivd)
     {
+        this.ivd = ivd;
         frame = new JFrame("Shop");
         frame.setSize(400,400);
         frame.setLayout(new BorderLayout());
@@ -85,7 +88,7 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
     {
         frame.setVisible(visible);
     }
-    public void addShopItem(String name, int state, int strongness, int radius, int cost)
+    public void addShopItem(String name, int state, int strongness, int radius, int price)
     {
         if(state == InventoryDraw.stone) pictures.add(new JLabel(new ImageIcon(ImageFactory.getImageFactory().getLooks("rock0"))));
         else if(state == InventoryDraw.tower1) pictures.add(new JLabel(new ImageIcon(ImageFactory.getImageFactory().getLooks("BasicTower"))));
@@ -94,7 +97,7 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         this.state.add(state);
         this.strongness.add(strongness);
         this.radius.add(radius);
-        this.cost.add(cost);
+        this.price.add(price);
         
         mainPanel.add(new JPanel());
         underPanel.add(new JPanel());
@@ -103,7 +106,7 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         underPanel.get(underPanel.size()-1).add(new JLabel("Damage: " + strongness));
         underPanel.get(underPanel.size()-1).add(new JLabel("Radius: " + strongness));
         
-        btn.add(new JButton(cost+"Y"));
+        btn.add(new JButton(price+"Y"));
         btn.get(btn.size()-1).addActionListener(this);
         
         mainPanel.get(mainPanel.size()-1).setLayout(new GridLayout(1,3));
@@ -117,9 +120,14 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
     
     public void drawThings()
     {
+        moneyTxt.setText("Money: " + money);
+        
         for (int i = 0; i < mainPanel.size(); i++) {
             
             mainPanel.get(i).setBounds(0,(i*100)-toTheTop,getWidth(), 100);
+            
+            if(price.get(i) > money) btn.get(i).setEnabled(false);
+            else btn.get(i).setEnabled(true);
             
             this.add(mainPanel.get(i));
             
@@ -136,6 +144,31 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        for (int i = 0; i < mainPanel.size(); i++) {
+            
+            if(btn.get(i) == e.getSource())
+            {
+                money -= price.get(i);
+                
+                for (int j = 0; j < 8; j++) {
+                    
+                    if(ivd.tas[j] == 0)
+                    {
+                        ivd.setTas(j, state.get(i), 1);
+                        break;
+                    }else if(ivd.tas[j] == state.get(i))
+                    {
+                        ivd.tasn[j]++;
+                        break;
+                    }
+                    
+                }
+                
+                drawThings();
+            }
+            
+        }
         
     }
     

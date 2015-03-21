@@ -16,11 +16,6 @@ public class InventoryDraw {
     
     private BufferedImage[] images = new BufferedImage[8];
     
-    public InventoryDraw()
-    {
-        setTas(0,stone,20);
-        setTas(1,tower1,1);
-    }
     
     public void paintInventory(Graphics gr)
     {

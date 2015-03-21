@@ -75,7 +75,7 @@ public class InventoryThings {
         }
         if(ivd.getState() == 7)
         {
-            new ShopGUI();
+            new ShopGUI(ivd);
         }
     }
 

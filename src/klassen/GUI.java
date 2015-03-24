@@ -2,6 +2,7 @@ package klassen;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -29,7 +30,6 @@ import klassen.tower.Tower;
 public class GUI extends JFrame
 {
   private Canvas canvas;
-  private GameMenu menu;
   
   private InventoryDraw idv;
   private InventoryThings iv;

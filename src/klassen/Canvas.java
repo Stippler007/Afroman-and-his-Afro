@@ -72,7 +72,7 @@ public class Canvas extends JPanel
     this.idv = idv;
     this.iv = iv;
   }
-  @Override
+  
   public void paint(Graphics g)
   {
     double turn;

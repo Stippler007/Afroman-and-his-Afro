@@ -21,24 +21,32 @@ import klassen.player.Spritzer;
 import klassen.tower.BasicTower;
 import klassen.tower.Tower;
 
-public class Main
+public class Main implements Runnable
 {
-  public static void main(String[] args)
+    Player player;
+    Background bg;
+    LinkedList<Spritzer> spritzers;
+    LinkedList<Enemy> enemys;
+    LinkedList<EnemySpritzer> enemySpritzerses;
+    LinkedList<Tower> towers;
+    GUI f;
+    
+  public Main()
   {
-    LinkedList<Enemy> enemys=new LinkedList<>();
-    LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
+    enemys=new LinkedList<>();
+    enemySpritzerses=new LinkedList<>();
     
-    LinkedList<Tower> towers=new LinkedList<>();
-    LinkedList<Spritzer> spritzers=new LinkedList<>();
+    towers=new LinkedList<>();
+    spritzers=new LinkedList<>();
     
-    Player player=new Player(400-12.5f, 300-12.5f, 300, spritzers, enemySpritzerses,towers);
+    player=new Player(400-12.5f, 300-12.5f, 300, spritzers, enemySpritzerses,towers);
     
     InventoryDraw ivd = new InventoryDraw();
     InventoryThings iv = new InventoryThings(ivd, towers, enemys, spritzers);
     
-    Background bg=new Background(player, enemys,iv);
+    bg=new Background(player, enemys,iv);
     
-    GUI f=new GUI(player, spritzers, enemySpritzerses, enemys,towers,spritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
+    f=new GUI(player, spritzers, enemySpritzerses, enemys,towers,spritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);
@@ -53,6 +61,12 @@ public class Main
     
 //    towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
     
+        new Thread(this).start();
+    
+    }
+  
+  public void run()
+  {
     long lastFrame=System.currentTimeMillis();
     while(true)
     {   
@@ -90,7 +104,7 @@ public class Main
       f.repaintScreen();
       try{Thread.sleep(15);} catch (InterruptedException ex){}
     }
-  }
+    }
   private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<Spritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers,Background bg)
   {
     int i=0;
@@ -155,4 +169,7 @@ public class Main
     }
     
   }
+    public static void main(String[] args) {
+        new Main();
+    }
 }

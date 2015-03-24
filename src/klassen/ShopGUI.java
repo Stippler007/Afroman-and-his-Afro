@@ -1,4 +1,4 @@
-package klassen.Shop;
+package klassen;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -27,7 +27,7 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
     
     private JFrame frame;
     private JScrollBar scrollBar;
-    private int money = 40;
+    private int money = 4000;
     private JLabel moneyTxt;
     private JPanel panel;
     

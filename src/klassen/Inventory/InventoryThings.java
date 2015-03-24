@@ -8,7 +8,7 @@ package klassen.Inventory;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import klassen.Background;
-import klassen.Shop.ShopGUI;
+import klassen.ShopGUI;
 import klassen.enemys.Enemy;
 import klassen.karte.GameObject;
 import klassen.karte.Rock;
@@ -29,6 +29,7 @@ public class InventoryThings {
     private LinkedList<Tower> tower;
     private LinkedList<Enemy> enemy;
     private LinkedList<Spritzer> spritzer;
+    private ShopGUI shop;
     
     public InventoryThings(InventoryDraw ivd, LinkedList<Tower> tower, LinkedList<Enemy> enemy, LinkedList<Spritzer> spritzer) {
         this.ivd = ivd;
@@ -75,7 +76,7 @@ public class InventoryThings {
         }
         if(ivd.getState() == 7)
         {
-            new ShopGUI(ivd);
+            shop = new ShopGUI(ivd);
         }
     }
 

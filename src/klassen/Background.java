@@ -82,8 +82,15 @@ public class Background
       for (int j = (int)(y/25*-1); j < (int)(y/25*-1)+26; j++) 
       {
         lowerMap[i][j].update(tslf,(int)(x+i*25),(int)(y+j*25));
-        if(upperMap[i][j]!=null)upperMap[i][j].update(tslf,(int)(x+i*25),(int)(y+j*25));
+        
       }
+    }
+    for(int i = 0; i < 100; i++)
+    {
+        for (int j = 0; j < 100; j++) {
+            if(upperMap[i][j]!=null)upperMap[i][j].update(tslf,(int)(x+i*25),(int)(y+j*25));;
+            
+        }
     }
   }
 }

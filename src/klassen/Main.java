@@ -130,9 +130,9 @@ public class Main implements Runnable
     {
       Spritzer ps=playerSpritzers.get(i);
       if(ps.getBounding().x>Background.x+bg.lowerMap.length*25)playerSpritzers.remove(i);
-      else if(ps.getBounding().x<-ps.getBounding().width)playerSpritzers.remove(i);
-      else if(ps.getBounding().y>Background.x+bg.lowerMap.length*25)playerSpritzers.remove(i);
-      else if(ps.getBounding().y<-ps.getBounding().height)playerSpritzers.remove(i);
+      else if(ps.getBounding().x<Background.x-ps.getBounding().width)playerSpritzers.remove(i);
+      else if(ps.getBounding().y>Background.y+bg.lowerMap[0].length*25)playerSpritzers.remove(i);
+      else if(ps.getBounding().y<Background.y-ps.getBounding().height)playerSpritzers.remove(i);
       else i++;
       
       for (int j =(int)(Background.x/25*-1); i <= (int)(Background.x/25*-1); i++) 

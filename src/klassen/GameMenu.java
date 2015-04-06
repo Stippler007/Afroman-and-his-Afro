@@ -10,14 +10,23 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import klassen.Main;
 
@@ -32,10 +41,15 @@ public class GameMenu extends JPanel implements Runnable
   private JButton btLoadGame;
   private JButton btMultiplayer;
   private JButton btOptions;
+  private JButton btClose;
   
   private JPanel paLogo; //Logo und Animationen
+  private JLabel jlLogo;
+  private JPanel paHeader;
+  
   private JPanel paAnimations;
   private JButton btCredits;
+  
   
   
   private Thread animateLogo;
@@ -43,31 +57,63 @@ public class GameMenu extends JPanel implements Runnable
   public GameMenu(Frame frame) 
   {
     this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 255), null, null));
-    this.setLayout(new GridLayout(1, 0));
+    this.setLayout(new BorderLayout());
     
     paLogo=new JPanel();
     paButtons=new JPanel();
+    paHeader = new JPanel();
     
-    this.add(paLogo);
-    this.add(paButtons);
+    paLogo.setBackground(Color.WHITE);
+    paButtons.setBackground(Color.WHITE);
+    paHeader.setBackground(Color.WHITE);
     
-    paButtons.setLayout(new GridLayout(0,1));
+    this.add(paLogo, BorderLayout.CENTER);
+    this.add(paButtons, BorderLayout.SOUTH);
+    this.add(paHeader, BorderLayout.NORTH);
+    
+    
+    paButtons.setLayout(new GridLayout(1,4));
     
     btNewGame=new JButton("New Game");
     btLoadGame=new JButton("Load Game");
     btMultiplayer=new JButton("Multiplayer");
     btOptions=new JButton("Options");
     
-    btNewGame.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
-    btLoadGame.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
-    btMultiplayer.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
-    btOptions.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
+//    btNewGame.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
+//    btLoadGame.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
+//    btMultiplayer.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
+//    btOptions.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, Color.gray, Color.lightGray, Color.gray, Color.lightGray));
     
-    btNewGame.setFont(new java.awt.Font("Tahoma", 0, 24));
-    btLoadGame.setFont(new java.awt.Font("Tahoma", 0, 24));
-    btMultiplayer.setFont(new java.awt.Font("Tahoma", 0, 24));
-    btOptions.setFont(new java.awt.Font("Tahoma", 0, 24));
+    btNewGame.setFont(new java.awt.Font("Tahoma", 0, 50));
+    btLoadGame.setFont(new java.awt.Font("Tahoma", 0, 50));
+    btMultiplayer.setFont(new java.awt.Font("Tahoma", 0, 50));
+    btOptions.setFont(new java.awt.Font("Tahoma", 0, 50));
     
+    btNewGame.setOpaque(false);
+    btNewGame.setContentAreaFilled(false);
+    btNewGame.setBorderPainted(false);
+    btNewGame.setMargin(new Insets(1,1,30,1));
+    btNewGame.setFocusPainted(false);
+    
+    btLoadGame.setOpaque(false);
+    btLoadGame.setContentAreaFilled(false);
+    btLoadGame.setBorderPainted(false);
+    btLoadGame.setMargin(new Insets(1,1,30,1));
+    btLoadGame.setFocusPainted(false);
+    
+    btMultiplayer.setOpaque(false);
+    btMultiplayer.setContentAreaFilled(false);
+    btMultiplayer.setBorderPainted(false);
+    btMultiplayer.setMargin(new Insets(1,1,30,1));
+    btMultiplayer.setFocusPainted(false);
+    
+    btOptions.setOpaque(false);
+    btOptions.setContentAreaFilled(false);
+    btOptions.setBorderPainted(false);
+    btOptions.setMargin(new Insets(1,1,30,1));
+    btOptions.setFocusPainted(false);
+    
+            
     btNewGame.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e)
         {
@@ -79,31 +125,63 @@ public class GameMenu extends JPanel implements Runnable
     paButtons.add(btLoadGame);
     paButtons.add(btMultiplayer);
     paButtons.add(btOptions);
-    
-    
+   
     paLogo.setLayout(new BorderLayout());
+    try
+    {
+      Image icon = ImageIO.read(getClass().getResourceAsStream("/gfx/afro/logo0.png"));
+      jlLogo = new JLabel(new ImageIcon(icon));
+      paLogo.add(jlLogo, BorderLayout.CENTER);
+    } catch (IOException ex)
+    {
+      Logger.getLogger(GameMenu.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    paHeader.setLayout(new BorderLayout());
+    btClose = new JButton("Close");
+    btClose.setFont(new java.awt.Font("Tahoma", 0, 30));
+    btClose.setOpaque(false);
+    btClose.setContentAreaFilled(false);
+    btClose.setBorderPainted(false);
+    btClose.setMargin(new Insets(10,1,1,10));
+    btClose.setFocusPainted(false);
+    
+    btClose.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+       System.exit(0); 
+      }
+    });
+    
+    paHeader.add(btClose, BorderLayout.EAST);
+    
+    
+    
     paAnimations=new JPanel();
     btCredits=new JButton("Credits");
-//    btCredits.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ex_001_Hello_World/AfroMan_logo3.png")));
     btCredits.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
         onBtCredits(evt);
       }
     });
     
-    paLogo.add(paAnimations, java.awt.BorderLayout.CENTER);
-    paLogo.add(btCredits,java.awt.BorderLayout.PAGE_START);
+    btCredits.setFont(new java.awt.Font("Tahoma", 0, 30));
+    btCredits.setOpaque(false);
+    btCredits.setContentAreaFilled(false);
+    btCredits.setBorderPainted(false);
+    btCredits.setMargin(new Insets(10,10,1,1));
+    btCredits.setFocusPainted(false);
     
+    paAnimations.setBackground(Color.WHITE);
     
-    
-    
+    paHeader.add(paAnimations, BorderLayout.CENTER);
+    paHeader.add(btCredits,BorderLayout.WEST);
   }
   
   private void onBtCredits(ActionEvent event)
   {
     Graphics2D g=(Graphics2D)paAnimations.getGraphics();
-    g.drawString("Afroman",20,100);
-    g.drawString("By Christian, Lukas, Paul and Julian",20,120);
+    g.drawString("Afroman",20,20);
+    g.drawString("By Christian, Lukas, Paul and Julian",20,45);
     
     animateLogo=new Thread(this);
     animateLogo.start();
@@ -113,8 +191,8 @@ public class GameMenu extends JPanel implements Runnable
   public void run() 
   {
     Graphics2D g=(Graphics2D)paAnimations.getGraphics();
-    int x=0;
-    int y=300;
+    int x=250;
+    int y=0;
     while(true)
     {
       g.setColor(randomColor());

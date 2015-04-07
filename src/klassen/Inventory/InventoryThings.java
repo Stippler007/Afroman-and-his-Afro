@@ -12,6 +12,7 @@ import klassen.ShopGUI;
 import klassen.enemys.Enemy;
 import klassen.karte.GameObject;
 import klassen.karte.Rock;
+import klassen.listener.KL;
 import klassen.listener.MML;
 import klassen.player.Spritzer;
 import klassen.tower.BasicTower;
@@ -77,6 +78,12 @@ public class InventoryThings {
         if(ivd.getState() == 7)
         {
             shop = new ShopGUI(ivd);
+            
+            for(int i = 0; i < 1024; i++)
+            {
+                KL.keys[i] = false;
+            }
+            
         }
     }
 

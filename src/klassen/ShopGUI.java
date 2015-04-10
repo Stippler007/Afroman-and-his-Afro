@@ -25,11 +25,13 @@ import klassen.Inventory.InventoryDraw;
  */
 public class ShopGUI extends JPanel implements AdjustmentListener, ActionListener{
     
-    private JFrame frame;
+    public JFrame frame;
     private JScrollBar scrollBar;
     private int money = 4000;
     private JLabel moneyTxt;
     private JPanel panel;
+    private JButton exitbtn;
+    private JPanel norththings;
     
     private int toTheTop = 0;
     
@@ -54,10 +56,19 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         scrollBar = new JScrollBar(JScrollBar.VERTICAL,0,200,0,1000);
         scrollBar.addAdjustmentListener(this);
         
+        norththings = new JPanel();
+        norththings.setLayout(new BorderLayout());
+        
         moneyTxt = new JLabel("Money: "+  money);
         moneyTxt.setHorizontalAlignment(JLabel.CENTER);
         moneyTxt.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(210,180,140)));
-        frame.add(moneyTxt,BorderLayout.NORTH);
+        norththings.add(moneyTxt, BorderLayout.CENTER);
+        
+        exitbtn = new JButton("X");
+        exitbtn.addActionListener((e) -> frame.dispose());
+        norththings.add(exitbtn, BorderLayout.EAST);
+        
+        frame.add(norththings, BorderLayout.NORTH);
         
         this.setLayout(null);
         
@@ -69,19 +80,12 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         
         frame.add(panel);
         
+        frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
         
     }
     public void setFrameVisible(boolean visible)

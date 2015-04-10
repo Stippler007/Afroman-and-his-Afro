@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import klassen.Inventory.InventoryDraw;
 import klassen.Inventory.InventoryThings;
+import klassen.afro.Afro;
+import klassen.afro.BasicAfro;
 import klassen.enemys.BasicEnemy;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
@@ -30,9 +32,12 @@ public class Main implements Runnable
     LinkedList<EnemySpritzer> enemySpritzerses;
     LinkedList<Tower> towers;
     GUI f;
+    LinkedList<Afro> afros;
     
   public Main()
   {
+    afros=new LinkedList<Afro>();
+    
     enemys=new LinkedList<>();
     enemySpritzerses=new LinkedList<>();
     
@@ -46,7 +51,7 @@ public class Main implements Runnable
     
     bg=new Background(player, enemys,iv);
     
-    f=new GUI(player, spritzers, enemySpritzerses, enemys,towers,spritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
+    f=new GUI(player, spritzers, enemySpritzerses, enemys,towers,spritzers,afros,bg,ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);
@@ -59,7 +64,7 @@ public class Main implements Runnable
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     
-    
+    afros.add(new BasicAfro(400, 400, 0, ivd, iv, f));
     
 //    towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
     
@@ -100,6 +105,10 @@ public class Main implements Runnable
       {
         t.update(tslf);
       }
+      for (Afro afro : afros)
+      {
+        afro.update(tslf);
+      }
       
       deleteStuff(player, enemys,spritzers, enemySpritzerses,bg);
       
@@ -133,18 +142,13 @@ public class Main implements Runnable
       else if(ps.getBounding().x<Background.x-ps.getBounding().width)playerSpritzers.remove(i);
       else if(ps.getBounding().y>Background.y+bg.lowerMap[0].length*25)playerSpritzers.remove(i);
       else if(ps.getBounding().y<Background.y-ps.getBounding().height)playerSpritzers.remove(i);
+      else if(!ps.isAlive())
+      {
+        playerSpritzers.remove(i);
+      }
       else i++;
       
-      for (int j =(int)(Background.x/25*-1); i <= (int)(Background.x/25*-1); i++) 
-      {
-        for (int k = (int)(Background.y/25*-1); j <= (int)(Background.y/25*-1); j++) 
-        {
-          if(!(j<0)&&!(k<0)&&bg.upperMap[j][k]!=null&&bg.upperMap[j][k].isSolid())
-          {
-            
-          }
-        }
-      }
+      
     }
     while(i<enemySpritzers.size())
     {

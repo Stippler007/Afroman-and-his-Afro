@@ -6,6 +6,7 @@
 package klassen.tower;
 
 import java.awt.Rectangle;
+import klassen.karte.GameObject;
 import klassen.player.Spritzer;
 
 /**
@@ -15,9 +16,9 @@ import klassen.player.Spritzer;
 public class BasicTowerSpritzer extends Spritzer
 {
 
-  public BasicTowerSpritzer(float x, float y, float speedX, float speedY) 
+  public BasicTowerSpritzer(float x, float y, float speedX, float speedY,GameObject map[][]) 
   {
-    super(x, y, speedX, speedY);
+    super(x, y, speedX, speedY,map);
   }
   
 }

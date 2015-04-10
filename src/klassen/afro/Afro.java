@@ -68,4 +68,5 @@ public abstract class Afro
   {
     return y;
   }
+  public abstract void newShop();
 }

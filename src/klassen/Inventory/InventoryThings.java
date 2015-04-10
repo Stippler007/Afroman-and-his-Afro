@@ -75,16 +75,6 @@ public class InventoryThings {
                 ivd.tasn[ivd.getState()]--;
             }
         }
-        if(ivd.getState() == 7)
-        {
-            shop = new ShopGUI(ivd);
-            
-            for(int i = 0; i < 1024; i++)
-            {
-                KL.keys[i] = false;
-            }
-            
-        }
     }
 
 }

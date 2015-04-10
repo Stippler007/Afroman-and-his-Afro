@@ -35,6 +35,7 @@ public class GUI extends JFrame
   private InventoryDraw idv;
   private InventoryThings iv;
   private MWL mwl;
+  private ML ml;
   
   private float xScaling=1;
   private float yScaling=1;
@@ -57,9 +58,10 @@ public class GUI extends JFrame
     add(canvas);
     
     mwl = new MWL(idv);
+    ml = new ML(iv, afros);
     
     addKeyListener(new KL(this));
-    addMouseListener(new ML(iv));
+    addMouseListener(ml);
     addMouseMotionListener(new MML(this));
     addMouseWheelListener(mwl);
   }
@@ -74,6 +76,9 @@ public class GUI extends JFrame
     
     canvas.setScaleX(xScaling);
     canvas.setScaleY(yScaling);
+    
+    ml.setScale(xScaling, xScaling);
+    
     fullscreen=true;
   }
   public void setNormalscreen()
@@ -84,6 +89,9 @@ public class GUI extends JFrame
     setLocationRelativeTo(null);
     canvas.setScaleX(xScaling);
     canvas.setScaleY(yScaling);
+    
+    ml.setScale(1, 1);
+    
     fullscreen=false;
   }
   public void repaintScreen()

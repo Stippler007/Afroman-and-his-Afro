@@ -64,7 +64,7 @@ public class Main implements Runnable
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     
-    afros.add(new BasicAfro(400, 400, 0));
+    afros.add(new BasicAfro(400, 400, 0, ivd, iv));
     
 //    towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
     

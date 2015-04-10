@@ -74,14 +74,6 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Stone", InventoryDraw.stone, 0,0,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
-        addShopItem("Tower", InventoryDraw.tower1, 50,100,20);
         
     }
     public void setFrameVisible(boolean visible)

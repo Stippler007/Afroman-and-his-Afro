@@ -142,18 +142,13 @@ public class Main implements Runnable
       else if(ps.getBounding().x<Background.x-ps.getBounding().width)playerSpritzers.remove(i);
       else if(ps.getBounding().y>Background.y+bg.lowerMap[0].length*25)playerSpritzers.remove(i);
       else if(ps.getBounding().y<Background.y-ps.getBounding().height)playerSpritzers.remove(i);
+      else if(!ps.isAlive())
+      {
+        playerSpritzers.remove(i);
+      }
       else i++;
       
-      for (int j =(int)(Background.x/25*-1); i <= (int)(Background.x/25*-1); i++) 
-      {
-        for (int k = (int)(Background.y/25*-1); j <= (int)(Background.y/25*-1); j++) 
-        {
-          if(!(j<0)&&!(k<0)&&bg.upperMap[j][k]!=null&&bg.upperMap[j][k].isSolid())
-          {
-            
-          }
-        }
-      }
+      
     }
     while(i<enemySpritzers.size())
     {

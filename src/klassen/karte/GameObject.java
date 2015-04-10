@@ -36,6 +36,14 @@ public abstract class GameObject
   {
     
   }
+
+  public void setLive(float live)
+  {
+    this.live = live;
+  }
+  
+  
+  
   public void update(float tslf,float x,float y)
   {
     bounding.x=(int)x;
@@ -43,7 +51,11 @@ public abstract class GameObject
   }
   
   public abstract BufferedImage getLook();
-  
+
+  public float getLive()
+  {
+    return live;
+  }
   
   public boolean isSolid()
   {

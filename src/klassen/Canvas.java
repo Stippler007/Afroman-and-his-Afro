@@ -126,9 +126,11 @@ public class Canvas extends JPanel
       g.setColor(Color.green);
       g.fillRect((int)enemy.getX(), (int)enemy.getY()-3, (int)(enemy.getBounding().width*(enemy.getLive()/enemy.getMaxLive())), 2);
       
-      g.setColor(enemy.getColor());
-      //g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
+//      g.setColor(enemy.getColor());
+//      //g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
+      g2.rotate(enemy.getTurn(),enemy.getX()+enemy.getBounding().width/2,enemy.getY()+enemy.getBounding().height/2);
       g.drawImage(enemy.getLook(), (int)enemy.getX(), (int)enemy.getY(), null);
+      g2.rotate(-enemy.getTurn(),enemy.getX()+enemy.getBounding().width/2,enemy.getY()+enemy.getBounding().height/2);
     }
      
     idv.paintInventory(g);

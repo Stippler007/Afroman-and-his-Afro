@@ -35,10 +35,12 @@ public class GUI extends JFrame
   private InventoryDraw idv;
   private InventoryThings iv;
   private MWL mwl;
+  private ML ml;
   
   private float xScaling=1;
   private float yScaling=1;
   private boolean fullscreen;
+  
   
   public GUI(Player player, 
              LinkedList<Spritzer> playerSpritzers,
@@ -48,8 +50,6 @@ public class GUI extends JFrame
   {
     setLayout(new GridLayout());
     
-    this.idv = idv;
-    this.iv = iv;
     
     canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,afros,bg,idv, iv);
 //    menu=new GameMenu();
@@ -57,9 +57,10 @@ public class GUI extends JFrame
     add(canvas);
     
     mwl = new MWL(idv);
+    ml = new ML(iv, afros);
     
     addKeyListener(new KL(this));
-    addMouseListener(new ML(iv));
+    addMouseListener(ml);
     addMouseMotionListener(new MML(this));
     addMouseWheelListener(mwl);
   }
@@ -74,6 +75,9 @@ public class GUI extends JFrame
     
     canvas.setScaleX(xScaling);
     canvas.setScaleY(yScaling);
+    
+    ml.setScale(xScaling, yScaling);
+    
     fullscreen=true;
   }
   public void setNormalscreen()
@@ -84,6 +88,9 @@ public class GUI extends JFrame
     setLocationRelativeTo(null);
     canvas.setScaleX(xScaling);
     canvas.setScaleY(yScaling);
+    
+    ml.setScale(1.0f,1.0f);
+    
     fullscreen=false;
   }
   public void repaintScreen()

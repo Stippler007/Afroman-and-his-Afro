@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import klassen.Inventory.InventoryDraw;
 import klassen.Inventory.InventoryThings;
+import klassen.afro.Afro;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.karte.GameObject;
@@ -42,7 +43,7 @@ public class GUI extends JFrame
   public GUI(Player player, 
              LinkedList<Spritzer> playerSpritzers,
              LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
-             LinkedList<Tower> towers,LinkedList<Spritzer> towerSpritzers,
+             LinkedList<Tower> towers,LinkedList<Spritzer> towerSpritzers,LinkedList<Afro> afros,
              Background bg , InventoryDraw idv, InventoryThings iv)
   {
     setLayout(new GridLayout());
@@ -50,7 +51,7 @@ public class GUI extends JFrame
     this.idv = idv;
     this.iv = iv;
     
-    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg,idv, iv);
+    canvas=new Canvas(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,afros,bg,idv, iv);
 //    menu=new GameMenu();
 //    canvas.setBounds(0, 0, 800, 600);
     add(canvas);

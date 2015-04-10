@@ -15,6 +15,7 @@ import static klassen.Background.x;
 import static klassen.Background.y;
 import klassen.Inventory.InventoryDraw;
 import klassen.Inventory.InventoryThings;
+import klassen.afro.Afro;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.karte.GameObject;
@@ -37,8 +38,10 @@ public class Canvas extends JPanel
   private LinkedList<EnemySpritzer> enemySpritzerses;
   private LinkedList<Enemy> enemys;
   
-  LinkedList<Tower> towers;
-  LinkedList<Spritzer> towerSpritzers;
+  private LinkedList<Afro> afros;
+  
+  private LinkedList<Tower> towers;
+  private LinkedList<Spritzer> towerSpritzers;
   
   private InventoryDraw idv;
   private InventoryThings iv;
@@ -59,7 +62,7 @@ public class Canvas extends JPanel
   public Canvas(Player player,
                 LinkedList<Spritzer> playerSpritzers,
                 LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
-                LinkedList<Tower> towers,LinkedList<Spritzer> towerSpritzers,
+                LinkedList<Tower> towers,LinkedList<Spritzer> towerSpritzers,LinkedList<Afro> afros,
                 Background bg, InventoryDraw idv, InventoryThings iv)
   {
     this.player = player;
@@ -68,6 +71,7 @@ public class Canvas extends JPanel
     this.towers=towers;
     this.towerSpritzers=towerSpritzers;
     this.enemys = enemys;
+    this.afros=afros;
     this.bg=bg;
     this.idv = idv;
     this.iv = iv;
@@ -132,7 +136,10 @@ public class Canvas extends JPanel
       g.drawImage(enemy.getLook(), (int)enemy.getX(), (int)enemy.getY(), null);
       g2.rotate(-enemy.getTurn(),enemy.getX()+enemy.getBounding().width/2,enemy.getY()+enemy.getBounding().height/2);
     }
-     
+    for (Afro afro : afros)
+    {
+      g.drawImage(afro.getLook(), (int)afro.getX(), (int)afro.getY(), null);
+    }
     idv.paintInventory(g);
     
   }

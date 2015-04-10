@@ -6,6 +6,7 @@
 package klassen.player;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -20,6 +21,8 @@ public abstract class Spritzer
   private float speedY=0;
   
   private Rectangle bounding;
+  
+  protected BufferedImage look[]=new BufferedImage[1];
 
   public Spritzer(float x, float y, float speedX, float speedY)
   {

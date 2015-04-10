@@ -20,4 +20,6 @@ public class BasicAfro extends Afro
     look[0]=ImageFactory.getImageFactory().getLooks("afro1");
   }
   
+  
+  
 }

@@ -62,8 +62,8 @@ public class LevelBuilder extends JFrame{
                 dlg.setVisible(true);
                 
                 if(dlg.isReady()) {
-                    System.out.println(dlg.getWidth()+" "+dlg.getHeight()+" "+dlg.getGround());
-                    grid.resetMap(dlg.getWidth(), dlg.getHeight(), dlg.getGround());
+                    //System.out.println(dlg.getLevelWidth()+" "+dlg.getLevelHeight()+" "+dlg.getGround());
+                    grid.resetMap(dlg.getLevelWidth(), dlg.getLevelHeight(), dlg.getGround());
                 }
             }
         });
@@ -172,7 +172,6 @@ class DlgNewMap extends JDialog {
     
     public int getLevelWidth() { 
         try {
-            System.out.println("H"+spWidth.getModel().getValue());
             spWidth.commitEdit();
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());

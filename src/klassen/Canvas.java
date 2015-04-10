@@ -141,6 +141,5 @@ public class Canvas extends JPanel
       g.drawImage(afro.getLook(), (int)afro.getX(), (int)afro.getY(), null);
     }
     idv.paintInventory(g);
-    
   }
 }

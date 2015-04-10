@@ -30,7 +30,7 @@ public abstract class Afro
     this.y = y;
     this.team=team;
     look=new BufferedImage[1];
-    look[0]=ImageFactory.getImageFactory().getLooks("Afro1");
+    look[0]=ImageFactory.getImageFactory().getLooks("afro1");
     bounding=new Rectangle((int)x, (int)y, look[0].getWidth(), look[0].getHeight());
   }
   

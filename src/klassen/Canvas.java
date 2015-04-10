@@ -95,7 +95,8 @@ public class Canvas extends JPanel
     g.fillRect((int)player.getX(), (int)player.getY()-3, (int)(player.getBounding().width*(player.getLive()/player.getMaxLive())), 2);
       
     g.setColor(Color.black);
-    g.fillRect((int)player.getX(), (int)player.getY(), player.getBounding().width, player.getBounding().height);
+    //g.fillRect((int)player.getX(), (int)player.getY(), player.getBounding().width, player.getBounding().height);
+    g.drawImage(player.getLook(), (int)player.getX(), (int)player.getY(), null);
     g.setColor(Color.gray);
     for (Spritzer playerSpritzer : playerSpritzers)
     {
@@ -121,11 +122,13 @@ public class Canvas extends JPanel
       g.setColor(Color.red);
       g.fillRect((int)enemy.getX(), (int)enemy.getY()-3, enemy.getBounding().width, 2);
       
+      
       g.setColor(Color.green);
       g.fillRect((int)enemy.getX(), (int)enemy.getY()-3, (int)(enemy.getBounding().width*(enemy.getLive()/enemy.getMaxLive())), 2);
       
       g.setColor(enemy.getColor());
-      g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
+      //g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
+      g.drawImage(enemy.getLook(), (int)enemy.getX(), (int)enemy.getY(), null);
     }
      
     idv.paintInventory(g);

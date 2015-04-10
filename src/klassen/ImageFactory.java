@@ -36,6 +36,8 @@ public class ImageFactory
 //      }
       looks.put("BasicTower", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/towers/BasicTower.png")).getSubimage(0, 0, 50, 50));
       looks.put("BasicTowerShot", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/towers/BasicTowerShot.png")));
+      looks.put("player", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/player/player0.png")));
+      looks.put("enemy", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/enemy/enemy.png")));
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
     }

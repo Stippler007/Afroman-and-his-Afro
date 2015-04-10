@@ -2,8 +2,10 @@ package klassen.player;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import klassen.Background;
+import klassen.ImageFactory;
 import klassen.enemys.EnemySpritzer;
 import klassen.karte.GameObject;
 import klassen.listener.KL;
@@ -33,11 +35,17 @@ public class Player
   private boolean move=false;
   private GameObject[][] map;
   
+  private BufferedImage look[]=new BufferedImage[1];
+  
   
   
   public Player(float x, float y, int speed, LinkedList<Spritzer> playerSpritzers,
           LinkedList<EnemySpritzer> enemySpritzer,LinkedList<Tower> towers)
   {
+    for (int i = 0; i < look.length; i++)
+    {
+      look[i]=ImageFactory.getImageFactory().getLooks("player");
+    }
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -256,5 +264,9 @@ public class Player
   public float getMaxLive()
   {
       return maxLive;
+  }
+  public BufferedImage getLook() 
+  {
+    return look[0];
   }
 }

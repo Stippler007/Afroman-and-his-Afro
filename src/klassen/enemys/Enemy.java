@@ -2,8 +2,10 @@ package klassen.enemys;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import klassen.Background;
+import klassen.ImageFactory;
 import klassen.karte.GameObject;
 import klassen.player.Player;
 import klassen.player.Spritzer;
@@ -41,6 +43,8 @@ public abstract class Enemy
   protected Color color;
   protected Status status=Status.MOVING;
   
+  protected BufferedImage look[]=new BufferedImage[1];
+  
   public enum Status
   {
     MOVING,ATTACKING;
@@ -50,6 +54,10 @@ public abstract class Enemy
           LinkedList<Spritzer> playerSpritzers,LinkedList<Enemy> enemys,
           LinkedList<Tower> towers,Player player, Rectangle bounding)
   {
+    for (int i = 0; i < look.length; i++)
+    {
+      look[i]=ImageFactory.getImageFactory().getLooks("enemy");
+    }
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -339,5 +347,9 @@ public abstract class Enemy
   public float getY()
   {
     return y;
+  }
+  public BufferedImage getLook() 
+  {
+    return look[0];
   }
 }

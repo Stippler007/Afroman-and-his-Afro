@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import klassen.ImageFactory;
 import klassen.enemys.Enemy;
+import klassen.karte.GameObject;
 import klassen.player.Player;
 import klassen.player.Spritzer;
 
@@ -37,14 +38,18 @@ public abstract class Tower
   protected float animationTime=0;
   protected float maxAnimationTime;
   
+  protected GameObject map[][];
+  
   public Tower(float x, float y, Rectangle bounding,
                int radius,float damage,float maxAnimationTime,
-               LinkedList<Enemy> enemys,LinkedList<Spritzer> spritzers)
+               LinkedList<Enemy> enemys,LinkedList<Spritzer> spritzers, 
+               GameObject map[][])
   {
     for (int i = 0; i < look.length; i++)
     {
       look[i]=ImageFactory.getImageFactory().getLooks("BasicTower");
     }
+    this.map=map;
     this.x = x;
     this.y = y;
     this.enemys=enemys;

@@ -76,22 +76,22 @@ public class Player
     {
       if(KL.keys[KeyEvent.VK_UP])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, -speed*3));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, -speed*3,map));
         realoadTime-=maxRealoadTime;
       }
       else if(KL.keys[KeyEvent.VK_DOWN])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*3));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*3,map));
         realoadTime-=maxRealoadTime;
       }
       else if(KL.keys[KeyEvent.VK_LEFT])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*3, 0));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*3, 0,map));
         realoadTime-=maxRealoadTime;
       }
       else if(KL.keys[KeyEvent.VK_RIGHT])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*3, 0));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*3, 0,map));
         realoadTime-=maxRealoadTime;
       }
     }

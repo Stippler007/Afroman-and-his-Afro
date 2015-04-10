@@ -67,7 +67,6 @@ public abstract class Enemy
     this.enemys=enemys;
     this.towers=towers;
     this.status=Status.MOVING;
-    addZiel(100, 1000);
   }
   
   public void addZiel(int x,int y)
@@ -323,7 +322,17 @@ public abstract class Enemy
   {
     return live;
   }
+  public double getTurn()
+  {
+    double a=speedX;
+    double b=speedY;
 
+    double turn=Math.atan(b/a);
+    if(a<0){
+      turn+=Math.PI;
+    }
+    return turn; 
+  }
   public float getMaxLive()
   {
     return maxLive;

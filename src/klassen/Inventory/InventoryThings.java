@@ -71,7 +71,7 @@ public class InventoryThings {
                 ivd.tasn[ivd.getState()]--;
             }
             if (ivd.tas[ivd.getState()] == InventoryDraw.tower1) {
-                tower.add(new BasicTower(MML.x,MML.y,300,40,enemy, spritzer));
+                tower.add(new BasicTower(MML.x,MML.y,300,40,enemy, spritzer,map));
                 ivd.tasn[ivd.getState()]--;
             }
         }

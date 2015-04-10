@@ -7,6 +7,7 @@ package klassen.afro;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import javax.swing.plaf.basic.BasicTextUI;
 import klassen.ImageFactory;
 import klassen.player.Player;
 
@@ -20,7 +21,7 @@ public abstract class Afro
   protected float y;
   
   protected Rectangle bounding;
-  protected BufferedImage look[];
+  protected BufferedImage look[]=new BufferedImage[1];
   
   public int team;
   
@@ -29,9 +30,8 @@ public abstract class Afro
     this.y = y;
     this.team=team;
     look=new BufferedImage[1];
-    for (int i = 0; i < look.length; i++) {
-      look[i]=ImageFactory.getImageFactory().getLooks("BasicAfro"+i);
-    }
+    look[0]=ImageFactory.getImageFactory().getLooks("afro1");
+    bounding=new Rectangle((int)x, (int)y, look[0].getWidth(), look[0].getHeight());
   }
   
   public void update(float tslf)
@@ -43,13 +43,29 @@ public abstract class Afro
     bounding.y=(int)y;
   }
   
-  public boolean isClicked(int x,int y)
+  public boolean isClicked(float x,float y)
   {
+      
     if(this.x<x&&this.x+bounding.width>x&&
        this.y<y&&this.y+bounding.height>y)
     {
       return true;
     }
     return false;
+  }
+
+  public BufferedImage getLook()
+  {
+    return look[0];
+  }
+
+  public float getX()
+  {
+    return x;
+  }
+
+  public float getY()
+  {
+    return y;
   }
 }

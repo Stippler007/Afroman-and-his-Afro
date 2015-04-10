@@ -23,6 +23,7 @@ public class Rock extends GameObject
 
   public Rock()
   {
+    super(30,30);
     solid=true;
   }
   

@@ -19,10 +19,22 @@ public abstract class GameObject
   protected boolean onFire;
   protected Rectangle bounding;
   
+  protected float maxLive=-1;
+  protected float live=-1;
+  
+  {
+    bounding=new Rectangle(0,0,25,25);
+  }
+  
+  public GameObject(float maxLive,float live)
+  {
+    this.maxLive=maxLive;
+    this.live=live;
+  }
   
   public GameObject()
   {
-    bounding=new Rectangle(0,0,25,25);
+    
   }
   public void update(float tslf,float x,float y)
   {
@@ -31,6 +43,7 @@ public abstract class GameObject
   }
   
   public abstract BufferedImage getLook();
+  
   
   public boolean isSolid()
   {

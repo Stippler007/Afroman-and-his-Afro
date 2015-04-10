@@ -39,6 +39,7 @@ public class ImageFactory
       looks.put("BasicTowerShot", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/towers/BasicTowerShot.png")));
       looks.put("player", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/player/player0.png")));
       looks.put("enemy", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/enemy/enemy.png")));
+      looks.put("playerSpritzer", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/player/PlayerSpritzer.png")));
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
     }

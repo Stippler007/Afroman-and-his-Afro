@@ -6,6 +6,7 @@
 package klassen.player;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import klassen.Background;
 import klassen.karte.GameObject;
 
@@ -26,6 +27,8 @@ public abstract class Spritzer
   
   private boolean alive=true;
   protected float damage=10;
+  
+  protected BufferedImage look[]=new BufferedImage[1];
   
   public Spritzer(float x, float y, float speedX, float speedY,GameObject map[][])
   {
@@ -82,5 +85,9 @@ public abstract class Spritzer
   public float getY()
   {
     return y;
+  }
+  public BufferedImage getLook() 
+  {
+    return look[0];
   }
 }

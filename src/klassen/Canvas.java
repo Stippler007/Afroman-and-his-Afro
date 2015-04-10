@@ -104,7 +104,8 @@ public class Canvas extends JPanel
     g.setColor(Color.gray);
     for (Spritzer playerSpritzer : playerSpritzers)
     {
-      g.fillRect((int)playerSpritzer.getX(), (int)playerSpritzer.getY(), playerSpritzer.getBounding().width, playerSpritzer.getBounding().height);
+      //g.fillRect((int)playerSpritzer.getX(), (int)playerSpritzer.getY(), playerSpritzer.getBounding().width, playerSpritzer.getBounding().height);
+      g.drawImage(playerSpritzer.getLook(), (int)playerSpritzer.getX(), (int)playerSpritzer.getY(), null);
     }
     for (EnemySpritzer enemyS : enemySpritzerses)
     {

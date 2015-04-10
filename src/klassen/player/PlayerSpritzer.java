@@ -5,6 +5,7 @@
  */
 package klassen.player;
 
+import klassen.ImageFactory;
 import klassen.karte.GameObject;
 
 /**
@@ -16,6 +17,7 @@ public class PlayerSpritzer extends Spritzer
 
   public PlayerSpritzer(float x, float y, float speedX, float speedY,GameObject map[][]) {
     super(x, y, speedX, speedY,map);
+    look[0]=ImageFactory.getImageFactory().getLooks("playerSpritzer");
   }
   
 }

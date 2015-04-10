@@ -43,8 +43,9 @@ public abstract class Afro
     bounding.y=(int)y;
   }
   
-  public boolean isClicked(int x,int y)
+  public boolean isClicked(float x,float y)
   {
+      
     if(this.x<x&&this.x+bounding.width>x&&
        this.y<y&&this.y+bounding.height>y)
     {

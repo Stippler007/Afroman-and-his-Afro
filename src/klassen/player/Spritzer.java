@@ -6,6 +6,7 @@
 package klassen.player;
 
 import java.awt.Rectangle;
+import klassen.karte.GameObject;
 
 /**
  *
@@ -20,14 +21,16 @@ public abstract class Spritzer
   private float speedY=0;
   
   private Rectangle bounding;
-
-  public Spritzer(float x, float y, float speedX, float speedY)
+  private GameObject map[][];
+  
+  public Spritzer(float x, float y, float speedX, float speedY,GameObject map[][])
   {
     this.x = x;
     this.y = y;
     this.speedX = speedX;
     this.speedY = speedY;
     this.bounding = new Rectangle((int)x, (int)y, 15, 15);
+    this.map=map;
   }
   
   public void update(float tslf)
@@ -41,6 +44,7 @@ public abstract class Spritzer
     bounding.x=(int)x;
     bounding.y=(int)y;
   }
+  
   public Rectangle getBounding()
   {
     return bounding;

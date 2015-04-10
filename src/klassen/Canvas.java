@@ -105,7 +105,9 @@ public class Canvas extends JPanel
     for (Spritzer playerSpritzer : playerSpritzers)
     {
       //g.fillRect((int)playerSpritzer.getX(), (int)playerSpritzer.getY(), playerSpritzer.getBounding().width, playerSpritzer.getBounding().height);
+      g2.rotate(playerSpritzer.getTurn(),playerSpritzer.getX()+playerSpritzer.getBounding().width/2,playerSpritzer.getY()+playerSpritzer.getBounding().height/2);
       g.drawImage(playerSpritzer.getLook(), (int)playerSpritzer.getX(), (int)playerSpritzer.getY(), null);
+      g2.rotate(-playerSpritzer.getTurn(),playerSpritzer.getX()+playerSpritzer.getBounding().width/2,playerSpritzer.getY()+playerSpritzer.getBounding().height/2);
     }
     for (EnemySpritzer enemyS : enemySpritzerses)
     {

@@ -90,4 +90,15 @@ public abstract class Spritzer
   {
     return look[0];
   }
+  public double getTurn()
+  {
+    double a=speedX;
+    double b=speedY;
+
+    double turn=Math.atan(b/a);
+    if(a<0){
+      turn+=Math.PI;
+    }
+    return turn; 
+  }
 }

@@ -22,9 +22,12 @@ public abstract class Afro
   protected Rectangle bounding;
   protected BufferedImage look[];
   
-  public Afro(float x, float y) {
+  public int team;
+  
+  public Afro(float x, float y,int team) {
     this.x = x;
     this.y = y;
+    this.team=team;
     look=new BufferedImage[1];
     for (int i = 0; i < look.length; i++) {
       look[i]=ImageFactory.getImageFactory().getLooks("BasicAfro"+i);

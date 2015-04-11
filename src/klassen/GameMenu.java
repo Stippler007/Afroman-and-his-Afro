@@ -7,6 +7,7 @@ package klassen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -44,7 +45,7 @@ public class GameMenu extends JPanel implements Runnable
   private JButton btClose;
   
   private JPanel paLogo; //Logo und Animationen
-  private JLabel jlLogo;
+  private JPanel paLogo2;
   private JPanel paHeader;
   
   private JPanel paAnimations;
@@ -130,9 +131,22 @@ public class GameMenu extends JPanel implements Runnable
     try
     {
       Image icon = ImageIO.read(getClass().getResourceAsStream("/gfx/afro/logo0.png"));
-      jlLogo = new JLabel(new ImageIcon(icon));
-      paLogo.add(jlLogo, BorderLayout.CENTER);
-    } catch (IOException ex)
+      
+      paLogo2 = new JPanel(){
+          public void paint(Graphics g)
+          {
+              try {
+                  BufferedImage bi = ImageIO.read(getClass().getResourceAsStream("/gfx/afro/logo0.png"));
+                  g.drawImage(bi, frame.getWidth()/6, frame.getHeight()/12,frame.getWidth()-frame.getWidth()/3,frame.getHeight()-frame.getHeight()/3, null);
+                  
+              } catch (IOException ex) {
+                  Logger.getLogger(GameMenu.class.getName()).log(Level.SEVERE, null, ex);
+              }
+          }
+      };
+      
+      paLogo.add(paLogo2, BorderLayout.CENTER);
+    } catch (Exception ex)
     {
       Logger.getLogger(GameMenu.class.getName()).log(Level.SEVERE, null, ex);
     }

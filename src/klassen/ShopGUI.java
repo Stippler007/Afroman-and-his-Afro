@@ -1,6 +1,7 @@
 package klassen;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,8 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
     private JButton exitbtn;
     private JPanel norththings;
     
+    private JFrame backgroundFrame;
+    
     private int toTheTop = 0;
     
     private InventoryDraw ivd;
@@ -48,6 +51,12 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
     
     public ShopGUI(InventoryDraw ivd)
     {
+        backgroundFrame = new JFrame();
+        backgroundFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        backgroundFrame.setUndecorated(true);
+        backgroundFrame.setOpacity(0.2F);
+        backgroundFrame.setVisible(true);
+        
         this.ivd = ivd;
         frame = new JFrame("Shop");
         frame.setSize(400,400);
@@ -65,7 +74,10 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         norththings.add(moneyTxt, BorderLayout.CENTER);
         
         exitbtn = new JButton("X");
-        exitbtn.addActionListener((e) -> frame.dispose());
+        exitbtn.addActionListener((e) -> {
+            frame.dispose();
+            backgroundFrame.dispose();
+        });
         norththings.add(exitbtn, BorderLayout.EAST);
         
         frame.add(norththings, BorderLayout.NORTH);
@@ -80,6 +92,7 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         
         frame.add(panel);
         
+        frame.setAlwaysOnTop(true);
         frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setResizable(false);
@@ -108,7 +121,7 @@ public class ShopGUI extends JPanel implements AdjustmentListener, ActionListene
         
         underPanel.get(underPanel.size()-1).setLayout(new GridLayout(2,1));
         underPanel.get(underPanel.size()-1).add(new JLabel("Damage: " + strongness));
-        underPanel.get(underPanel.size()-1).add(new JLabel("Radius: " + strongness));
+        underPanel.get(underPanel.size()-1).add(new JLabel("Radius: " + radius));
         
         btn.add(new JButton(price+"Y"));
         btn.get(btn.size()-1).addActionListener(this);

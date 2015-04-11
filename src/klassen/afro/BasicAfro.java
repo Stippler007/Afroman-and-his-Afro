@@ -19,7 +19,7 @@ public class BasicAfro extends Afro
     private ShopGUI shop;
     private GUI g;
     
-  public BasicAfro(float x, float y, int team, InventoryDraw ivd, InventoryThings ivt, GUI g)
+  public BasicAfro(float x, float y, int team, InventoryDraw ivd, InventoryThings ivt, GUI g, ShopGUI shop)
   {
     super(x, y, team);
     look[0]=ImageFactory.getImageFactory().getLooks("afro1");
@@ -27,12 +27,12 @@ public class BasicAfro extends Afro
     this.ivd = ivd;
     this.ivt = ivt;
     this.g = g;
+    this.shop = shop;
   }
 
     @Override
     public void newShop() {
         shop = new ShopGUI(ivd);
-        shop.frame.setAlwaysOnTop(true);
         
         shop.addShopItem("Stone", InventoryDraw.stone, 30, 1, 4);
         shop.addShopItem("Ultimative-Tower", InventoryDraw.tower1, 30, 500, 30);

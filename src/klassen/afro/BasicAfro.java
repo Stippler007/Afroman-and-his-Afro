@@ -32,6 +32,7 @@ public class BasicAfro extends Afro
 
     @Override
     public void newShop() {
+        shop = new ShopGUI(ivd);
         
         shop.addShopItem("Stone", InventoryDraw.stone, 30, 1, 4);
         shop.addShopItem("Ultimative-Tower", InventoryDraw.tower1, 30, 500, 30);

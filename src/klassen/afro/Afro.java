@@ -8,6 +8,7 @@ package klassen.afro;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import javax.swing.plaf.basic.BasicTextUI;
+import klassen.GUI;
 import klassen.ImageFactory;
 import klassen.player.Player;
 

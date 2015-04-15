@@ -14,6 +14,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.FieldPosition;
 import java.text.ParseException;
 import java.text.ParsePosition;
@@ -24,6 +31,7 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,11 +53,13 @@ public class LevelBuilder extends JFrame{
     
     public LevelBuilder() {
         JPanel controls = new JPanel();
-        JComboBox<GameObject> cbSetGO = new JComboBox<>(new GameObject[]{new Gras(), new Rock()});
+        JComboBox<GameObject> cbSetGO = new JComboBox<>(new GameObject[]{new Rock(), new Gras()});
         JButton btNewMap = new JButton();
         JButton btSave = new JButton();
         JButton btLoad = new JButton();
         grid = new LevelGrid();
+        
+        grid.setCurrentGameObject(cbSetGO.getItemAt(0));
         
         cbSetGO.setAction(new AbstractAction() {
 
@@ -75,14 +85,40 @@ public class LevelBuilder extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                fc.showSaveDialog(LevelBuilder.this);
+                File f = fc.getSelectedFile();
                 
+                if(f != null) {
+                    try {
+                        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+                        oos.writeObject(grid.map);
+                        oos.writeObject(grid.layer);
+                        oos.close();
+                    } catch (IOException ex) {
+                        System.out.println("Could not Save");
+                    }
+                }
             }
         });
         btLoad.setAction(new AbstractAction() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                fc.showOpenDialog(LevelBuilder.this);
+                File f = fc.getSelectedFile();
                 
+                if(f != null) {
+                    try {
+                        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+                        LevelBuilder.this.grid.map = (GameObject[][]) ois.readObject();
+                        LevelBuilder.this.grid.layer = (GameObject[][]) ois.readObject();
+                        ois.close();
+                    } catch (Exception ex) {
+                        System.out.println("Could not load");
+                    }
+                }
             }
         });
         
@@ -168,7 +204,17 @@ class LevelGrid extends JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                int i = (int) ((e.getX()-padding-translationX)/(25*scale));
+                int j = (int) ((e.getY()-padding-translationY)/(25*scale));
+                System.out.println(i+" "+j+" "+e.getButton());
                 
+                if(e.getButton() == 1) {
+                    layer[i][j] = currentGO;
+                } else if(e.getButton() == 3) {
+                    layer[i][j] = null;
+                }
+                
+                LevelGrid.this.repaint();
             }
 
             @Override
@@ -224,6 +270,11 @@ class LevelGrid extends JPanel {
                 for (int j = 0; j < map[i].length; j++) {
                     GameObject go = map[i][j];
                     g2d.drawImage(go.getLook(), padding+i*25, padding+j*25, null);
+                    
+                    go = layer[i][j];
+                    if(go != null) {
+                        g2d.drawImage(go.getLook(), padding+i*25, padding+j*25, null);
+                    }
                 }
             }
         }

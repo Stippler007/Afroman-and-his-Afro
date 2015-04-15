@@ -7,12 +7,13 @@ package klassen.karte;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 /**
  *
  * @author Christian
  */
-public abstract class GameObject
+public abstract class GameObject implements Serializable
 {
   
   protected boolean solid;

@@ -8,8 +8,12 @@ package klassen;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.text.FieldPosition;
 import java.text.ParseException;
 import java.text.ParsePosition;
@@ -42,9 +46,9 @@ public class LevelBuilder extends JFrame{
     public LevelBuilder() {
         JPanel controls = new JPanel();
         JComboBox<GameObject> cbSetGO = new JComboBox<>(new GameObject[]{new Gras(), new Rock()});
-        JButton btNewMap = new JButton("New Map");
-        JButton btSave = new JButton("Save");
-        JButton btLoad = new JButton("Load");
+        JButton btNewMap = new JButton();
+        JButton btSave = new JButton();
+        JButton btLoad = new JButton();
         grid = new LevelGrid();
         
         cbSetGO.setAction(new AbstractAction() {
@@ -67,6 +71,24 @@ public class LevelBuilder extends JFrame{
                 }
             }
         });
+        btSave.setAction(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        btLoad.setAction(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        
+        btNewMap.setText("New Map");
+        btSave.setText("Save");
+        btLoad.setText("Load");
         
         controls.setSize(controls.getWidth(), 20);
         controls.setLayout(new GridLayout(1, 5, 10, 10));
@@ -97,17 +119,82 @@ class LevelGrid extends JPanel {
     private int height;
     private GameObject currentGO;
     GameObject[][] map;
+    GameObject[][] layer;
     
-    public LevelGrid() {
-        
-    }
+    private int padding = 10;
+    private double scale = 1;
+    private double translationX = 0;
+    private double translationY = 0;
 
+    public LevelGrid() {
+        MouseAdapter ma = new MouseAdapter() {
+            private int x0 = 0;
+            private int y0 = 0;
+            
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                x0 = e.getX();
+                y0 = e.getY();
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                translationX = translationX+e.getX()-x0;
+                translationY = translationY+e.getY()-y0;
+                x0 = e.getX();
+                y0 = e.getY();
+                LevelGrid.this.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                if(e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+                    if(e.getUnitsToScroll() > 0) {
+                        scale = scale*1.1;
+                    } else {
+                        scale = scale*0.9;
+                    }
+                    LevelGrid.this.repaint();
+                }
+            }
+        };
+        this.addMouseListener(ma);
+        this.addMouseMotionListener(ma);
+        this.addMouseWheelListener(ma);
+    }
+    
     public void setCurrentGameObject(GameObject go) { currentGO = go; }
     
     public void resetMap(int width, int height, GameObject go) {
         this.width = width;
         this.height = height;
-        map = new GameObject[width][height];
+        map = new GameObject[height][width];
+        layer = new GameObject[height][width];
         
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
@@ -117,12 +204,29 @@ class LevelGrid extends JPanel {
         System.out.println(map);
         System.out.println(this.width);
         System.out.println(this.height);
+        
+        this.repaint();
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        g.clearRect(0, 0, this.width, this.height);
+        
+        if(map != null) {
+            Graphics2D g2d = (Graphics2D) g;
+            
+            g2d.translate(translationX, translationY);
+            g2d.scale(scale, scale);
+            
+            for (int i = 0; i < map.length; i++) {
+                for (int j = 0; j < map[i].length; j++) {
+                    GameObject go = map[i][j];
+                    g2d.drawImage(go.getLook(), padding+i*25, padding+j*25, null);
+                }
+            }
+        }
     }
 }
 
@@ -135,9 +239,9 @@ class DlgNewMap extends JDialog {
     public DlgNewMap(JFrame owner) {
         super(owner, "Create New Map", true);
         
-        JButton btCreate = new JButton("Create");
-        JButton btCancel = new JButton("Cancel");
-        
+        JButton btCreate = new JButton();
+        JButton btCancel = new JButton();
+
         spWidth = new JSpinner(new SpinnerNumberModel(30, 10, 500, 1));
         spHeight = new JSpinner(new SpinnerNumberModel(30, 10, 500, 1));
         cbGround = new JComboBox<>(new GameObject[]{new Gras(), new Rock()});
@@ -157,6 +261,9 @@ class DlgNewMap extends JDialog {
                 DlgNewMap.this.setVisible(false);
             }
         });
+        
+        btCreate.setText("Create");
+        btCancel.setText("Cancel");
         
         this.setSize(200, 200);
         this.setLayout(new GridLayout(5, 1, 5, 5));

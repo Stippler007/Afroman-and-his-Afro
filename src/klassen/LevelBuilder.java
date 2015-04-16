@@ -106,6 +106,7 @@ public class LevelBuilder extends JFrame{
                         LevelBuilder.this.grid.map = (GameObject[][]) ois.readObject();
                         LevelBuilder.this.grid.layer = (GameObject[][]) ois.readObject();
                         ois.close();
+                        grid.repaint();
                     } catch (Exception ex) {
                         System.out.println("Could not load");
                     }
@@ -249,7 +250,7 @@ class LevelGrid extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        g.clearRect(0, 0, this.width, this.height);
+        g.clearRect(0, 0, this.getWidth(), this.getHeight());
         
         if(map != null) {
             Graphics2D g2d = (Graphics2D) g;

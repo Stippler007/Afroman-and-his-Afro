@@ -47,11 +47,12 @@ public abstract class Afro
   public boolean isClicked(float x2,float y2)
   {
     
-      int x = (int) x2;
-      int y = (int) y2;
+    int x3 = (int) x2;
+    int y3 = (int) y2;
+    
       
-    if(this.x<x&&this.x+bounding.width>x&&
-       this.y<y&&this.y+bounding.height>y)
+    if(bounding.x<x3&&bounding.x+bounding.width>x3  &&
+       bounding.y<y3&&bounding.y+bounding.height>y3)
     {
       return true;
     }

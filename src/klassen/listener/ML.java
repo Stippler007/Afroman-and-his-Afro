@@ -32,7 +32,7 @@ public class ML implements MouseListener
     
     for(Afro a : afros)
     {
-        if(a.isClicked(e.getX()/scaleX, e.getY()/scaleX)) a.newShop();
+        if(a.isClicked(e.getX()/scaleX, e.getY()/scaleY)) a.newShop();
     }
   }
   @Override

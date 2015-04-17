@@ -77,7 +77,7 @@ public class GUI extends JFrame
     canvas.setScaleX(xScaling);
     canvas.setScaleY(yScaling);
     
-    ml.setScale(xScaling, xScaling);
+    ml.setScale(xScaling, yScaling);
     
     fullscreen=true;
   }

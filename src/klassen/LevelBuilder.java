@@ -41,7 +41,7 @@ import klassen.karte.Rock;
 public class LevelBuilder extends JFrame{
     
     private LevelGrid grid;
-    
+    //TODO: change Background
     public LevelBuilder() {
         JPanel controls = new JPanel();
         JComboBox<GameObject> cbSetGO = new JComboBox<>(new GameObject[]{new Rock(), new Gras()});
@@ -83,7 +83,7 @@ public class LevelBuilder extends JFrame{
                 if(f != null) {
                     try {
                         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
-                        oos.writeObject(grid.map);
+                        oos.writeObject(grid.ground);
                         oos.writeObject(grid.layer);
                         oos.close();
                     } catch (IOException ex) {
@@ -103,7 +103,7 @@ public class LevelBuilder extends JFrame{
                 if(f != null) {
                     try {
                         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-                        LevelBuilder.this.grid.map = (GameObject[][]) ois.readObject();
+                        LevelBuilder.this.grid.ground = (GameObject[][]) ois.readObject();
                         LevelBuilder.this.grid.layer = (GameObject[][]) ois.readObject();
                         ois.close();
                         grid.repaint();
@@ -133,7 +133,8 @@ public class LevelBuilder extends JFrame{
         this.add(grid, BorderLayout.CENTER);
     }
     
-    public GameObject[][] getMap() { return grid.map; }
+    public GameObject[][] getGround() { return grid.ground; }
+    public GameObject[][] getLayer() { return grid.layer; }
     
     public static void main(String[] args) {
         LevelBuilder builder = new LevelBuilder();
@@ -146,7 +147,7 @@ class LevelGrid extends JPanel {
     private int width;
     private int height;
     private GameObject currentGO;
-    GameObject[][] map;
+    GameObject[][] ground;
     GameObject[][] layer;
     
     private int padding = 10;
@@ -231,15 +232,15 @@ class LevelGrid extends JPanel {
     public void resetMap(int width, int height, GameObject go) {
         this.width = width;
         this.height = height;
-        map = new GameObject[height][width];
+        ground = new GameObject[height][width];
         layer = new GameObject[height][width];
         
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                map[i][j] = go;
+        for (int i = 0; i < ground.length; i++) {
+            for (int j = 0; j < ground[i].length; j++) {
+                ground[i][j] = go;
             }
         }
-        System.out.println(map);
+        System.out.println(ground);
         System.out.println(this.width);
         System.out.println(this.height);
         
@@ -252,15 +253,15 @@ class LevelGrid extends JPanel {
         
         g.clearRect(0, 0, this.getWidth(), this.getHeight());
         
-        if(map != null) {
+        if(ground != null) {
             Graphics2D g2d = (Graphics2D) g;
             
             g2d.translate(translationX, translationY);
             g2d.scale(scale, scale);
             
-            for (int i = 0; i < map.length; i++) {
-                for (int j = 0; j < map[i].length; j++) {
-                    GameObject go = map[i][j];
+            for (int i = 0; i < ground.length; i++) {
+                for (int j = 0; j < ground[i].length; j++) {
+                    GameObject go = ground[i][j];
                     g2d.drawImage(go.getLook(), padding+i*25, padding+j*25, null);
                     
                     go = layer[i][j];

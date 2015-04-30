@@ -12,12 +12,10 @@ public class InventoryDraw {
     public int tasn[] = new int[8];         // Things at state now
     
     public static final int stone = 1;
+    public static final int tower1 = 2;
+    
     private BufferedImage[] images = new BufferedImage[8];
     
-    public InventoryDraw()
-    {
-        setTas(0,stone,20);
-    }
     
     public void paintInventory(Graphics gr)
     {
@@ -83,5 +81,6 @@ public class InventoryDraw {
         tasn[state] = value;
         
         if(thing == stone) images[state] =ImageFactory.getImageFactory().getLooks("rock0");
+        if(thing == tower1) images[state] =ImageFactory.getImageFactory().getLooks("BasicTower");
     }
 }

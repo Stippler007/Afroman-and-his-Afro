@@ -5,52 +5,19 @@
  */
 package klassen.player;
 
-import java.awt.Rectangle;
+import klassen.ImageFactory;
+import klassen.karte.GameObject;
 
 /**
  *
- * @author Christian
+ * @author Stippler
  */
-public class PlayerSpritzer
+public class PlayerSpritzer extends Spritzer
 {
-  private float x;
-  private float y;
-  
-  private float speedX;
-  private float speedY;
-  
-  private Rectangle bounding;
 
-  public PlayerSpritzer(float x, float y, float speedX, float speedY)
-  {
-    this.x = x;
-    this.y = y;
-    this.speedX = speedX;
-    this.speedY = speedY;
-    this.bounding = new Rectangle((int)x, (int)y, 15, 15);
+  public PlayerSpritzer(float x, float y, float speedX, float speedY,GameObject map[][]) {
+    super(x, y, speedX, speedY,map);
+    look[0]=ImageFactory.getImageFactory().getLooks("playerSpritzer");
   }
   
-  public void update(float tslf)
-  {
-    x+=speedX*tslf;
-    y+=speedY*tslf;
-    
-    x+=Player.speedX;
-    y+=Player.speedY;
-    
-    bounding.x=(int)x;
-    bounding.y=(int)y;
-  }
-  public Rectangle getBounding()
-  {
-    return bounding;
-  }
-  public float getX()
-  {
-    return x;
-  }
-  public float getY()
-  {
-    return y;
-  }
 }

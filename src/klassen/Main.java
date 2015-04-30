@@ -9,39 +9,50 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import klassen.Inventory.InventoryDraw;
 import klassen.Inventory.InventoryThings;
+import klassen.afro.Afro;
+import klassen.afro.BasicAfro;
 import klassen.enemys.BasicEnemy;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
-import klassen.enemys.StandartEnemy;
 import klassen.karte.GameObject;
 import klassen.listener.KL;
 import klassen.player.Player;
 import static klassen.player.Player.speedX;
 import static klassen.player.Player.speedY;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.BasicTower;
 import klassen.tower.Tower;
-import klassen.tower.TowerSpritzer;
 
-public class Main
+public class Main implements Runnable
 {
-  public static void main(String[] args)
+    Player player;
+    Background bg;
+    LinkedList<Spritzer> spritzers;
+    LinkedList<Enemy> enemys;
+    LinkedList<EnemySpritzer> enemySpritzerses;
+    LinkedList<Tower> towers;
+    GUI f;
+    LinkedList<Afro> afros;
+    ShopGUI shop;
+    
+  public Main()
   {
-    LinkedList<Enemy> enemys=new LinkedList<>();
-    LinkedList<EnemySpritzer> enemySpritzerses=new LinkedList<>();
+    afros=new LinkedList<Afro>();
     
-    LinkedList<Tower> towers=new LinkedList<>();
-    LinkedList<TowerSpritzer> towerSpritzers=new LinkedList<>();
+    enemys=new LinkedList<>();
+    enemySpritzerses=new LinkedList<>();
     
-    LinkedList<PlayerSpritzer> playerSpritzers=new LinkedList<>();
-    Player player=new Player(400-12.5f, 300-12.5f, 300, playerSpritzers, enemySpritzerses,towers);
+    towers=new LinkedList<>();
+    spritzers=new LinkedList<>();
+    
+    player=new Player(400-12.5f, 300-12.5f, 300, spritzers, enemySpritzerses,towers);
     
     InventoryDraw ivd = new InventoryDraw();
-    InventoryThings iv = new InventoryThings(ivd);
+    InventoryThings iv = new InventoryThings(ivd, towers, enemys, spritzers);
     
-    Background bg=new Background(player, iv);
+    bg=new Background(player, enemys,iv);
     
-    GUI f=new GUI(player, playerSpritzers, enemySpritzerses, enemys,towers,towerSpritzers,bg, ivd, iv); //Ich erzeuge mein GUI Objekt
+    f=new GUI(player, spritzers, enemySpritzerses, enemys,towers,spritzers,afros,bg,ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
     f.setVisible(true);
@@ -51,12 +62,19 @@ public class Main
     f.setLocationRelativeTo(null);
     f.setFullscreen();
     
-    enemys.add(new StandartEnemy(300, 300, 20, 0, 0, playerSpritzers,enemys, towers, player, enemySpritzerses));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
-    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, playerSpritzers, enemys, towers, player));
+    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
+    enemys.add(new BasicEnemy(300, 300, 30, 20, 0, spritzers, enemys, towers, player));
     
-    towers.add(new BasicTower(100, 100, 300, 40, enemys, towerSpritzers));
+    afros.add(new BasicAfro(400, 400, 0, ivd, iv, f, shop));
     
+//    towers.add(new BasicTower(100, 100, 300, 40, enemys, spritzers));
+    
+        new Thread(this).start();
+    
+    }
+  
+  public void run()
+  {
     long lastFrame=System.currentTimeMillis();
     while(true)
     {   
@@ -72,9 +90,9 @@ public class Main
       player.update(tslf);
       
       bg.update(tslf);
-      for (PlayerSpritzer playerSpritzer : playerSpritzers)
+      for (Spritzer spritzer : spritzers)
       {
-        playerSpritzer.update(tslf);
+        spritzer.update(tslf);
       }
       for (Enemy enemy : enemys)
       {
@@ -84,22 +102,22 @@ public class Main
       {
         enemy.update(tslf);
       }
-      for (TowerSpritzer ts : towerSpritzers) 
-      {
-        ts.update(tslf);
-      }
       for (Tower t : towers) 
       {
         t.update(tslf);
       }
+      for (Afro afro : afros)
+      {
+        afro.update(tslf);
+      }
       
-      deleteStuff(player, enemys,playerSpritzers, enemySpritzerses,bg);
+      deleteStuff(player, enemys,spritzers, enemySpritzerses,bg);
       
       f.repaintScreen();
       try{Thread.sleep(15);} catch (InterruptedException ex){}
     }
-  }
-  private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<PlayerSpritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers,Background bg)
+    }
+  private static void deleteStuff(Player player,LinkedList<Enemy> enemys,LinkedList<Spritzer> playerSpritzers, LinkedList<EnemySpritzer> enemySpritzers,Background bg)
   {
     int i=0;
     if(player.getLive() <= 0)
@@ -120,23 +138,18 @@ public class Main
     i=0;
     while(i<playerSpritzers.size())
     {
-      PlayerSpritzer ps=playerSpritzers.get(i);
-      if(ps.getBounding().x>800)playerSpritzers.remove(i);
-      else if(ps.getBounding().x<-ps.getBounding().width)playerSpritzers.remove(i);
-      else if(ps.getBounding().y>600)playerSpritzers.remove(i);
-      else if(ps.getBounding().y<-ps.getBounding().height)playerSpritzers.remove(i);
+      Spritzer ps=playerSpritzers.get(i);
+      if(ps.getBounding().x>Background.x+bg.lowerMap.length*25)playerSpritzers.remove(i);
+      else if(ps.getBounding().x<Background.x-ps.getBounding().width)playerSpritzers.remove(i);
+      else if(ps.getBounding().y>Background.y+bg.lowerMap[0].length*25)playerSpritzers.remove(i);
+      else if(ps.getBounding().y<Background.y-ps.getBounding().height)playerSpritzers.remove(i);
+      else if(!ps.isAlive())
+      {
+        playerSpritzers.remove(i);
+      }
       else i++;
       
-      for (int j =(int)(Background.x/25*-1); i <= (int)(Background.x/25*-1); i++) 
-      {
-        for (int k = (int)(Background.y/25*-1); j <= (int)(Background.y/25*-1); j++) 
-        {
-          if(!(j<0)&&!(j<0)&&bg.upperMap[j][k]!=null&&bg.upperMap[j][k].isSolid())
-          {
-            
-          }
-        }
-      }
+      
     }
     while(i<enemySpritzers.size())
     {
@@ -160,8 +173,10 @@ public class Main
             enemySpritzers.remove(i);
         }
         else i++;
-        
     }
     
   }
+    public static void main(String[] args) {
+        new Main();
+    }
 }

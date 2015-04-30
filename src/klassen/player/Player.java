@@ -2,8 +2,10 @@ package klassen.player;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import klassen.Background;
+import klassen.ImageFactory;
 import klassen.enemys.EnemySpritzer;
 import klassen.karte.GameObject;
 import klassen.listener.KL;
@@ -24,7 +26,7 @@ public class Player
   private float maxRealoadTime=0.3f;
   
   private int speed;
-  private LinkedList<PlayerSpritzer> playerSpritzers;
+  private LinkedList<Spritzer> playerSpritzers;
   private LinkedList<EnemySpritzer> enemySpritzer;
   private Rectangle bounding;
   
@@ -33,11 +35,17 @@ public class Player
   private boolean move=false;
   private GameObject[][] map;
   
+  private BufferedImage look[]=new BufferedImage[1];
   
   
-  public Player(float x, float y, int speed, LinkedList<PlayerSpritzer> playerSpritzers,
+  
+  public Player(float x, float y, int speed, LinkedList<Spritzer> playerSpritzers,
           LinkedList<EnemySpritzer> enemySpritzer,LinkedList<Tower> towers)
   {
+    for (int i = 0; i < look.length; i++)
+    {
+      look[i]=ImageFactory.getImageFactory().getLooks("player");
+    }
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -45,6 +53,10 @@ public class Player
     this.bounding=new Rectangle((int)x,(int)y,25,25);
     this.enemySpritzer = enemySpritzer;
     this.towers=towers;
+  }
+  public void damage(float damage)
+  {
+    live-=damage;
   }
   public void setMap(GameObject[][] map)
   {
@@ -64,22 +76,22 @@ public class Player
     {
       if(KL.keys[KeyEvent.VK_UP])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, -speed*3));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, -speed*3,map));
         realoadTime-=maxRealoadTime;
       }
       else if(KL.keys[KeyEvent.VK_DOWN])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*3));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, 0, speed*3,map));
         realoadTime-=maxRealoadTime;
       }
       else if(KL.keys[KeyEvent.VK_LEFT])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*3, 0));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, -speed*3, 0,map));
         realoadTime-=maxRealoadTime;
       }
       else if(KL.keys[KeyEvent.VK_RIGHT])
       {
-        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*3, 0));
+        playerSpritzers.add(new PlayerSpritzer(x+bounding.width/2-7, y+bounding.width/2-7, speed*3, 0,map));
         realoadTime-=maxRealoadTime;
       }
     }
@@ -252,5 +264,9 @@ public class Player
   public float getMaxLive()
   {
       return maxLive;
+  }
+  public BufferedImage getLook() 
+  {
+    return look[0];
   }
 }

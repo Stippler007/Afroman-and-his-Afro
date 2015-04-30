@@ -15,6 +15,7 @@ import static klassen.Background.x;
 import static klassen.Background.y;
 import klassen.Inventory.InventoryDraw;
 import klassen.Inventory.InventoryThings;
+import klassen.afro.Afro;
 import klassen.enemys.Enemy;
 import klassen.enemys.EnemySpritzer;
 import klassen.karte.GameObject;
@@ -22,9 +23,8 @@ import klassen.listener.KL;
 import klassen.listener.ML;
 import klassen.listener.MML;
 import klassen.player.Player;
-import klassen.player.PlayerSpritzer;
+import klassen.player.Spritzer;
 import klassen.tower.Tower;
-import klassen.tower.TowerSpritzer;
 
 /**
  *
@@ -33,13 +33,15 @@ import klassen.tower.TowerSpritzer;
 public class Canvas extends JPanel
 {
   private Player player;
-  private LinkedList<PlayerSpritzer> playerSpritzers;
+  private LinkedList<Spritzer> playerSpritzers;
   
   private LinkedList<EnemySpritzer> enemySpritzerses;
   private LinkedList<Enemy> enemys;
   
-  LinkedList<Tower> towers;
-  LinkedList<TowerSpritzer> towerSpritzers;
+  private LinkedList<Afro> afros;
+  
+  private LinkedList<Tower> towers;
+  private LinkedList<Spritzer> towerSpritzers;
   
   private InventoryDraw idv;
   private InventoryThings iv;
@@ -58,9 +60,9 @@ public class Canvas extends JPanel
   }
   
   public Canvas(Player player,
-                LinkedList<PlayerSpritzer> playerSpritzers,
+                LinkedList<Spritzer> playerSpritzers,
                 LinkedList<EnemySpritzer> enemySpritzerses, LinkedList<Enemy> enemys,
-                LinkedList<Tower> towers,LinkedList<TowerSpritzer> towerSpritzers,
+                LinkedList<Tower> towers,LinkedList<Spritzer> towerSpritzers,LinkedList<Afro> afros,
                 Background bg, InventoryDraw idv, InventoryThings iv)
   {
     this.player = player;
@@ -69,13 +71,15 @@ public class Canvas extends JPanel
     this.towers=towers;
     this.towerSpritzers=towerSpritzers;
     this.enemys = enemys;
+    this.afros=afros;
     this.bg=bg;
     this.idv = idv;
     this.iv = iv;
   }
-  @Override
+  
   public void paint(Graphics g)
   {
+    double turn;
     Graphics2D g2=(Graphics2D)g;
     g2.scale(scaleX, scaleY);
     
@@ -95,9 +99,10 @@ public class Canvas extends JPanel
     g.fillRect((int)player.getX(), (int)player.getY()-3, (int)(player.getBounding().width*(player.getLive()/player.getMaxLive())), 2);
       
     g.setColor(Color.black);
-    g.fillRect((int)player.getX(), (int)player.getY(), player.getBounding().width, player.getBounding().height);
+    //g.fillRect((int)player.getX(), (int)player.getY(), player.getBounding().width, player.getBounding().height);
+    g.drawImage(player.getLook(), (int)player.getX(), (int)player.getY(), null);
     g.setColor(Color.gray);
-    for (PlayerSpritzer playerSpritzer : playerSpritzers)
+    for (Spritzer playerSpritzer : playerSpritzers)
     {
       g.fillRect((int)playerSpritzer.getX(), (int)playerSpritzer.getY(), playerSpritzer.getBounding().width, playerSpritzer.getBounding().height);
     }
@@ -110,7 +115,10 @@ public class Canvas extends JPanel
       if(t.getX()+t.getBounding().width>0&&t.getY()+t.getBounding().height>0
          &&t.getX()<getWidth()&&t.getY()<getWidth())
       {
+        turn=t.getTurn();
+        g2.rotate(turn, t.getX()+t.getBounding().width/2, t.getY()+t.getBounding().height/2);
         g.drawImage(t.getLook(), (int)t.getX(), (int)t.getY(), null);
+        g2.rotate(-turn, t.getX()+t.getBounding().width/2, t.getY()+t.getBounding().height/2);
       }
     }
     for (Enemy enemy : enemys)
@@ -118,14 +126,20 @@ public class Canvas extends JPanel
       g.setColor(Color.red);
       g.fillRect((int)enemy.getX(), (int)enemy.getY()-3, enemy.getBounding().width, 2);
       
+      
       g.setColor(Color.green);
       g.fillRect((int)enemy.getX(), (int)enemy.getY()-3, (int)(enemy.getBounding().width*(enemy.getLive()/enemy.getMaxLive())), 2);
       
-      g.setColor(enemy.getColor());
-      g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
+//      g.setColor(enemy.getColor());
+//      //g.fillRect((int)enemy.getX(), (int)enemy.getY(), enemy.getBounding().width, enemy.getBounding().height);
+      g2.rotate(enemy.getTurn(),enemy.getX()+enemy.getBounding().width/2,enemy.getY()+enemy.getBounding().height/2);
+      g.drawImage(enemy.getLook(), (int)enemy.getX(), (int)enemy.getY(), null);
+      g2.rotate(-enemy.getTurn(),enemy.getX()+enemy.getBounding().width/2,enemy.getY()+enemy.getBounding().height/2);
     }
-     
+    for (Afro afro : afros)
+    {
+      g.drawImage(afro.getLook(), (int)afro.getX(), (int)afro.getY(), null);
+    }
     idv.paintInventory(g);
-    
   }
 }

@@ -31,8 +31,15 @@ public class ImageFactory
       {
           looks.put("rock"+i, ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/gameObjects/stone"+i+".png")));
       }
-      looks.put("BasicTower", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/towers/Towers.png")).getSubimage(0, 0, 50, 50));
+      for (int i = 1; i <= 4; i++) 
+      {
+        looks.put("afro"+i, ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/afro/afro"+i+".png")));
+      }
+      looks.put("BasicTower", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/towers/BasicTower.png")).getSubimage(0, 0, 50, 50));
       looks.put("BasicTowerShot", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/towers/BasicTowerShot.png")));
+      looks.put("player", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/player/player0.png")));
+      looks.put("enemy", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/enemy/enemy.png")));
+      looks.put("playerSpritzer", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/player/PlayerSpritzer.png")));
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
     }

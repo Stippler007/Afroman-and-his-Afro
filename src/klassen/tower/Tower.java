@@ -10,7 +10,9 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import klassen.ImageFactory;
 import klassen.enemys.Enemy;
+import klassen.karte.GameObject;
 import klassen.player.Player;
+import klassen.player.Spritzer;
 
 /**
  *
@@ -29,25 +31,31 @@ public abstract class Tower
   protected LinkedList<Enemy> enemys;
   protected float damage;
   
-  protected LinkedList<TowerSpritzer> towerSpritzers;
+  protected LinkedList<Spritzer> spritzers;
+  
+  protected double turn=0;
   
   protected float animationTime=0;
   protected float maxAnimationTime;
   
+  protected GameObject map[][];
+  
   public Tower(float x, float y, Rectangle bounding,
                int radius,float damage,float maxAnimationTime,
-               LinkedList<Enemy> enemys,LinkedList<TowerSpritzer> towerSpritzers)
+               LinkedList<Enemy> enemys,LinkedList<Spritzer> spritzers, 
+               GameObject map[][])
   {
     for (int i = 0; i < look.length; i++)
     {
       look[i]=ImageFactory.getImageFactory().getLooks("BasicTower");
     }
+    this.map=map;
     this.x = x;
     this.y = y;
     this.enemys=enemys;
     this.bounding = bounding;
     this.damage=damage;
-    this.towerSpritzers=towerSpritzers;
+    this.spritzers=spritzers;
     this.maxAnimationTime=maxAnimationTime;
     this.radius=radius;
   }
@@ -67,6 +75,11 @@ public abstract class Tower
       {
         enemy=getNearestEnemy();
       }
+      else if(enemy.getLive()<=0)
+      {
+        enemy=null;
+      }
+      
       animationTime-=maxAnimationTime;
       onAttack();
     }
@@ -165,7 +178,22 @@ public abstract class Tower
     }
     return null;
   }
-  public float getX() {
+  public double getTurn()
+  {
+    if(enemy!=null)
+    {
+      double a=(enemy.getX()+enemy.getBounding().width/2)-(x+bounding.width/2);
+      double b=(enemy.getY()+enemy.getBounding().height/2)-(y+bounding.height/2);
+
+      turn=Math.atan(b/a);
+      if(a<0){
+        turn+=3.1415926535898;
+      }
+    }
+    return turn;
+  }
+  public float getX() 
+  {
     return x;
   }
 

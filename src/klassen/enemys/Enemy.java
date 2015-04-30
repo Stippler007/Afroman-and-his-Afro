@@ -3,7 +3,6 @@ package klassen.enemys;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.LinkedList;
-import klassen.karte.GameObject;
 import klassen.player.Player;
 import klassen.player.PlayerSpritzer;
 import klassen.tower.Tower;
@@ -34,8 +33,6 @@ public abstract class Enemy
   private boolean knockback=false;
   
   protected LinkedList<Tower> towers;
-  
-  protected GameObject map[][];
   
   protected Color color;
   

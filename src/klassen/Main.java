@@ -51,7 +51,8 @@ public class Main implements Runnable
     InventoryThings iv = new InventoryThings(ivd, towers, enemys, spritzers);
     
     bg=new Background(player, enemys,iv);
-    
+
+    // GameMenu gm = new GameMenu(new Frame());
     f=new GUI(player, spritzers, enemySpritzerses, enemys,towers,spritzers,afros,bg,ivd, iv); //Ich erzeuge mein GUI Objekt
     
     f.setUndecorated(true);
@@ -136,8 +137,7 @@ public class Main implements Runnable
       }
     }
     i=0;
-    while(i<playerSpritzers.size())
-    {
+    while(i<playerSpritzers.size()){
       Spritzer ps=playerSpritzers.get(i);
       if(ps.getBounding().x>Background.x+bg.lowerMap.length*25)playerSpritzers.remove(i);
       else if(ps.getBounding().x<Background.x-ps.getBounding().width)playerSpritzers.remove(i);

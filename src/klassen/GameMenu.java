@@ -119,6 +119,7 @@ public class GameMenu extends JPanel implements Runnable
         public void actionPerformed(ActionEvent e)
         {
             new Main();
+            frame.dispose();
         }
     });
     
@@ -238,5 +239,9 @@ public class GameMenu extends JPanel implements Runnable
         break;
     }
     return c;
+  }
+
+  public static void main(String[] args) {
+    new GameMenu(new Frame());
   }
 }

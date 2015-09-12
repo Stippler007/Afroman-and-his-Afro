@@ -1,8 +1,10 @@
 package klassen.listener;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
+import javafx.scene.input.KeyCode;
 import klassen.GUI;
 import klassen.Inventory.InventoryThings;
 import klassen.afro.Afro;
@@ -32,7 +34,14 @@ public class ML implements MouseListener
     
     for(Afro a : afros)
     {
-        if(a.isClicked(e.getX()/scaleX, e.getY()/scaleX)) a.newShop();
+        if(a.isClicked(e.getX()/scaleX, e.getY()/scaleY)) 
+        {
+            a.newShop();
+            KL.keys[KeyEvent.VK_A] = false;
+            KL.keys[KeyEvent.VK_S] = false;
+            KL.keys[KeyEvent.VK_D] = false;
+            KL.keys[KeyEvent.VK_W] = false;
+        }
     }
   }
   @Override
